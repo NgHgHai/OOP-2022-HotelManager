@@ -23,8 +23,8 @@ import java.awt.event.ActionEvent;
 public class Login {
 
 	private JFrame frame;
-	private JTextField txtEnterUsername;
-	private JTextField txtEnterPassword;
+	private JTextField name_textField;
+	private JTextField password_textField;
 
 	/**
 	 * Launch the application.
@@ -59,88 +59,84 @@ public class Login {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 564, 539);
-		panel.setBackground(new Color(72, 61, 139));
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
+		JPanel background_panel = new JPanel();
+		background_panel.setBounds(10, 11, 564, 539);
+		background_panel.setBackground(new Color(72, 61, 139));
+		frame.getContentPane().add(background_panel);
+		background_panel.setLayout(null);
 
-		JLabel lblNewLabel_7 = new JLabel("GROUP 17");
-		lblNewLabel_7.setForeground(Color.WHITE);
-		lblNewLabel_7.setBackground(Color.WHITE);
-		lblNewLabel_7.setFont(new Font("Dialog", Font.BOLD, 21));
-		lblNewLabel_7.setBounds(288, 130, 108, 27);
-		panel.add(lblNewLabel_7);
+		JLabel group17_label = new JLabel("GROUP 17");
+		group17_label.setForeground(Color.WHITE);
+		group17_label.setBackground(Color.WHITE);
+		group17_label.setFont(new Font("Dialog", Font.BOLD, 21));
+		group17_label.setBounds(288, 130, 108, 27);
+		background_panel.add(group17_label);
 
-		txtEnterUsername = new JTextField();
-		txtEnterUsername.setText("Enter Username");
-		txtEnterUsername.addMouseListener(new MouseAdapter() {
+		name_textField = new JTextField();
+		name_textField.setText("Enter Username");
+		name_textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				super.mouseClicked(e);
-				if (e.getSource() == txtEnterUsername) {
-					txtEnterUsername.setText("");
+				if (e.getSource() == name_textField) {
+					name_textField.setText("");
 				}
 			}
 
 		});
 
-		txtEnterUsername.setHorizontalAlignment(SwingConstants.LEFT);
-		txtEnterUsername.setFont(new Font("Tahoma", Font.BOLD, 18));
-		txtEnterUsername.setColumns(10);
-		txtEnterUsername.setBounds(100, 222, 409, 44);
-		panel.add(txtEnterUsername);
+		name_textField.setHorizontalAlignment(SwingConstants.LEFT);
+		name_textField.setFont(new Font("Tahoma", Font.BOLD, 18));
+		name_textField.setColumns(10);
+		name_textField.setBounds(100, 222, 409, 44);
+		background_panel.add(name_textField);
 
-		txtEnterPassword = new JTextField();
-		txtEnterPassword.setText("Enter Password");
-		txtEnterPassword.addMouseListener(new MouseAdapter() {
+		password_textField = new JTextField();
+		password_textField.setText("Enter Password");
+		password_textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				if (e.getSource() == txtEnterPassword) {
-					txtEnterPassword.setText("");
+				if (e.getSource() == password_textField) {
+					password_textField.setText("");
 				}
 			}
 
 		});
-		txtEnterPassword.setHorizontalAlignment(SwingConstants.LEFT);
-		txtEnterPassword.setFont(new Font("Tahoma", Font.BOLD, 18));
-		txtEnterPassword.setColumns(10);
-		txtEnterPassword.setBounds(100, 311, 409, 44);
-		panel.add(txtEnterPassword);
+		password_textField.setHorizontalAlignment(SwingConstants.LEFT);
+		password_textField.setFont(new Font("Tahoma", Font.BOLD, 18));
+		password_textField.setColumns(10);
+		password_textField.setBounds(100, 311, 409, 44);
+		background_panel.add(password_textField);
 
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/libs/user.png")));
-		lblNewLabel.setBounds(45, 223, 45, 43);
-		panel.add(lblNewLabel);
+		JLabel iconName_label = new JLabel("");
+		iconName_label.setIcon(new ImageIcon(Login.class.getResource("/libs/user.png")));
+		iconName_label.setBounds(45, 223, 45, 43);
+		background_panel.add(iconName_label);
 
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(Login.class.getResource("/libs/key.png")));
-		lblNewLabel_1.setBounds(55, 311, 35, 44);
-		panel.add(lblNewLabel_1);
+		JLabel iconPassword_label = new JLabel("");
+		iconPassword_label.setIcon(new ImageIcon(Login.class.getResource("/libs/key.png")));
+		iconPassword_label.setBounds(55, 311, 35, 44);
+		background_panel.add(iconPassword_label);
 
-		JButton btnNewButton_2 = new JButton("LOGIN");
-		btnNewButton_2.setBackground(new Color(72, 61, 139));
-		btnNewButton_2.setForeground(Color.WHITE);
-		btnNewButton_2.setFocusable(false);
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton login_button = new JButton("LOGIN");
+		login_button.setBackground(new Color(72, 61, 139));
+		login_button.setForeground(Color.WHITE);
+		login_button.setFocusable(false);
+		login_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		btnNewButton_2.setBounds(217, 422, 136, 44);
-		btnNewButton_2.setBorder(new LineBorder(Color.WHITE, 3));
-		panel.add(btnNewButton_2);
+		login_button.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		login_button.setBounds(217, 422, 136, 44);
+		login_button.setBorder(new LineBorder(Color.WHITE, 3));
+		background_panel.add(login_button);
 
-		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon(Login.class.getResource("/libs/logo-big.png")));
-		lblNewLabel_3.setBounds(56, -40, 263, 251);
-		panel.add(lblNewLabel_3);
-
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setBounds(69, 11, 321, 200);
-		frame.getContentPane().add(lblNewLabel_2);
+		JLabel iconLogo_label = new JLabel("");
+		iconLogo_label.setIcon(new ImageIcon(Login.class.getResource("/libs/logo-big.png")));
+		iconLogo_label.setBounds(56, -40, 263, 251);
+		background_panel.add(iconLogo_label);
 
 	}
 }
