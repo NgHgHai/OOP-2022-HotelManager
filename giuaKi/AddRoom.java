@@ -41,7 +41,7 @@ public class AddRoom extends JFrame {
 				}
 			}
 		});
-	
+	System.out.println();
 	}
 
 	/**
