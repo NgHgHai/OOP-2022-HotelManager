@@ -28,6 +28,7 @@ public class AddRoom extends JFrame {
 
 	/**
 	 * * Launch the application.
+	 * tesst day code len git
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -40,6 +41,7 @@ public class AddRoom extends JFrame {
 				}
 			}
 		});
+		System.out.println("test day code len git");
 	}
 
 	/**
