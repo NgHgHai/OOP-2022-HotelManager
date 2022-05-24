@@ -499,6 +499,7 @@ public class HomePage2 extends JFrame {
 	}
 
 	private void initialize() {
+		// test up date
 //		frame.getContentPane().setBackground(new Color(72, 61, 139));
 		frame.getContentPane().setBackground(new Color(32,83,117));
 		frame.setBounds(100, 100, 1200, 700);
