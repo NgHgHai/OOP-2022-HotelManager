@@ -61,7 +61,7 @@ public class AddRoom extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JButton btnNewButton = new JButton("Add Room");
+		JButton btnNewButton = new JButton("Add Rom");
 		btnNewButton.setBackground(new Color(135, 206, 250));
 		btnNewButton.setFont(new Font("Serif", Font.BOLD, 30));
 		btnNewButton.setFocusable(false);
