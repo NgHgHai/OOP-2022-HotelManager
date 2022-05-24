@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
 //import giuaKi.HomePage;
 
 public class AddUser extends JFrame {
-
+///////////////////////////////////////////////////////////////
 	private JFrame frame;
 	private JTextField name_textField;
 	private JTextField password_textField;
