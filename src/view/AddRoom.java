@@ -55,22 +55,21 @@ public class AddRoom extends JFrame {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
-//		frame.getContentPane().setBackground(new Color(72, 61, 139));
 		frame.getContentPane().setBackground(new Color(32,83,117));
 		frame.setBounds(100, 100, 1200, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JButton btnNewButton = new JButton("Add Room");
-		btnNewButton.setBackground(new Color(135, 206, 250));
-		btnNewButton.setFont(new Font("Serif", Font.BOLD, 30));
-		btnNewButton.setFocusable(false);
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnCenter = new JButton("Add Room");
+		btnCenter.setBackground(new Color(135, 206, 250));
+		btnCenter.setFont(new Font("Serif", Font.BOLD, 30));
+		btnCenter.setFocusable(false);
+		btnCenter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(510, 65, 200, 70);
-		frame.getContentPane().add(btnNewButton);
+		btnCenter.setBounds(510, 65, 200, 70);
+		frame.getContentPane().add(btnCenter);
 
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
