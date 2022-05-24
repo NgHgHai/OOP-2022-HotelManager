@@ -1,4 +1,4 @@
-package giuaKi;
+package view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -52,8 +52,10 @@ public class ViewUser extends JFrame {
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
+		panel.setLayout(null);
 		panel.setBounds(10, 10, 564, 90);
-		panel.setBackground(new Color(72, 61, 139));
+//		panel.setBackground(new Color(72, 61, 139));
+		panel.setBackground(new Color(32,83,117));
 		frame.getContentPane().add(panel);
 
 		JButton btnNewButton_1 = new JButton("<Back");
@@ -62,29 +64,30 @@ public class ViewUser extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		panel.setLayout(null);
+
 		btnNewButton_1.setBounds(25, 10, 81, 27);
-		btnNewButton_1.setBackground(new Color(72, 61, 139));
+//		btnNewButton_1.setBackground(new Color(72, 61, 139));
+		btnNewButton_1.setBackground(new Color(32,83,117));
+		
 		btnNewButton_1.setFocusable(false);
 		panel.add(btnNewButton_1);
 
 		JLabel lblNewLabel_6 = new JLabel("");
 		lblNewLabel_6.setIcon(new ImageIcon(HomePage.class.getResource("/libs/logo-small.png")));
-		lblNewLabel_6.setBounds(152, -26, 128, 128);
+		lblNewLabel_6.setBounds(173, -28, 128, 128);
 		panel.add(lblNewLabel_6);
 
 		JLabel lblNewLabel_7 = new JLabel("GROUP 17");
 		lblNewLabel_7.setForeground(Color.WHITE);
-		lblNewLabel_7.setBackground(Color.WHITE);
 		lblNewLabel_7.setFont(new Font("UTM Cooper Black", Font.BOLD, 18));
-		lblNewLabel_7.setBounds(240, 39, 127, 27);
+		lblNewLabel_7.setBounds(252, 38, 98, 27);
 		panel.add(lblNewLabel_7);
 
 		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
 		panel_1.setBackground(Color.LIGHT_GRAY);
 		panel_1.setBounds(10, 111, 564, 439);
 		frame.getContentPane().add(panel_1);
-		panel_1.setLayout(null);
 
 		table = new JTable();
 		table.setBackground(Color.WHITE);
@@ -92,6 +95,7 @@ public class ViewUser extends JFrame {
 		table.setBounds(0, 0, 564, 439);
 		table.setModel(new DefaultTableModel(
 				new Object[][] { { "User Name", "Password", "Admin Status" }, { null, null, null },
+						{ null, null, null }, { null, null, null }, { null, null, null }, { null, null, null },
 						{ null, null, null }, { null, null, null }, { null, null, null }, { null, null, null },
 						{ null, null, null }, { null, null, null }, { null, null, null }, { null, null, null },
 						{ null, null, null }, { null, null, null }, { null, null, null }, { null, null, null },

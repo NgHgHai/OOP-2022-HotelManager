@@ -1,4 +1,4 @@
-package giuaKi;
+package view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -28,7 +28,6 @@ public class AddRoom extends JFrame {
 
 	/**
 	 * * Launch the application.
-	 * tesst day code len git
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -41,7 +40,6 @@ public class AddRoom extends JFrame {
 				}
 			}
 		});
-	System.out.println(" reset");
 	}
 
 	/**
@@ -54,15 +52,16 @@ public class AddRoom extends JFrame {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	//zsfdgxfcvbnhmngb
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(72, 61, 139));
+		frame.setResizable(false);
+//		frame.getContentPane().setBackground(new Color(72, 61, 139));
+		frame.getContentPane().setBackground(new Color(32,83,117));
 		frame.setBounds(100, 100, 1200, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JButton btnNewButton = new JButton("Add Rom");
+		JButton btnNewButton = new JButton("Add Room");
 		btnNewButton.setBackground(new Color(135, 206, 250));
 		btnNewButton.setFont(new Font("Serif", Font.BOLD, 30));
 		btnNewButton.setFocusable(false);
@@ -70,20 +69,20 @@ public class AddRoom extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(508, 75, 180, 70);
+		btnNewButton.setBounds(510, 65, 200, 70);
 		frame.getContentPane().add(btnNewButton);
 
 		JPanel panel = new JPanel();
+		panel.setLayout(null);
 		panel.setBackground(SystemColor.control);
 		panel.setBounds(10, 100, 1165, 550);
 		frame.getContentPane().add(panel);
-		panel.setLayout(null);
 
 		JPanel panel_4 = new JPanel();
+		panel_4.setLayout(null);
 		panel_4.setBorder(new LineBorder(new Color(0, 0, 0), 4));
 		panel_4.setBounds(10, 75, 480, 464);
 		panel.add(panel_4);
-		panel_4.setLayout(null);
 
 		JLabel lblNewLabel_2 = new JLabel("Name");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -186,13 +185,19 @@ public class AddRoom extends JFrame {
 		btnNewButton_4_3.setFocusable(false);
 
 		JPanel panel_2 = new JPanel();
+		panel_2.setLayout(null);
 		panel_2.setBounds(500, 75, 655, 464);
 		panel.add(panel_2);
-		panel_2.setLayout(null);
 
 		table = new JTable();
 		table.setFont(new Font("Time New Roman", Font.BOLD, 12));
 		table.setModel(new DefaultTableModel(new Object[][] { { "RNum", "RName", "RType", "Status", "Price" },
+				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
+				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
+				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
+				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
+				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
+				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
@@ -219,7 +224,8 @@ public class AddRoom extends JFrame {
 		panel.add(lblNewLabel_1);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(72, 61, 139));
+//		panel_1.setBackground(new Color(72, 61, 139));
+		panel_1.setBackground(new Color(32,83,117));
 		panel_1.setBounds(10, 10, 1165, 90);
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
@@ -231,7 +237,6 @@ public class AddRoom extends JFrame {
 
 		JLabel lblNewLabel_7 = new JLabel("GROUP 17");
 		lblNewLabel_7.setForeground(Color.WHITE);
-		lblNewLabel_7.setBackground(Color.WHITE);
 		lblNewLabel_7.setFont(new Font("UTM Cooper Black", Font.BOLD, 18));
 		lblNewLabel_7.setBounds(106, 24, 137, 48);
 		panel_1.add(lblNewLabel_7);

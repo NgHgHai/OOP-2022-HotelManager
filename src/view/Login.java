@@ -55,15 +55,15 @@ public class Login {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 600, 600);
-
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel background_panel = new JPanel();
-		background_panel.setBounds(10, 11, 564, 539);
-		background_panel.setBackground(new Color(72, 61, 139));
-		frame.getContentPane().add(background_panel);
 		background_panel.setLayout(null);
+		background_panel.setBounds(10, 11, 564, 539);
+		background_panel.setBackground(new Color(32, 83, 117));
+		frame.getContentPane().add(background_panel);
 
 		JLabel group17_label = new JLabel("GROUP 17");
 		group17_label.setForeground(Color.WHITE);
@@ -121,7 +121,7 @@ public class Login {
 		background_panel.add(iconPassword_label);
 
 		JButton login_button = new JButton("LOGIN");
-		login_button.setBackground(new Color(72, 61, 139));
+		login_button.setBackground(new Color(32, 83, 117));
 		login_button.setForeground(Color.WHITE);
 		login_button.setFocusable(false);
 		login_button.addActionListener(new ActionListener() {

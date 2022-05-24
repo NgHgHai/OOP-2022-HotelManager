@@ -1,4 +1,4 @@
-package giuaKi;
+package view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -21,6 +21,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -69,7 +70,6 @@ public class HomePage2 extends JFrame {
 
 	public HomePage2() {
 		initialize();
-//		frame.remove(panel);
 		frame.add(CheckInPanel());
 	}
 
@@ -87,7 +87,6 @@ public class HomePage2 extends JFrame {
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
 		frame.getContentPane().add(panel);
-
 		panel.setLayout(null);
 
 		JButton btnRoomData = new JButton("Room Data");
@@ -105,6 +104,8 @@ public class HomePage2 extends JFrame {
 		btnPayment.setBounds(680, 32, 130, 36);
 		panel.add(btnPayment);
 
+		
+//		Personal Data"
 		JButton button_PersonalData = new JButton("Personal Data");
 		button_PersonalData.setEnabled(false);
 		button_PersonalData.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -125,23 +126,23 @@ public class HomePage2 extends JFrame {
 		panelRoomData.setBounds(520, 49, 420, 155);
 		panel.add(panelRoomData);
 
-		JLabel labelName_6_10 = new JLabel("Room ID:");
-		labelName_6_10.setBounds(129, 156, 61, 22);
-		panelRoomData.add(labelName_6_10);
+		JLabel labelRoomID = new JLabel("Room ID:");
+		labelRoomID.setBounds(129, 156, 61, 22);
+		panelRoomData.add(labelRoomID);
 
-		JLabel labelName_6_9_1 = new JLabel("Name");
-		labelName_6_9_1.setBounds(200, 156, 48, 22);
-		panelRoomData.add(labelName_6_9_1);
+		JLabel labelName = new JLabel("Name");
+		labelName.setBounds(200, 156, 48, 22);
+		panelRoomData.add(labelName);
 
-		JLabel labelName_6_1 = new JLabel("Credit Card Information:");
-		labelName_6_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		labelName_6_1.setBounds(20, 30, 215, 22);
-		panelRoomData.add(labelName_6_1);
+		JLabel labelNameCredit = new JLabel("Credit Card Information:");
+		labelNameCredit.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		labelNameCredit.setBounds(20, 30, 215, 22);
+		panelRoomData.add(labelNameCredit);
 
-		JLabel labelName_7 = new JLabel("Card Number");
-		labelName_7.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		labelName_7.setBounds(20, 60, 130, 31);
-		panelRoomData.add(labelName_7);
+		JLabel labelCard = new JLabel("Card Number");
+		labelCard.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		labelCard.setBounds(20, 60, 130, 31);
+		panelRoomData.add(labelCard);
 
 		textField = new JTextField();
 		textField.setColumns(10);
@@ -164,10 +165,10 @@ public class HomePage2 extends JFrame {
 		panel_PersonalData.setBounds(10, 49, 490, 450);
 		panel.add(panel_PersonalData);
 
-		JLabel labelName = new JLabel("Name");
-		labelName.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		labelName.setBounds(10, 35, 110, 30);
-		panel_PersonalData.add(labelName);
+		JLabel labelName1 = new JLabel("Name");
+		labelName1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		labelName1.setBounds(10, 35, 110, 30);
+		panel_PersonalData.add(labelName1);
 
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
@@ -307,6 +308,7 @@ public class HomePage2 extends JFrame {
 		rdbtnTriple.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		rdbtnTriple.setBounds(340, 70, 70, 21);
 		panel_4.add(rdbtnTriple);
+
 		ButtonGroup btnGroup1 = new ButtonGroup();
 		btnGroup1.add(rdbtnSingle);
 		btnGroup1.add(rdbtnDouble);
@@ -369,11 +371,13 @@ public class HomePage2 extends JFrame {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		frame.add(panel);
+
 		JPanel panel_4 = new JPanel();
+		panel_4.setLayout(null);
 		panel_4.setBorder(new LineBorder(new Color(0, 0, 0), 4));
 		panel_4.setBounds(250, 160, 450, 230);
 		panel.add(panel_4);
-		panel_4.setLayout(null);
+
 		JLabel lblNewLabel_1 = new JLabel("Room number");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblNewLabel_1.setBounds(34, 75, 123, 68);
@@ -393,12 +397,14 @@ public class HomePage2 extends JFrame {
 		textField.setBounds(210, 95, 225, 26);
 		panel_4.add(textField);
 		textField.setColumns(10);
+
 		JButton btn1 = new JButton("Clear");
 		btn1.setBackground(new Color(112, 128, 144));
 		btn1.setFont(new Font("Serif", Font.PLAIN, 20));
 		btn1.setBounds(200, 170, 110, 35);
 		btn1.setFocusable(false);
 		panel_4.add(btn1);
+
 		JButton btn2 = new JButton("Check out");
 		btn2.setBackground(new Color(220, 20, 60));
 		btn2.setFont(new Font("Serif", Font.PLAIN, 20));
@@ -412,10 +418,9 @@ public class HomePage2 extends JFrame {
 
 	public JPanel GuestTablePanel() {
 		panel = new JPanel();
+		panel.setLayout(null);
 		panel.setBounds(215, 100, 960, 550);
 		frame.getContentPane().add(panel);
-		panel.setLayout(null);
-		panel.setLayout(null);
 
 		table = new JTable();
 		table.setFont(new Font("Time New Roman", Font.BOLD, 11));
@@ -426,6 +431,20 @@ public class HomePage2 extends JFrame {
 				new Object[][] {
 						{ "RoomID", "Name", "Email", "Address", "City", "Nationlity", "Passport", "Phone", "Days",
 								"Fees" },
+						{ null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null },
+						{ null, null, null, null, null, null, null, null, null, null },
 						{ null, null, null, null, null, null, null, null, null, null },
 						{ null, null, null, null, null, null, null, null, null, null },
 						{ null, null, null, null, null, null, null, null, null, null },
@@ -450,7 +469,6 @@ public class HomePage2 extends JFrame {
 		panel.setBounds(215, 100, 960, 550);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
-		panel.setLayout(null);
 
 		table = new JTable();
 		table.setFont(new Font("Time New Roman", Font.BOLD, 11));
@@ -468,6 +486,12 @@ public class HomePage2 extends JFrame {
 								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
 								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
 								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
 								{ null, null, null, null, null, null }, },
 						new String[] { "RoomID", "Name", "Email", "New column", "New column", "New column" }));
 
@@ -475,7 +499,8 @@ public class HomePage2 extends JFrame {
 	}
 
 	private void initialize() {
-		frame.getContentPane().setBackground(new Color(72, 61, 139));
+//		frame.getContentPane().setBackground(new Color(72, 61, 139));
+		frame.getContentPane().setBackground(new Color(32,83,117));
 		frame.setBounds(100, 100, 1200, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -484,27 +509,28 @@ public class HomePage2 extends JFrame {
 
 		btnCenter = new JButton("Check In");
 		btnCenter.setFont(new Font("Serif", Font.BOLD, 30));
-		btnCenter.setBounds(508, 65, 200, 70);
+		btnCenter.setBounds(510, 65, 200, 70);
 		btnCenter.setFocusable(false);
 		btnCenter.setBackground(new Color(135, 206, 250));
 		frame.getContentPane().add(btnCenter);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(72, 61, 139));
+		panel_1.setLayout(null);
+//		panel_1.setBackground(new Color(72, 61, 139));
+		panel_1.setBackground(new Color(32,83,117));
 		panel_1.setBounds(10, 10, 1165, 90);
 		frame.getContentPane().add(panel_1);
 
 		JPanel panel_2 = new JPanel();
-
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		panel_2.setBackground(new Color(135, 206, 250));
 		panel_2.setBounds(10, 100, 200, 550);
 		frame.getContentPane().add(panel_2);
-		panel_1.setLayout(null);
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(960, 10, 170, 60);
-		panel_3.setBackground(new Color(72, 61, 139));
+//		panel_3.setBackground(new Color(72, 61, 139));
+		panel_3.setBackground(new Color(32,83,117));
 		panel_1.add(panel_3);
 		panel_3.setLayout(null);
 
@@ -522,12 +548,13 @@ public class HomePage2 extends JFrame {
 
 		JButton btnNewButton = new JButton("<html><u>Log Out</u></html>");
 		btnNewButton.setBackground(Color.YELLOW);
+//		btnNewButton.setBorder((Border) Color.WHITE);
+		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBounds(62, 27, 89, 23);
 		btnNewButton.setFocusable(false);
 		panel_3.add(btnNewButton);
 		btnNewButton.setBackground(new Color(0, 128, 128));
 		panel_1.add(panel_3);
-		panel_3.setLayout(null);
 
 		JLabel lblNewLabel_6 = new JLabel("");
 		lblNewLabel_6.setIcon(new ImageIcon(HomePage2.class.getResource("/libs/logo-small.png")));
@@ -575,7 +602,6 @@ public class HomePage2 extends JFrame {
 		panel_2.add(btnRooms);
 		panel_2.add(btnGuest);
 
-//		frame.getContentPane().remove(panel);
 	}
 
 	private MouseListener Adapter() {

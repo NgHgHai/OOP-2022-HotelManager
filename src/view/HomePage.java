@@ -1,4 +1,4 @@
-package giuaKi;
+package view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -49,7 +49,9 @@ public class HomePage extends JFrame {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1200, 700);
-		frame.getContentPane().setBackground(new Color(72, 61, 139));
+		frame.setResizable(false);
+//		frame.getContentPane().setBackground(new Color(72, 61, 139));
+		frame.getContentPane().setBackground(new Color(32,83,117));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -114,11 +116,11 @@ public class HomePage extends JFrame {
 		panel_6.add(btnCheckIn_2);
 
 		JPanel panel_7 = new JPanel();
+		panel_7.setLayout(null);
 		panel_7.setBackground(new Color(135, 206, 250));
 		panel_7.setBorder(new LineBorder(new Color(0, 0, 0), 4));
 		panel_7.setBounds(540, 320, 300, 200);
 		panel.add(panel_7);
-		panel_7.setLayout(null);
 
 		JLabel lblGuest = new JLabel("Guest");
 		lblGuest.setHorizontalAlignment(SwingConstants.CENTER);
@@ -158,7 +160,8 @@ public class HomePage extends JFrame {
 		panel_5_1.add(btnCheckIn_1_1);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(72, 61, 139));
+//		panel_1.setBackground(new Color(72, 61, 139));
+		panel_1.setBackground(new Color(32,83,117));
 		panel_1.setBounds(10, 10, 1165, 90);
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
@@ -166,7 +169,9 @@ public class HomePage extends JFrame {
 		JButton btnNewButton = new JButton("Setting");
 		btnNewButton.setFont(new Font("Serif", Font.BOLD, 25));
 		btnNewButton.setIcon(new ImageIcon(HomePage.class.getResource("/libs/iconSetting.png")));
-		btnNewButton.setBackground(new Color(72, 61, 139));
+//		btnNewButton.setBackground(new Color(72, 61, 139));
+		btnNewButton.setBackground(new Color(32,83,117));
+		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBounds(960, 10, 170, 70);
 		btnNewButton.setFocusable(false);
 		btnNewButton.setBorder(null);
@@ -175,11 +180,10 @@ public class HomePage extends JFrame {
 		JLabel lblNewLabel_6 = new JLabel("");
 		lblNewLabel_6.setIcon(new ImageIcon(HomePage.class.getResource("/libs/logo-small.png")));
 		lblNewLabel_6.setBounds(23, -22, 100, 112);
-
 		panel_1.add(lblNewLabel_6);
 
 		JLabel lblNewLabel_7 = new JLabel("GROUP 17");
-		lblNewLabel_7.setBackground(Color.WHITE);
+		lblNewLabel_7.setForeground(Color.WHITE);
 		lblNewLabel_7.setFont(new Font("UTM Cooper Black", Font.BOLD, 18));
 		lblNewLabel_7.setBounds(106, 24, 137, 48);
 		panel_1.add(lblNewLabel_7);
@@ -187,7 +191,6 @@ public class HomePage extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(135, 206, 250));
 		panel_2.setBounds(10, 100, 200, 550);
-
 		frame.getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 
@@ -224,7 +227,7 @@ public class HomePage extends JFrame {
 		panel_4_1_3.setBackground(new Color(175, 238, 238));
 		panel_4_1_3.setLayout(null);
 		panel_4_1_3.setBorder(new LineBorder(new Color(0, 0, 0), 4));
-		panel_4_1_3.setBounds(35, 302, 140, 50);
+		panel_4_1_3.setBounds(30, 300, 140, 50);
 		panel_2.add(panel_4_1_3);
 
 		JLabel lblNewLabel_3_1_1 = new JLabel("Available Rooms");
@@ -250,7 +253,7 @@ public class HomePage extends JFrame {
 		panel_4_1_3_1.setBackground(new Color(175, 238, 238));
 		panel_4_1_3_1.setLayout(null);
 		panel_4_1_3_1.setBorder(new LineBorder(new Color(0, 0, 0), 4));
-		panel_4_1_3_1.setBounds(35, 486, 140, 50);
+		panel_4_1_3_1.setBounds(30, 480, 140, 50);
 		panel_2.add(panel_4_1_3_1);
 
 		JLabel lblNewLabel_3_1_1_1 = new JLabel("Reserved Rooms");

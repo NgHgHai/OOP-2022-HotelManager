@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
 //import giuaKi.HomePage;
 
 public class AddUser extends JFrame {
-///////////////////////////////////////////////////////////////
+
 	private JFrame frame;
 	private JTextField name_textField;
 	private JTextField password_textField;
@@ -54,35 +54,35 @@ public class AddUser extends JFrame {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 600, 600);
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JPanel north_panel = new JPanel();
-		north_panel.setBounds(10, 10, 564, 90);
-		north_panel.setBackground(new Color(72, 61, 139));
-		frame.getContentPane().add(north_panel);
 		north_panel.setLayout(null);
+		north_panel.setBounds(10, 10, 564, 90);
+		north_panel.setBackground(new Color(32, 83, 117));
+		frame.getContentPane().add(north_panel);
 
 		JLabel iconLogo_label = new JLabel("");
 		iconLogo_label.setIcon(new ImageIcon(AddUser.class.getResource("/libs/logo-small.png")));
 		iconLogo_label.setBounds(173, -28, 128, 128);
 		north_panel.add(iconLogo_label);
 
-		JLabel group17_label = new JLabel("GROUP17");
+		JLabel group17_label = new JLabel("GROUP 17");
 		group17_label.setForeground(Color.WHITE);
-		group17_label.setBackground(Color.WHITE);
 		group17_label.setFont(new Font("UTM Cooper Black", Font.BOLD, 18));
 		group17_label.setBounds(252, 38, 98, 27);
 		north_panel.add(group17_label);
 
-		JButton back_button = new JButton("Back");
+		JButton back_button = new JButton("<Back");
 		back_button.setForeground(Color.WHITE);
 		back_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		back_button.setBounds(10, 10, 91, 21);
-		back_button.setBackground(new Color(72, 61, 139));
+		back_button.setBounds(25, 10, 81, 27);
+		back_button.setBackground(new Color(32, 83, 117));
 		back_button.setFocusable(false);
 		north_panel.add(back_button);
 
@@ -135,7 +135,7 @@ public class AddUser extends JFrame {
 		frame.getContentPane().add(iconPassword_label);
 
 		JButton save_button = new JButton("SAVE");
-		save_button.setBackground(new Color(72, 61, 139));
+		save_button.setBackground(new Color(32, 83, 117));
 		save_button.setFocusable(false);
 		save_button.setForeground(Color.WHITE);
 		save_button.setFont(new Font("Tahoma", Font.PLAIN, 23));
