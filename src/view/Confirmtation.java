@@ -25,6 +25,8 @@ public class Confirmtation {
 	private JButton btn_Cancel, btn_Save;
 	private JTextField phone_TextField, mail_TextField, addRess_TextField, city_TextField, nationality_TextField,
 			passport_textField, cvcCode_textField, cardNumber_textField;
+	private JTextField[] arr = {phone_TextField, mail_TextField, addRess_TextField, city_TextField, nationality_TextField,
+			passport_textField, cvcCode_textField, cardNumber_textField};
 
 	/**
 	 * Launch the application.
@@ -98,7 +100,7 @@ public class Confirmtation {
 		panel_Price.add(totalPrice_label);
 
 		btn_Cancel = new JButton("Cancel");
-		btn_Cancel.setBackground(SystemColor.controlShadow);
+		btn_Cancel.setBackground(State.no_button);
 		btn_Cancel.setFocusable(false);
 		btn_Cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -108,7 +110,7 @@ public class Confirmtation {
 		panel_main.add(btn_Cancel);
 
 		btn_Save = new JButton("Save");
-		btn_Save.setBackground(Color.GREEN);
+		btn_Save.setBackground(State.yes_button);
 		btn_Save.setFocusable(false);
 		btn_Save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -195,7 +197,7 @@ public class Confirmtation {
 			}
 		});
 		JPanel top_panel = new JPanel();
-		top_panel.setBackground(new Color(72, 61, 139));
+		top_panel.setBackground(State.background);
 		top_panel.setBorder(null);
 		top_panel.setBounds(0, 0, 745, 90);
 		panel_main.add(top_panel);
@@ -208,7 +210,7 @@ public class Confirmtation {
 		
 		JLabel label_group17 = new JLabel("GROUP 17");
 		label_group17.setForeground(Color.WHITE);
-		label_group17.setFont(new Font("UTM Cooper Black", Font.BOLD, 18));
+		label_group17.setFont(new Font("Serif", Font.BOLD, 18));
 		label_group17.setBounds(106, 24, 137, 48);
 		top_panel.add(label_group17);
 

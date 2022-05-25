@@ -61,7 +61,7 @@ public class AddUser extends JFrame {
 		JPanel north_panel = new JPanel();
 		north_panel.setLayout(null);
 		north_panel.setBounds(10, 10, 564, 90);
-		north_panel.setBackground(new Color(32, 83, 117));
+		north_panel.setBackground(State.background);
 		frame.getContentPane().add(north_panel);
 
 		JLabel iconLogo_label = new JLabel("");
@@ -71,7 +71,7 @@ public class AddUser extends JFrame {
 
 		JLabel group17_label = new JLabel("GROUP 17");
 		group17_label.setForeground(Color.WHITE);
-		group17_label.setFont(new Font("UTM Cooper Black", Font.BOLD, 18));
+		group17_label.setFont(new Font("Serif", Font.BOLD, 18));
 		group17_label.setBounds(252, 38, 98, 27);
 		north_panel.add(group17_label);
 
@@ -82,13 +82,13 @@ public class AddUser extends JFrame {
 			}
 		});
 		back_button.setBounds(25, 10, 81, 27);
-		back_button.setBackground(new Color(32, 83, 117));
+		back_button.setBackground(State.background);
 		back_button.setFocusable(false);
 		north_panel.add(back_button);
 
 		name_textField = new JTextField();
 		name_textField.setHorizontalAlignment(SwingConstants.LEFT);
-		name_textField.setFont(new Font("Tahoma", Font.BOLD, 18));
+		name_textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		name_textField.setText("Enter new username");
 
 		name_textField.addMouseListener(new MouseAdapter() {
@@ -107,7 +107,7 @@ public class AddUser extends JFrame {
 		name_textField.setColumns(10);
 
 		password_textField = new JTextField();
-		password_textField.setFont(new Font("Tahoma", Font.BOLD, 18));
+		password_textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		password_textField.setHorizontalAlignment(SwingConstants.LEFT);
 		password_textField.setText("Enter new password");
 		password_textField.setBounds(107, 296, 415, 44);
@@ -135,7 +135,7 @@ public class AddUser extends JFrame {
 		frame.getContentPane().add(iconPassword_label);
 
 		JButton save_button = new JButton("SAVE");
-		save_button.setBackground(new Color(32, 83, 117));
+		save_button.setBackground(State.background);
 		save_button.setFocusable(false);
 		save_button.setForeground(Color.WHITE);
 		save_button.setFont(new Font("Tahoma", Font.PLAIN, 23));
