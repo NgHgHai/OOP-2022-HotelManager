@@ -55,7 +55,7 @@ public class HomePage2 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HomePage2 window = new HomePage2();
+					HomePage2 window = new HomePage2("checkOut");
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -68,9 +68,21 @@ public class HomePage2 extends JFrame {
 	 * Create the application.
 	 */
 
-	public HomePage2() {
+	public HomePage2(String s) {
 		initialize();
-		frame.add(CheckInPanel());
+		if ("checkIn".equals(s)) {
+			frame.add(CheckInPanel());
+		}
+		if ("checkOut".equals(s)) {
+			frame.add(CheckOutPanel());
+		}
+		if ("room".equals(s)) {
+			frame.add(RoomTablePanel());
+		}
+		if ("guest".equals(s)) {
+			frame.add(GuestTablePanel());
+		}
+		
 	}
 
 	/**
@@ -84,6 +96,7 @@ public class HomePage2 extends JFrame {
 	}
 
 	public JPanel CheckInPanel() {
+		btnCenter.setText("Check In");
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
 		frame.getContentPane().add(panel);
@@ -104,7 +117,6 @@ public class HomePage2 extends JFrame {
 		btnPayment.setBounds(680, 32, 130, 36);
 		panel.add(btnPayment);
 
-		
 //		Personal Data"
 		JButton button_PersonalData = new JButton("Personal Data");
 		button_PersonalData.setEnabled(false);
@@ -366,6 +378,7 @@ public class HomePage2 extends JFrame {
 	}
 
 	public JPanel CheckOutPanel() {
+		btnCenter.setText("Check Out");
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
 		frame.getContentPane().add(panel);
@@ -417,6 +430,7 @@ public class HomePage2 extends JFrame {
 	}
 
 	public JPanel GuestTablePanel() {
+		btnCenter.setText("Guest");
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(215, 100, 960, 550);
@@ -465,6 +479,7 @@ public class HomePage2 extends JFrame {
 	}
 
 	public JPanel RoomTablePanel() {
+		btnCenter.setText("Room");
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
 		frame.getContentPane().add(panel);
@@ -501,14 +516,14 @@ public class HomePage2 extends JFrame {
 	private void initialize() {
 		// test up date
 //		frame.getContentPane().setBackground(new Color(72, 61, 139));
-		frame.getContentPane().setBackground(new Color(32,83,117));
+		frame.getContentPane().setBackground(new Color(32, 83, 117));
 		frame.setBounds(100, 100, 1200, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
 
-		btnCenter = new JButton("Check In");
+		btnCenter = new JButton("null");
 		btnCenter.setFont(new Font("Serif", Font.BOLD, 30));
 		btnCenter.setBounds(510, 65, 200, 70);
 		btnCenter.setFocusable(false);
@@ -518,7 +533,7 @@ public class HomePage2 extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 //		panel_1.setBackground(new Color(72, 61, 139));
-		panel_1.setBackground(new Color(32,83,117));
+		panel_1.setBackground(new Color(32, 83, 117));
 		panel_1.setBounds(10, 10, 1165, 90);
 		frame.getContentPane().add(panel_1);
 
@@ -531,7 +546,7 @@ public class HomePage2 extends JFrame {
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(960, 10, 170, 60);
 //		panel_3.setBackground(new Color(72, 61, 139));
-		panel_3.setBackground(new Color(32,83,117));
+		panel_3.setBackground(new Color(32, 83, 117));
 		panel_1.add(panel_3);
 		panel_3.setLayout(null);
 
@@ -614,19 +629,19 @@ public class HomePage2 extends JFrame {
 				super.mouseClicked(e);
 				frame.remove(panel);
 				if (e.getSource() == btnGuest) {
-					btnCenter.setText(btnGuest.getText());
+//					btnCenter.setText(btnGuest.getText());
 					frame.getContentPane().add(GuestTablePanel());
 				}
 				if (e.getSource() == btnRooms) {
-					btnCenter.setText(btnRooms.getText());
+//					btnCenter.setText(btnRooms.getText());
 					frame.getContentPane().add(RoomTablePanel());
 				}
 				if (e.getSource() == btnCheckIn) {
-					btnCenter.setText(btnCheckIn.getText());
+//					btnCenter.setText(btnCheckIn.getText());
 					frame.getContentPane().add(CheckInPanel());
 				}
 				if (e.getSource() == btnCheckOut) {
-					btnCenter.setText(btnCheckOut.getText());
+//					btnCenter.setText(btnCheckOut.getText());
 					frame.getContentPane().add(CheckOutPanel());
 				}
 				frame.repaint();
