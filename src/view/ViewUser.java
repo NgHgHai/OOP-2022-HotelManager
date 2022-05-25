@@ -79,7 +79,7 @@ public class ViewUser extends JFrame {
 
 		JLabel lblNewLabel_7 = new JLabel("GROUP 17");
 		lblNewLabel_7.setForeground(Color.WHITE);
-		lblNewLabel_7.setFont(new Font("UTM Cooper Black", Font.BOLD, 18));
+		lblNewLabel_7.setFont(new Font("Serif", Font.BOLD, 18));
 		lblNewLabel_7.setBounds(252, 38, 98, 27);
 		panel.add(lblNewLabel_7);
 

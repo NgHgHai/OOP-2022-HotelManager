@@ -55,7 +55,7 @@ public class Setting extends JFrame {
 
 		JPanel top_panel = new JPanel();
 		top_panel.setBounds(10, 10, 564, 90);
-		top_panel.setBackground(new Color(72, 61, 139));
+		top_panel.setBackground(State.background);
 		frame.getContentPane().add(top_panel);
 		top_panel.setLayout(null);
 
@@ -66,7 +66,7 @@ public class Setting extends JFrame {
 			}
 		});
 		back_button.setBounds(21, 10, 89, 23);
-		back_button.setBackground(new Color(72, 61, 139));
+		back_button.setBackground(State.background);
 		back_button.setFocusable(false);
 		top_panel.add(back_button);
 
@@ -76,7 +76,7 @@ public class Setting extends JFrame {
 		top_panel.add(label_Logo);
 
 		JLabel label_group17 = new JLabel("GROUP 17");
-		label_group17.setFont(new Font("UTM Cooper Black", Font.BOLD, 18));
+		label_group17.setFont(new Font("Serif", Font.BOLD, 18));
 
 		label_group17.setForeground(Color.WHITE);
 		label_group17.setBounds(234, 61, 123, 29);

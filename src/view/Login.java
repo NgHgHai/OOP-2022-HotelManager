@@ -62,18 +62,18 @@ public class Login {
 		JPanel background_panel = new JPanel();
 		background_panel.setLayout(null);
 		background_panel.setBounds(10, 11, 564, 539);
-		background_panel.setBackground(new Color(32, 83, 117));
+		background_panel.setBackground(State.background);
 		frame.getContentPane().add(background_panel);
 
 		JLabel group17_label = new JLabel("GROUP 17");
 		group17_label.setForeground(Color.WHITE);
-		group17_label.setBackground(Color.WHITE);
-		group17_label.setFont(new Font("Dialog", Font.BOLD, 21));
+		group17_label.setFont(new Font("Serif", Font.BOLD, 21));
 		group17_label.setBounds(288, 130, 108, 27);
 		background_panel.add(group17_label);
 
 		name_textField = new JTextField();
 		name_textField.setText("Enter Username");
+		name_textField.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		name_textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -87,13 +87,14 @@ public class Login {
 		});
 
 		name_textField.setHorizontalAlignment(SwingConstants.LEFT);
-		name_textField.setFont(new Font("Tahoma", Font.BOLD, 18));
+//		name_textField.setFont(new Font("Tahoma", Font.BOLD, 18));
 		name_textField.setColumns(10);
 		name_textField.setBounds(100, 222, 409, 44);
 		background_panel.add(name_textField);
 
 		password_textField = new JTextField();
 		password_textField.setText("Enter Password");
+		password_textField.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 		password_textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -105,7 +106,6 @@ public class Login {
 
 		});
 		password_textField.setHorizontalAlignment(SwingConstants.LEFT);
-		password_textField.setFont(new Font("Tahoma", Font.BOLD, 18));
 		password_textField.setColumns(10);
 		password_textField.setBounds(100, 311, 409, 44);
 		background_panel.add(password_textField);
@@ -121,7 +121,7 @@ public class Login {
 		background_panel.add(iconPassword_label);
 
 		JButton login_button = new JButton("LOGIN");
-		login_button.setBackground(new Color(32, 83, 117));
+		login_button.setBackground(State.background);
 		login_button.setForeground(Color.WHITE);
 		login_button.setFocusable(false);
 		login_button.addActionListener(new ActionListener() {

@@ -55,7 +55,7 @@ public class AddRoom extends JFrame {
 private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.getContentPane().setBackground(new Color(32, 83, 117));
+		frame.getContentPane().setBackground(State.background);
 		frame.setBounds(100, 100, 1200, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -73,7 +73,7 @@ private void initialize() {
 		frame.getContentPane().add(btnCenter);
 
 		JPanel pnlTop = new JPanel();
-		pnlTop.setBackground(new Color(32, 83, 117));
+		pnlTop.setBackground(State.background);
 		pnlTop.setBounds(10, 10, 1165, 90);
 		frame.getContentPane().add(pnlTop);
 		pnlTop.setLayout(null);
@@ -85,7 +85,7 @@ private void initialize() {
 
 		JLabel lblGroup17 = new JLabel("GROUP 17");
 		lblGroup17.setForeground(Color.WHITE);
-		lblGroup17.setFont(new Font("UTM Cooper Black", Font.BOLD, 18));
+		lblGroup17.setFont(new Font("Serif", Font.BOLD, 18));
 		lblGroup17.setBounds(106, 24, 137, 48);
 		pnlTop.add(lblGroup17);
 
