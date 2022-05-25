@@ -58,7 +58,7 @@ public class HomePage2 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HomePage2 window = new HomePage2("checkOut");
+					HomePage2 window = new HomePage2("room");
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
