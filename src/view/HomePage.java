@@ -17,7 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 public class HomePage extends JFrame {
-	private JFrame frame;
+	 JFrame frame;
 //	private HomePage2 homePage2 = new HomePage2();
 
 	/**
@@ -28,7 +28,7 @@ public class HomePage extends JFrame {
 			public void run() {
 				try {
 					HomePage window = new HomePage();
-					window.frame.setVisible(true);
+//					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -41,6 +41,7 @@ public class HomePage extends JFrame {
 	 */
 	public HomePage() {
 		initialize();
+//		frame.setVisible(true);
 	}
 
 	/**

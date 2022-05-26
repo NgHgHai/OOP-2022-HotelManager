@@ -21,6 +21,8 @@ import java.awt.event.ActionEvent;
 
 //import giuaKi.HomePage;
 public class Login {
+	HomePage homePage = new HomePage();
+	static Login uniqueLogin;
 	private JFrame frame;
 	private JTextField name_textField;
 	private JTextField password_textField;
@@ -32,8 +34,10 @@ public class Login {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+
 					Login window = new Login();
-					window.frame.setVisible(true);
+//					window.frame.setVisible(true);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -44,8 +48,16 @@ public class Login {
 	/**
 	 * Create the application.
 	 */
-	public Login() {
+	public static Login getInstance() {
+		if (uniqueLogin == null) {
+			return new Login();
+		}
+		return uniqueLogin;
+	}
+
+	private Login() {
 		initialize();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -125,6 +137,9 @@ public class Login {
 		login_button.setFocusable(false);
 		login_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (e.getSource().equals(login_button)) {
+					homePage.frame.setVisible(true);
+				}
 			}
 		});
 		login_button.setFont(new Font("Tahoma", Font.PLAIN, 23));
