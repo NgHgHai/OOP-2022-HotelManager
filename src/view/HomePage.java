@@ -104,7 +104,7 @@ private void initialize() {
 		pnlInfor.setBackground(new Color(175, 238, 238));
 		pnlInfor.setLayout(null);
 		pnlInfor.setBorder(new LineBorder(new Color(0, 0, 0), 4));
-		pnlInfor.setBounds(10, 40, 180, 100);
+		pnlInfor.setBounds(10, 20, 180, 100);
 		pnlLeft.add(pnlInfor);
 
 		JLabel lblGetName = new JLabel(".............................................................................");
@@ -131,7 +131,7 @@ private void initialize() {
 		pnlContructorAvailableRooms.setBackground(new Color(175, 238, 238));
 		pnlContructorAvailableRooms.setLayout(null);
 		pnlContructorAvailableRooms.setBorder(new LineBorder(new Color(0, 0, 0), 4));
-		pnlContructorAvailableRooms.setBounds(30, 300, 140, 50);
+		pnlContructorAvailableRooms.setBounds(30, 260, 140, 50);
 		pnlLeft.add(pnlContructorAvailableRooms);
 
 		JLabel lblAvailableRooms = new JLabel("Available Rooms");
@@ -143,7 +143,7 @@ private void initialize() {
 		pnlAvailableRooms.setBackground(new Color(175, 238, 238));
 		pnlAvailableRooms.setLayout(null);
 		pnlAvailableRooms.setBorder(new LineBorder(new Color(0, 0, 0), 4));
-		pnlAvailableRooms.setBounds(10, 180, 180, 150);
+		pnlAvailableRooms.setBounds(10, 140, 180, 150);
 		pnlLeft.add(pnlAvailableRooms);
 
 		JLabel lblGetAvailableRooms = new JLabel("99/100");
@@ -157,7 +157,7 @@ private void initialize() {
 		pnlContructoReservedRooms.setBackground(new Color(175, 238, 238));
 		pnlContructoReservedRooms.setLayout(null);
 		pnlContructoReservedRooms.setBorder(new LineBorder(new Color(0, 0, 0), 4));
-		pnlContructoReservedRooms.setBounds(30, 480, 140, 50);
+		pnlContructoReservedRooms.setBounds(30, 440, 140, 50);
 		pnlLeft.add(pnlContructoReservedRooms);
 
 		JLabel lblReservedRooms = new JLabel("Reserved Rooms");
@@ -167,7 +167,7 @@ private void initialize() {
 
 		JPanel pnlReservedRooms = new JPanel();
 		pnlReservedRooms.setBackground(new Color(175, 238, 238));
-		pnlReservedRooms.setBounds(10, 360, 180, 150);
+		pnlReservedRooms.setBounds(10, 320, 180, 150);
 		pnlLeft.add(pnlReservedRooms);
 		pnlReservedRooms.setLayout(null);
 		pnlReservedRooms.setBorder(new LineBorder(new Color(0, 0, 0), 4));
@@ -178,7 +178,17 @@ private void initialize() {
 		lblGetReservedRooms.setFont(new Font("Tahoma", Font.BOLD, 25));
 		lblGetReservedRooms.setBounds(25, 45, 135, 55);
 		pnlReservedRooms.add(lblGetReservedRooms);
+		
 
+		
+		JButton btnLogOut = new JButton("<html><u>Log Out</u></html>");
+		btnLogOut.setForeground(Color.WHITE);
+		btnLogOut.setBounds(51, 505, 89, 23);
+		btnLogOut.setFocusable(false);
+		btnLogOut.setBackground(State.background);
+		pnlLeft.add(btnLogOut);
+
+		
 //		---------------------------------		
 		JPanel pnlRight = new JPanel();
 		pnlRight.setBounds(215, 100, 960, 550);
