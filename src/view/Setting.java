@@ -71,7 +71,7 @@ public class Setting extends JFrame {
 		top_panel.add(back_button);
 
 		JLabel label_Logo = new JLabel("");
-		label_Logo.setIcon(new ImageIcon(Setting.class.getResource("/libs/logo-small.png")));
+		label_Logo.setIcon(State.logo_small);
 		label_Logo.setBounds(224, -6, 100, 77);
 		top_panel.add(label_Logo);
 
@@ -104,7 +104,7 @@ public class Setting extends JFrame {
 		lblNewLabel.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 25));
 
 		addUser_button = new JButton("");
-		addUser_button.setIcon(new ImageIcon(Setting.class.getResource("/libs/add-user.png")));
+		addUser_button.setIcon(new ImageIcon("libs/add-user.png"));
 		addUser_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -116,7 +116,7 @@ public class Setting extends JFrame {
 		panel_main.add(addUser_button);
 
 		deleteUser_button = new JButton("");
-		deleteUser_button.setIcon(new ImageIcon(Setting.class.getResource("/libs/remove-user.png")));
+		deleteUser_button.setIcon(new ImageIcon("libs/remove-user.png"));
 		deleteUser_button.setFont(new Font("Tahoma", Font.BOLD, 25));
 		deleteUser_button.setFocusable(false);
 		deleteUser_button.setBackground(new Color(135, 206, 250));
@@ -125,7 +125,7 @@ public class Setting extends JFrame {
 
 		deleteRoom_button = new JButton("");
 		deleteRoom_button.setFocusable(false);
-		deleteRoom_button.setIcon(new ImageIcon(Setting.class.getResource("/libs/delete-room.png")));
+		deleteRoom_button.setIcon(new ImageIcon("libs/delete-room.png"));
 		deleteRoom_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -136,7 +136,7 @@ public class Setting extends JFrame {
 		panel_main.add(deleteRoom_button);
 
 		addRoom_button = new JButton("");
-		addRoom_button.setIcon(new ImageIcon(Setting.class.getResource("/libs/add-room.png")));
+		addRoom_button.setIcon(new ImageIcon("libs/add-room.png"));
 		addRoom_button.setFont(new Font("Tahoma", Font.BOLD, 25));
 		addRoom_button.setFocusable(false);
 		addRoom_button.setBackground(new Color(135, 206, 250));

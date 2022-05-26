@@ -46,7 +46,7 @@ public class HomePage extends JFrame {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-private void initialize() {
+	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1200, 700);
 		frame.setResizable(false);
@@ -74,7 +74,7 @@ private void initialize() {
 
 		JButton btnSetting = new JButton("Setting");
 		btnSetting.setFont(new Font("Serif", Font.BOLD, 25));
-		btnSetting.setIcon(new ImageIcon(HomePage.class.getResource("/libs/iconSetting.png")));
+		btnSetting.setIcon(new ImageIcon("libs/iconSetting.png"));
 		btnSetting.setBackground(new Color(32, 83, 117));
 		btnSetting.setForeground(Color.WHITE);
 		btnSetting.setBounds(960, 10, 170, 70);
@@ -83,7 +83,7 @@ private void initialize() {
 		pnlTop.add(btnSetting);
 
 		JLabel lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(HomePage.class.getResource("/libs/logo-small.png")));
+		lblLogo.setIcon(State.logo_small);
 		lblLogo.setBounds(23, -22, 100, 112);
 		pnlTop.add(lblLogo);
 
@@ -178,9 +178,7 @@ private void initialize() {
 		lblGetReservedRooms.setFont(new Font("Tahoma", Font.BOLD, 25));
 		lblGetReservedRooms.setBounds(25, 45, 135, 55);
 		pnlReservedRooms.add(lblGetReservedRooms);
-		
 
-		
 		JButton btnLogOut = new JButton("<html><u>Log Out</u></html>");
 		btnLogOut.setForeground(Color.WHITE);
 		btnLogOut.setBounds(51, 505, 89, 23);
@@ -188,7 +186,6 @@ private void initialize() {
 		btnLogOut.setBackground(State.background);
 		pnlLeft.add(btnLogOut);
 
-		
 //		---------------------------------		
 		JPanel pnlRight = new JPanel();
 		pnlRight.setBounds(215, 100, 960, 550);
@@ -209,7 +206,7 @@ private void initialize() {
 		pnlCheckIn.add(lblCheckIn);
 
 		JButton btnCheckIn = new JButton("");
-		btnCheckIn.setIcon(new ImageIcon(HomePage.class.getResource("/libs/log-in.png")));
+		btnCheckIn.setIcon(new ImageIcon("libs/log-in.png"));
 		btnCheckIn.setHorizontalAlignment(SwingConstants.CENTER);
 		btnCheckIn.setFocusable(false);
 		btnCheckIn.setBorder(null);
@@ -231,7 +228,7 @@ private void initialize() {
 		pnlRooms.add(lblRooms);
 
 		JButton btnRooms = new JButton("");
-		btnRooms.setIcon(new ImageIcon(HomePage.class.getResource("/libs/room.png")));
+		btnRooms.setIcon(new ImageIcon("libs/room.png"));
 		btnRooms.setHorizontalAlignment(SwingConstants.CENTER);
 		btnRooms.setBackground(new Color(135, 206, 250));
 		btnRooms.setBounds(10, 10, 280, 135);
@@ -253,7 +250,7 @@ private void initialize() {
 		pnlCheckOut.add(lblCheckOut);
 
 		JButton btnCheckOut = new JButton("");
-		btnCheckOut.setIcon(new ImageIcon(HomePage.class.getResource("/libs/log-out.png")));
+		btnCheckOut.setIcon(new ImageIcon("libs/log-out.png"));
 		btnCheckOut.setHorizontalAlignment(SwingConstants.CENTER);
 		btnCheckOut.setBackground(new Color(135, 206, 250));
 		btnCheckOut.setBounds(10, 10, 280, 135);
@@ -275,7 +272,7 @@ private void initialize() {
 		pnlGuest.add(lblGuest);
 
 		JButton btnGuest = new JButton("");
-		btnGuest.setIcon(new ImageIcon(HomePage.class.getResource("/libs/guest.png")));
+		btnGuest.setIcon(new ImageIcon("libs/guest.png"));
 		btnGuest.setHorizontalAlignment(SwingConstants.CENTER);
 		btnGuest.setFocusable(false);
 		btnGuest.setBorder(null);

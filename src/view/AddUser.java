@@ -65,7 +65,7 @@ public class AddUser extends JFrame {
 		frame.getContentPane().add(north_panel);
 
 		JLabel iconLogo_label = new JLabel("");
-		iconLogo_label.setIcon(new ImageIcon(AddUser.class.getResource("/libs/logo-small.png")));
+		iconLogo_label.setIcon(State.logo_small);
 		iconLogo_label.setBounds(173, -28, 128, 128);
 		north_panel.add(iconLogo_label);
 
@@ -125,12 +125,12 @@ public class AddUser extends JFrame {
 		password_textField.setColumns(10);
 
 		JLabel iconName_label = new JLabel("");
-		iconName_label.setIcon(new ImageIcon(AddUser.class.getResource("/libs/user.png")));
+		iconName_label.setIcon(new ImageIcon("libs/user.png"));
 		iconName_label.setBounds(54, 207, 46, 43);
 		frame.getContentPane().add(iconName_label);
 
 		JLabel iconPassword_label = new JLabel("");
-		iconPassword_label.setIcon(new ImageIcon(AddUser.class.getResource("/libs/key.png")));
+		iconPassword_label.setIcon(new ImageIcon("libs/key.png"));
 		iconPassword_label.setBounds(65, 296, 35, 44);
 		frame.getContentPane().add(iconPassword_label);
 
