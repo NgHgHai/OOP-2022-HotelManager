@@ -344,14 +344,14 @@ public class HomePage2 extends JFrame {
 		pnlRoomData.add(txtRoomID);
 
 		JButton btnSearch = new JButton("Search");
-		btnSearch.setBackground(new Color(0, 191, 255));
+		btnSearch.setBackground(State.blue_button);
 		btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnSearch.setFocusable(false);
 		btnSearch.setBounds(300, 220, 100, 35);
 		pnlRoomData.add(btnSearch);
 
 		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.setBackground(State.yes_button);
+		btnSubmit.setBackground(State.green_button);
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -398,14 +398,14 @@ public class HomePage2 extends JFrame {
 		txtRoomNumber.setColumns(10);
 
 		JButton btnClear = new JButton("Clear");
-		btnClear.setBackground(State.no_button);
+		btnClear.setBackground(State.clear_button);
 		btnClear.setFont(new Font("Serif", Font.PLAIN, 20));
 		btnClear.setBounds(200, 170, 110, 35);
 		btnClear.setFocusable(false);
 		pnlCheckOut.add(btnClear);
 
 		JButton btnCheckout = new JButton("Check out");
-		btnCheckout.setBackground(new Color(220, 20, 60));
+		btnCheckout.setBackground(State.red_button);
 		btnCheckout.setFont(new Font("Serif", Font.PLAIN, 20));
 		btnCheckout.setBounds(315, 170, 120, 35);
 		btnCheckout.setFocusable(false);

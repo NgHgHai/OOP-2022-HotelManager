@@ -100,7 +100,7 @@ public class Confirmtation {
 		panel_Price.add(totalPrice_label);
 
 		btn_Cancel = new JButton("Cancel");
-		btn_Cancel.setBackground(State.no_button);
+		btn_Cancel.setBackground(State.clear_button);
 		btn_Cancel.setFocusable(false);
 		btn_Cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -110,7 +110,7 @@ public class Confirmtation {
 		panel_main.add(btn_Cancel);
 
 		btn_Save = new JButton("Save");
-		btn_Save.setBackground(State.yes_button);
+		btn_Save.setBackground(State.green_button);
 		btn_Save.setFocusable(false);
 		btn_Save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
