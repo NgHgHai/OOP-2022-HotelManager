@@ -21,7 +21,6 @@ import java.awt.event.ActionEvent;
 
 //import giuaKi.HomePage;
 public class Login {
-
 	private JFrame frame;
 	private JTextField name_textField;
 	private JTextField password_textField;

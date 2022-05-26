@@ -181,11 +181,11 @@ private void initialize() {
 		
 
 		
-		JButton btnLogOut = new JButton("<html><u>Log Out</u></html>");
+		JButton btnLogOut = new JButton("Log Out");
 		btnLogOut.setForeground(Color.WHITE);
 		btnLogOut.setBounds(51, 505, 89, 23);
 		btnLogOut.setFocusable(false);
-		btnLogOut.setBackground(State.background);
+		btnLogOut.setBackground(State.red_button);
 		pnlLeft.add(btnLogOut);
 
 		
