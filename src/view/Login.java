@@ -111,12 +111,12 @@ public class Login {
 		background_panel.add(password_textField);
 
 		JLabel iconName_label = new JLabel("");
-		iconName_label.setIcon(new ImageIcon(Login.class.getResource("/libs/user.png")));
+		iconName_label.setIcon(new ImageIcon("libs/user.png"));
 		iconName_label.setBounds(45, 223, 45, 43);
 		background_panel.add(iconName_label);
 
 		JLabel iconPassword_label = new JLabel("");
-		iconPassword_label.setIcon(new ImageIcon(Login.class.getResource("/libs/key.png")));
+		iconPassword_label.setIcon(new ImageIcon("libs/key.png"));
 		iconPassword_label.setBounds(55, 311, 35, 44);
 		background_panel.add(iconPassword_label);
 
@@ -134,7 +134,7 @@ public class Login {
 		background_panel.add(login_button);
 
 		JLabel iconLogo_label = new JLabel("");
-		iconLogo_label.setIcon(new ImageIcon(Login.class.getResource("/libs/logo-big.png")));
+		iconLogo_label.setIcon(State.logo_big);
 		iconLogo_label.setBounds(56, -40, 263, 251);
 		background_panel.add(iconLogo_label);
 

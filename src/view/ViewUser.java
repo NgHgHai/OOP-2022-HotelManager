@@ -55,7 +55,7 @@ public class ViewUser extends JFrame {
 		panel.setLayout(null);
 		panel.setBounds(10, 10, 564, 90);
 //		panel.setBackground(new Color(72, 61, 139));
-		panel.setBackground(new Color(32,83,117));
+		panel.setBackground(new Color(32, 83, 117));
 		frame.getContentPane().add(panel);
 
 		JButton btnNewButton_1 = new JButton("<Back");
@@ -67,13 +67,13 @@ public class ViewUser extends JFrame {
 
 		btnNewButton_1.setBounds(25, 10, 81, 27);
 //		btnNewButton_1.setBackground(new Color(72, 61, 139));
-		btnNewButton_1.setBackground(new Color(32,83,117));
-		
+		btnNewButton_1.setBackground(new Color(32, 83, 117));
+
 		btnNewButton_1.setFocusable(false);
 		panel.add(btnNewButton_1);
 
 		JLabel lblNewLabel_6 = new JLabel("");
-		lblNewLabel_6.setIcon(new ImageIcon(HomePage.class.getResource("/libs/logo-small.png")));
+		lblNewLabel_6.setIcon(new ImageIcon("libs/logo-small.png"));
 		lblNewLabel_6.setBounds(173, -28, 128, 128);
 		panel.add(lblNewLabel_6);
 

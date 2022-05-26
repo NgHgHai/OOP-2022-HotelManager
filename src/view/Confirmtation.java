@@ -25,8 +25,8 @@ public class Confirmtation {
 	private JButton btn_Cancel, btn_Save;
 	private JTextField phone_TextField, mail_TextField, addRess_TextField, city_TextField, nationality_TextField,
 			passport_textField, cvcCode_textField, cardNumber_textField;
-	private JTextField[] arr = {phone_TextField, mail_TextField, addRess_TextField, city_TextField, nationality_TextField,
-			passport_textField, cvcCode_textField, cardNumber_textField};
+	private JTextField[] arr = { phone_TextField, mail_TextField, addRess_TextField, city_TextField,
+			nationality_TextField, passport_textField, cvcCode_textField, cardNumber_textField };
 
 	/**
 	 * Launch the application.
@@ -202,12 +202,12 @@ public class Confirmtation {
 		top_panel.setBounds(0, 0, 745, 90);
 		panel_main.add(top_panel);
 		top_panel.setLayout(null);
-		
+
 		JLabel label_logo = new JLabel("");
-		label_logo.setIcon(new ImageIcon(Confirmtation.class.getResource("/libs/logo-small.png")));
+		label_logo.setIcon(State.logo_small);
 		label_logo.setBounds(23, -22, 100, 112);
 		top_panel.add(label_logo);
-		
+
 		JLabel label_group17 = new JLabel("GROUP 17");
 		label_group17.setForeground(Color.WHITE);
 		label_group17.setFont(new Font("Serif", Font.BOLD, 18));

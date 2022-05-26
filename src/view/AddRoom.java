@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -52,7 +51,7 @@ public class AddRoom extends JFrame {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-private void initialize() {
+	private void initialize() {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(State.background);
@@ -79,7 +78,7 @@ private void initialize() {
 		pnlTop.setLayout(null);
 
 		JLabel lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(HomePage.class.getResource("/libs/logo-small.png")));
+		lblLogo.setIcon(State.logo_small);
 		lblLogo.setBounds(23, -22, 100, 112);
 		pnlTop.add(lblLogo);
 

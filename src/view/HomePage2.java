@@ -82,7 +82,7 @@ public class HomePage2 extends JFrame {
 		if ("guest".equals(s)) {
 			frame.add(GuestTablePanel());
 		}
-		
+
 	}
 
 	/**
@@ -195,13 +195,11 @@ public class HomePage2 extends JFrame {
 		btnPayment.setBounds(680, 38, 130, 36);
 		panel.add(btnPayment);
 
-
 		JPanel pnlPaymet = new JPanel();
 		pnlPaymet.setLayout(null);
 		pnlPaymet.setBorder(new LineBorder(new Color(0, 0, 0), 4));
 		pnlPaymet.setBounds(520, 49, 420, 155);
 		panel.add(pnlPaymet);
-
 
 		JLabel lblCardInformation = new JLabel("Credit Card Information:");
 		lblCardInformation.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -514,13 +512,11 @@ public class HomePage2 extends JFrame {
 		btnCenter.setBackground(new Color(135, 206, 250));
 		frame.getContentPane().add(btnCenter);
 
-
 		JPanel pnlTop = new JPanel();
 		pnlTop.setLayout(null);
 		pnlTop.setBackground(State.background);
 		pnlTop.setBounds(10, 10, 1165, 90);
 		frame.getContentPane().add(pnlTop);
-
 
 		JPanel pnlLeft = new JPanel();
 		pnlLeft.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
@@ -528,16 +524,14 @@ public class HomePage2 extends JFrame {
 		pnlLeft.setBounds(10, 100, 200, 550);
 		frame.getContentPane().add(pnlLeft);
 
-
 		JPanel pnlAccount = new JPanel();
 		pnlAccount.setBounds(960, 10, 170, 60);
 		pnlAccount.setBackground(State.background);
 		pnlTop.add(pnlAccount);
 		pnlAccount.setLayout(null);
 
-
 		JLabel lblAvtCus = new JLabel("");
-		lblAvtCus.setIcon(new ImageIcon(HomePage2.class.getResource("/libs/iconHuman.png")));
+		lblAvtCus.setIcon(new ImageIcon("libs/iconHuman.png"));
 		lblAvtCus.setBounds(0, 0, 42, 50);
 		pnlAccount.add(lblAvtCus);
 
@@ -557,7 +551,7 @@ public class HomePage2 extends JFrame {
 		pnlTop.add(pnlAccount);
 
 		JLabel lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(HomePage2.class.getResource("/libs/logo-small.png")));
+		lblLogo.setIcon(State.logo_small);
 		lblLogo.setBounds(23, -22, 100, 112);
 		pnlTop.add(lblLogo);
 
