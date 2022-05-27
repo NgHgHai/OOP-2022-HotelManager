@@ -17,8 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-public class DeleteUser {
-	private JFrame frame;
+public class DeleteUser extends JFrame {
 	private JTextField txtName;
 	JPanel panel;
 	static JButton btnCheckIn;
@@ -31,7 +30,7 @@ public class DeleteUser {
 			public void run() {
 				try {
 					DeleteUser window = new DeleteUser();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,12 +49,11 @@ public class DeleteUser {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(500, 10, 570, 550);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(500, 10, 570, 550);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panelMain = new JPanel();
-		frame.getContentPane().add(panelMain, BorderLayout.CENTER);
+		getContentPane().add(panelMain, BorderLayout.CENTER);
 		panelMain.setLayout(null);
 
 		JButton btnDeleteUser = new JButton("Delete user");
@@ -64,10 +62,7 @@ public class DeleteUser {
 		panelMain.add(btnDeleteUser);
 		btnDeleteUser.setFocusable(false);
 		btnDeleteUser.setBackground(new Color(135, 206, 250));
-		btnDeleteUser.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		JPanel pnlTop = new JPanel();
 		pnlTop.setBackground(State.background);
 		pnlTop.setBorder(null);
@@ -85,7 +80,7 @@ public class DeleteUser {
 		lblGroup17.setFont(new Font("Serif", Font.BOLD, 18));
 		lblGroup17.setBounds(85, 24, 137, 48);
 		pnlTop.add(lblGroup17);
-		;
+		
 
 		JPanel pnlDeleteUser = new JPanel();
 		pnlDeleteUser.setLayout(null);
@@ -98,16 +93,7 @@ public class DeleteUser {
 		lblName.setBounds(60, 70, 95, 70);
 		pnlDeleteUser.add(lblName);
 		txtName = new JTextField("Name");
-		txtName.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				super.mouseClicked(e);
-				if (e.getSource() == txtName) {
-					txtName.setText("");
-				}
-			}
-		});
+	
 		txtName.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		txtName.setBounds(200, 85, 235, 40);
 		pnlDeleteUser.add(txtName);
@@ -126,6 +112,28 @@ public class DeleteUser {
 		btnCheckout.setBounds(315, 170, 120, 35);
 		btnCheckout.setFocusable(false);
 		pnlDeleteUser.add(btnCheckout);
+		
+		//addActionListener	
+		
+		btnDeleteUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		txtName.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				super.mouseClicked(e);
+				if (e.getSource() == txtName) {
+					txtName.setText("");
+				}
+			}
+		});
+		
+		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
+
+		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
 
 	}
 }

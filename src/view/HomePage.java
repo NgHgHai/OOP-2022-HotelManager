@@ -17,7 +17,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 public class HomePage extends JFrame {
-	private JFrame frame;
 //	private HomePage2 homePage2 = new HomePage2();
 
 	/**
@@ -28,7 +27,7 @@ public class HomePage extends JFrame {
 			public void run() {
 				try {
 					HomePage window = new HomePage();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -40,19 +39,12 @@ public class HomePage extends JFrame {
 	 * Create the application.
 	 */
 	public HomePage() {
-		initialize();
-	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 1200, 700);
-		frame.setResizable(false);
-		frame.getContentPane().setBackground(State.background);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setBounds(100, 100, 1200, 700);
+		setResizable(false);
+		getContentPane().setBackground(State.background);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 
 		JButton btnCenter = new JButton("Home Page");
 		btnCenter.setBackground(new Color(135, 206, 250));
@@ -63,13 +55,13 @@ public class HomePage extends JFrame {
 			}
 		});
 		btnCenter.setBounds(510, 65, 200, 70);
-		frame.getContentPane().add(btnCenter);
+		getContentPane().add(btnCenter);
 
 //----------------------------------------------------
 		JPanel pnlTop = new JPanel();
 		pnlTop.setBackground(State.background);
 		pnlTop.setBounds(10, 10, 1165, 90);
-		frame.getContentPane().add(pnlTop);
+		getContentPane().add(pnlTop);
 		pnlTop.setLayout(null);
 
 		JButton btnSetting = new JButton("Setting");
@@ -97,7 +89,7 @@ public class HomePage extends JFrame {
 		JPanel pnlLeft = new JPanel();
 		pnlLeft.setBackground(new Color(135, 206, 250));
 		pnlLeft.setBounds(10, 100, 200, 550);
-		frame.getContentPane().add(pnlLeft);
+		getContentPane().add(pnlLeft);
 		pnlLeft.setLayout(null);
 
 		JPanel pnlInfor = new JPanel();
@@ -179,17 +171,17 @@ public class HomePage extends JFrame {
 		lblGetReservedRooms.setBounds(25, 45, 135, 55);
 		pnlReservedRooms.add(lblGetReservedRooms);
 
-		JButton btnLogOut = new JButton("<html><u>Log Out</u></html>");
+		JButton btnLogOut = new JButton("Log Out");
 		btnLogOut.setForeground(Color.WHITE);
 		btnLogOut.setBounds(51, 505, 89, 23);
 		btnLogOut.setFocusable(false);
-		btnLogOut.setBackground(State.background);
+		btnLogOut.setBackground(State.red_button);
 		pnlLeft.add(btnLogOut);
 
 //		---------------------------------		
 		JPanel pnlRight = new JPanel();
 		pnlRight.setBounds(215, 100, 960, 550);
-		frame.getContentPane().add(pnlRight);
+		getContentPane().add(pnlRight);
 		pnlRight.setLayout(null);
 
 		JPanel pnlCheckIn = new JPanel();
@@ -279,6 +271,107 @@ public class HomePage extends JFrame {
 		btnGuest.setBackground(new Color(135, 206, 250));
 		btnGuest.setBounds(10, 10, 280, 135);
 		pnlGuest.add(btnGuest);
+		
+		
+		//addActionListener	
+		
+			btnSetting.addActionListener(new ActionListener() {
 
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					JFrame SettingFrame = new Setting();
+					if (isVisible()) {
+						setVisible(false);
+					}
+					SettingFrame.setVisible(true);
+					SettingFrame.setLocationRelativeTo(SettingFrame);
+					SettingFrame.setSize(600, 600);
+				}
+			});
+			
+			btnCheckIn.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					JFrame homePage2Frame = new HomePage2("checkIn");
+					if (isVisible()) {
+						setVisible(false);
+					}
+					homePage2Frame.setVisible(true);
+					homePage2Frame.setLocationRelativeTo(homePage2Frame);
+					homePage2Frame.setSize(1200, 700);
+				}
+			});
+		
+			btnCheckOut.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					JFrame homePage2Frame = new HomePage2("checkOut");
+					if (isVisible()) {
+						setVisible(false);
+					}
+					homePage2Frame.setVisible(true);
+					homePage2Frame.setLocationRelativeTo(homePage2Frame);
+					homePage2Frame.setSize(1200, 700);
+				}
+			});
+			btnRooms.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					JFrame homePage2Frame = new HomePage2("room");
+					if (isVisible()) {
+						setVisible(false);
+					}
+					homePage2Frame.setVisible(true);
+					homePage2Frame.setLocationRelativeTo(homePage2Frame);
+					homePage2Frame.setSize(1200, 700);
+				}
+			});
+			btnGuest.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					JFrame homePage2Frame = new HomePage2("guest");
+					if (isVisible()) {
+						setVisible(false);
+					}
+					homePage2Frame.setVisible(true);
+					homePage2Frame.setLocationRelativeTo(homePage2Frame);
+					homePage2Frame.setSize(1200, 700);
+				}
+			});
+
+			
+			btnLogOut.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					JFrame loginFrame = new Login();
+					if (isVisible()) {
+						setVisible(false);
+					}
+					loginFrame.setVisible(true);
+					loginFrame.setLocationRelativeTo(loginFrame);
+					loginFrame.setSize(600, 600);
+				}
+			});
+			
+			lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
+
+			lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
+			
+			
+			
+			
+			
+			
 	}
 }

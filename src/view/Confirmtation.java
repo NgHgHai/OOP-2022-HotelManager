@@ -3,10 +3,10 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,8 +14,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import java.awt.Font;
+import java.awt.SystemColor;
 
-public class Confirmtation {
+public class Confirmtation extends JFrame {
 
 	private JFrame frame;
 	private JTextField name_TextField;
@@ -26,16 +28,13 @@ public class Confirmtation {
 			passport_textField, cvcCode_textField, cardNumber_textField;
 	private JTextField[] arr = { phone_TextField, mail_TextField, addRess_TextField, city_TextField,
 			nationality_TextField, passport_textField, cvcCode_textField, cardNumber_textField };
-
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Confirmtation window = new Confirmtation();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -47,19 +46,11 @@ public class Confirmtation {
 	 * Create the application.
 	 */
 	public Confirmtation() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(500, 10, 745, 635);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(500, 10, 745, 635);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel_main = new JPanel();
-		frame.getContentPane().add(panel_main, BorderLayout.CENTER);
+		getContentPane().add(panel_main, BorderLayout.CENTER);
 		panel_main.setLayout(null);
 
 		JPanel panel_Price = new JPanel();
@@ -127,20 +118,14 @@ public class Confirmtation {
 		btn_Cancel = new JButton("Cancel");
 		btn_Cancel.setBackground(State.clear_button);
 		btn_Cancel.setFocusable(false);
-		btn_Cancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+	
 		btn_Cancel.setBounds(485, 537, 100, 35);
 		panel_main.add(btn_Cancel);
 
 		btn_Save = new JButton("Save");
 		btn_Save.setBackground(State.green_button);
 		btn_Save.setFocusable(false);
-		btn_Save.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+	
 		btn_Save.setBounds(603, 537, 100, 35);
 		panel_main.add(btn_Save);
 
@@ -148,10 +133,7 @@ public class Confirmtation {
 		button_RoomData.setFocusable(false);
 		button_RoomData.setEnabled(false);
 		button_RoomData.setBorder(new LineBorder(new Color(0, 0, 0), 4));
-		button_RoomData.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+	
 		button_RoomData.setBounds(541, 125, 100, 30);
 		panel_main.add(button_RoomData);
 
@@ -227,10 +209,7 @@ public class Confirmtation {
 		panel_main.add(button_Confirm);
 		button_Confirm.setFocusable(false);
 		button_Confirm.setBackground(new Color(135, 206, 250));
-		button_Confirm.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+
 		JPanel top_panel = new JPanel();
 		top_panel.setBackground(State.background);
 		top_panel.setBorder(null);
@@ -253,12 +232,7 @@ public class Confirmtation {
 		button_PersonalData.setFocusable(false);
 		button_PersonalData.setEnabled(false);
 		button_PersonalData.setBorder(new LineBorder(new Color(0, 0, 0), 4));
-		button_PersonalData.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		button_PersonalData.setBounds(169, 125, 100, 30);
-		panel_main.add(button_PersonalData);
+	
 
 		JPanel panel_PersonalData = new JPanel();
 		panel_PersonalData.setBorder(new LineBorder(new Color(0, 0, 0), 4));
@@ -360,6 +334,45 @@ public class Confirmtation {
 		cardNumber_textField.setColumns(10);
 		cardNumber_textField.setBounds(98, 395, 330, 30);
 		panel_PersonalData.add(cardNumber_textField);
+		
+		
+		//addActionListener
+		btn_Cancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource().equals(btn_Cancel)) {
+					setVisible(false);
+				}	
+			}
+		});
+		btn_Save.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		
+		button_RoomData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource().equals(button_RoomData)) {
+					setVisible(false);
+				}
+			}
+		});
+		button_Confirm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		button_PersonalData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		button_PersonalData.setBounds(169, 125, 100, 30);
+		panel_main.add(button_PersonalData);
+
+		label_group17.addMouseListener(State.retureHomePage(label_group17, this));
+
+		label_logo.addMouseListener(State.retureHomePage(label_logo, this));
 
 	}
 }

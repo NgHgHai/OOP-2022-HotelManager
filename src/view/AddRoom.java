@@ -20,10 +20,9 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 public class AddRoom extends JFrame {
-	private JFrame frame;
-	private JTextField txtName;
 	private JTable table;
 	private JTextField txtCost;
+	private JTextField txtName;
 
 	/**
 	 * * Launch the application.
@@ -33,7 +32,7 @@ public class AddRoom extends JFrame {
 			public void run() {
 				try {
 					AddRoom window = new AddRoom();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -45,36 +44,26 @@ public class AddRoom extends JFrame {
 	 * Create the application.
 	 */
 	public AddRoom() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.getContentPane().setBackground(State.background);
-		frame.setBounds(100, 100, 1200, 700);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+	
+	setResizable(false);
+		getContentPane().setBackground(State.background);
+		setBounds(100, 100, 1200, 700);
+	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 
 //		phần logo
 		JButton btnCenter = new JButton("Add Room");
 		btnCenter.setBackground(new Color(135, 206, 250));
 		btnCenter.setFont(new Font("Serif", Font.BOLD, 30));
 		btnCenter.setFocusable(false);
-		btnCenter.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+	
 		btnCenter.setBounds(510, 65, 200, 70);
-		frame.getContentPane().add(btnCenter);
+		getContentPane().add(btnCenter);
 
 		JPanel pnlTop = new JPanel();
 		pnlTop.setBackground(State.background);
 		pnlTop.setBounds(10, 10, 1165, 90);
-		frame.getContentPane().add(pnlTop);
+		getContentPane().add(pnlTop);
 		pnlTop.setLayout(null);
 
 		JLabel lblLogo = new JLabel("");
@@ -94,7 +83,7 @@ public class AddRoom extends JFrame {
 		pnlContent.setLayout(null);
 		pnlContent.setBackground(SystemColor.control);
 		pnlContent.setBounds(10, 100, 1165, 550);
-		frame.getContentPane().add(pnlContent);
+		getContentPane().add(pnlContent);
 
 		JLabel lblID = new JLabel("ID:");
 		lblID.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -242,6 +231,34 @@ public class AddRoom extends JFrame {
 		btnRefresh.setBounds(977, 14, 141, 36);
 		pnlContent.add(btnRefresh);
 		btnRefresh.setFocusable(false);
+		
+		//addActionListener	
+		btnCenter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17,this));
+		
+		lblLogo.addMouseListener(State.retureHomePage(lblLogo,this));
+		
+		
+		
+		
+//		btnRefresh.addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+//				JFrame refreshFrame=new Setting();
+//				if(isVisible()) {
+//					setVisible(false);
+//				}
+//				refreshFrame.setVisible(true);
+//				refreshFrame.setLocationRelativeTo(refreshFrame);
+//				refreshFrame.setSize(600,600);
+//			}
+//		});
 
 	}
 }

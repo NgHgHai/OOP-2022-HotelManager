@@ -17,11 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-//import giuaKi.HomePage;
-
 public class AddUser extends JFrame {
 
-	private JFrame frame;
 	private JTextField name_textField;
 	private JTextField password_textField;
 
@@ -33,7 +30,7 @@ public class AddUser extends JFrame {
 			public void run() {
 				try {
 					AddUser window = new AddUser();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -45,24 +42,17 @@ public class AddUser extends JFrame {
 	 * Create the application.
 	 */
 	public AddUser() {
-		initialize();
-	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 600, 600);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setBounds(100, 100, 600, 600);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 
 		JPanel north_panel = new JPanel();
 		north_panel.setLayout(null);
 		north_panel.setBounds(10, 10, 564, 90);
 		north_panel.setBackground(State.background);
-		frame.getContentPane().add(north_panel);
+		getContentPane().add(north_panel);
 
 		JLabel iconLogo_label = new JLabel("");
 		iconLogo_label.setIcon(State.logo_small);
@@ -77,10 +67,7 @@ public class AddUser extends JFrame {
 
 		JButton back_button = new JButton("<Back");
 		back_button.setForeground(Color.WHITE);
-		back_button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+	
 		back_button.setBounds(25, 10, 81, 27);
 		back_button.setBackground(State.background);
 		back_button.setFocusable(false);
@@ -91,6 +78,45 @@ public class AddUser extends JFrame {
 		name_textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		name_textField.setText("Enter new username");
 
+	
+		name_textField.setBounds(107, 207, 415, 44);
+		getContentPane().add(name_textField);
+		name_textField.setColumns(10);
+
+		password_textField = new JTextField();
+		password_textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		password_textField.setHorizontalAlignment(SwingConstants.LEFT);
+		password_textField.setText("Enter new password");
+		password_textField.setBounds(107, 296, 415, 44);
+	
+		getContentPane().add(password_textField);
+		password_textField.setColumns(10);
+
+		JLabel iconName_label = new JLabel("");
+		iconName_label.setIcon(new ImageIcon("libs/user.png"));
+		iconName_label.setBounds(54, 207, 46, 43);
+		getContentPane().add(iconName_label);
+
+		JLabel iconPassword_label = new JLabel("");
+		iconPassword_label.setIcon(new ImageIcon("libs/key.png"));
+		iconPassword_label.setBounds(65, 296, 35, 44);
+		getContentPane().add(iconPassword_label);
+
+		JButton save_button = new JButton("SAVE");
+		save_button.setBackground(State.background);
+		save_button.setFocusable(false);
+		save_button.setForeground(Color.WHITE);
+		save_button.setFont(new Font("Tahoma", Font.PLAIN, 23));
+	
+		save_button.setBounds(223, 451, 134, 44);
+		getContentPane().add(save_button);
+
+		JCheckBox receptionist_checkBox = new JCheckBox("Receptionist");
+		receptionist_checkBox.setFont(new Font("Tahoma", Font.BOLD, 16));
+		receptionist_checkBox.setBounds(223, 378, 142, 43);
+		getContentPane().add(receptionist_checkBox);
+
+//		addActionListener
 		name_textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -102,15 +128,7 @@ public class AddUser extends JFrame {
 			}
 
 		});
-		name_textField.setBounds(107, 207, 415, 44);
-		frame.getContentPane().add(name_textField);
-		name_textField.setColumns(10);
-
-		password_textField = new JTextField();
-		password_textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		password_textField.setHorizontalAlignment(SwingConstants.LEFT);
-		password_textField.setText("Enter new password");
-		password_textField.setBounds(107, 296, 415, 44);
+		
 		password_textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -121,34 +139,34 @@ public class AddUser extends JFrame {
 			}
 
 		});
-		frame.getContentPane().add(password_textField);
-		password_textField.setColumns(10);
-
-		JLabel iconName_label = new JLabel("");
-		iconName_label.setIcon(new ImageIcon("libs/user.png"));
-		iconName_label.setBounds(54, 207, 46, 43);
-		frame.getContentPane().add(iconName_label);
-
-		JLabel iconPassword_label = new JLabel("");
-		iconPassword_label.setIcon(new ImageIcon("libs/key.png"));
-		iconPassword_label.setBounds(65, 296, 35, 44);
-		frame.getContentPane().add(iconPassword_label);
-
-		JButton save_button = new JButton("SAVE");
-		save_button.setBackground(State.background);
-		save_button.setFocusable(false);
-		save_button.setForeground(Color.WHITE);
-		save_button.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		
 		save_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		save_button.setBounds(223, 451, 134, 44);
-		frame.getContentPane().add(save_button);
+		
+		back_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 
-		JCheckBox receptionist_checkBox = new JCheckBox("Receptionist");
-		receptionist_checkBox.setFont(new Font("Tahoma", Font.BOLD, 16));
-		receptionist_checkBox.setBounds(223, 378, 142, 43);
-		frame.getContentPane().add(receptionist_checkBox);
+		group17_label.addMouseListener(State.retureHomePage(group17_label, this));
+
+		iconLogo_label.addMouseListener(State.retureHomePage(iconLogo_label, this));
+
+		back_button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame settingFrame = new Setting();
+				if (isVisible()) {
+					setVisible(false);
+				}
+				settingFrame.setVisible(true);
+				settingFrame.setLocationRelativeTo(settingFrame);
+				settingFrame.setSize(600, 600);
+			}
+		});
 	}
 }

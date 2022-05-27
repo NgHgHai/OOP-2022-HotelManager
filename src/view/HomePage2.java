@@ -26,7 +26,6 @@ import javax.swing.table.DefaultTableModel;
 public class HomePage2 extends JFrame {
 	private JTable tableGuest, tableRooms;
 	private double count = 2;
-	private JFrame frame = new JFrame();
 	private JTextField txtCardNumber;
 	private JTextField txtCVCCode;
 	private JTextField txtName;
@@ -55,8 +54,8 @@ public class HomePage2 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HomePage2 window = new HomePage2("room");
-					window.frame.setVisible(true);
+					HomePage2 window = new HomePage2("checkIn");
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -68,38 +67,160 @@ public class HomePage2 extends JFrame {
 	 * Create the application.
 	 */
 
-	public HomePage2(String s) {
-		initialize();
-		if ("checkIn".equals(s)) {
-			frame.add(CheckInPanel());
-		}
-		if ("checkOut".equals(s)) {
-			frame.add(CheckOutPanel());
-		}
-		if ("room".equals(s)) {
-			frame.add(RoomTablePanel());
-		}
-		if ("guest".equals(s)) {
-			frame.add(GuestTablePanel());
-		}
+	public void change(JPanel panelChange, String string) {
+		btnCenter.setText(string);
+		remove(panel);
+		getContentPane().add(panelChange);
 
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	public void change(JPanel panelChange, String string) {
-		btnCenter.setText(string);
-		frame.remove(panel);
-		frame.getContentPane().add(panelChange);
+	public HomePage2(String s) {
 
+		getContentPane().setBackground(State.background);
+
+		setBounds(100, 100, 1200, 700);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
+		setResizable(false);
+		setVisible(true);
+
+		btnCenter = new JButton("null");
+		btnCenter.setFont(new Font("Serif", Font.BOLD, 30));
+		btnCenter.setBounds(510, 65, 200, 70);
+		btnCenter.setFocusable(false);
+		btnCenter.setBackground(new Color(135, 206, 250));
+		getContentPane().add(btnCenter);
+
+		JPanel pnlTop = new JPanel();
+		pnlTop.setLayout(null);
+		pnlTop.setBackground(State.background);
+		pnlTop.setBounds(10, 10, 1165, 90);
+		getContentPane().add(pnlTop);
+
+		JPanel pnlLeft = new JPanel();
+		pnlLeft.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		pnlLeft.setBackground(new Color(135, 206, 250));
+		pnlLeft.setBounds(10, 100, 200, 550);
+		getContentPane().add(pnlLeft);
+
+		JPanel pnlAccount = new JPanel();
+		pnlAccount.setBounds(960, 10, 170, 60);
+		pnlAccount.setBackground(State.background);
+		pnlTop.add(pnlAccount);
+		pnlAccount.setLayout(null);
+
+		JLabel lblAvtCus = new JLabel("");
+		lblAvtCus.setIcon(new ImageIcon("libs/iconHuman.png"));
+		lblAvtCus.setBounds(0, 0, 42, 50);
+		pnlAccount.add(lblAvtCus);
+
+		JLabel lblNameCus = new JLabel("KH1");
+		lblNameCus.setForeground(Color.WHITE);
+		lblNameCus.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNameCus.setFont(new Font("Serif", Font.PLAIN, 20));
+		lblNameCus.setBounds(52, 0, 108, 24);
+		pnlAccount.add(lblNameCus);
+
+		JButton btnLogOut = new JButton("<html><u>Log Out</u></html>");
+		btnLogOut.setForeground(Color.WHITE);
+		btnLogOut.setBounds(62, 27, 89, 23);
+		btnLogOut.setFocusable(false);
+		pnlAccount.add(btnLogOut);
+		btnLogOut.setBackground(State.background);
+		pnlTop.add(pnlAccount);
+
+		JLabel lblLogo = new JLabel("");
+		lblLogo.setIcon(State.logo_small);
+		lblLogo.setBounds(23, -22, 100, 112);
+		pnlTop.add(lblLogo);
+
+		JLabel lblGroup17 = new JLabel("GROUP 17");
+		lblGroup17.setForeground(Color.WHITE);
+		lblGroup17.setFont(new Font("Serif", Font.BOLD, 18));
+		lblGroup17.setBounds(106, 24, 137, 48);
+		pnlTop.add(lblGroup17);
+
+		btnCheckIn = new JButton("Check In");
+		btnCheckIn.setBounds(10, 54, 180, 71);
+		btnCheckIn.setBackground(new Color(175, 238, 238));
+		btnCheckIn.setFont(new Font("Serif", Font.PLAIN, 30));
+		btnCheckIn.setFocusable(false);
+		btnCheckIn.addMouseListener(Adapter());
+
+		btnCheckOut = new JButton("Check Out");
+		btnCheckOut.setBackground(new Color(176, 224, 230));
+		btnCheckOut.setBounds(10, 178, 180, 71);
+		btnCheckOut.setBackground(new Color(175, 238, 238));
+		btnCheckOut.setFont(new Font("Serif", Font.PLAIN, 30));
+		btnCheckOut.setFocusable(false);
+		btnCheckOut.addMouseListener(Adapter());
+
+		btnRooms = new JButton("Rooms");
+		btnRooms.setBounds(10, 298, 180, 76);
+		btnRooms.setBackground(new Color(175, 238, 238));
+		btnRooms.setFont(new Font("Serif", Font.PLAIN, 30));
+		btnRooms.setFocusable(false);
+		btnRooms.addMouseListener(Adapter());
+
+		btnGuest = new JButton("Guest");
+		btnGuest.setBounds(10, 418, 180, 76);
+		btnGuest.setBackground(new Color(175, 238, 238));
+		btnGuest.setFont(new Font("Serif", Font.PLAIN, 30));
+		btnGuest.setFocusable(false);
+		btnGuest.addMouseListener(Adapter());
+
+		pnlLeft.setLayout(null);
+		pnlLeft.add(btnCheckIn);
+		pnlLeft.add(btnCheckOut);
+		pnlLeft.add(btnRooms);
+		pnlLeft.add(btnGuest);
+		
+		
+		
+		
+//addActionListener		
+
+		btnLogOut.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame loginFrame = new Login();
+				if (isVisible()) {
+					setVisible(false);
+				}
+				loginFrame.setVisible(true);
+				loginFrame.setLocation(0, 0);
+				loginFrame.setSize(600, 600);
+			}
+		});
+
+		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
+
+		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
+
+//		CheckInPanel();
+		if ("checkIn".equals(s)) {
+			CheckInPanel();
+		}
+		if ("checkOut".equals(s)) {
+			CheckOutPanel();
+		}
+		if ("room".equals(s)) {
+			RoomTablePanel();
+		}
+		if ("guest".equals(s)) {
+			GuestTablePanel();
+		}
+
+//		------------------------------
 	}
 
 	public JPanel CheckInPanel() {
 		btnCenter.setText("Check In");
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
-		frame.getContentPane().add(panel);
+		getContentPane().add(panel);
 		panel.setLayout(null);
 
 //		Personal Data"
@@ -356,6 +477,19 @@ public class HomePage2 extends JFrame {
 		btnSubmit.setBounds(820, 504, 100, 35);
 		panel.add(btnSubmit);
 
+		btnSubmit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame confirmtationFrame = new Confirmtation();
+
+				confirmtationFrame.setVisible(true);
+				confirmtationFrame.setLocationRelativeTo(confirmtationFrame);
+				confirmtationFrame.setSize(745, 635);
+			}
+		});
+
 		return panel;
 	}
 
@@ -363,7 +497,7 @@ public class HomePage2 extends JFrame {
 		btnCenter.setText("Check Out");
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
-		frame.getContentPane().add(panel);
+		getContentPane().add(panel);
 		panel.setLayout(null);
 
 		JPanel pnlCheckOut = new JPanel();
@@ -416,7 +550,7 @@ public class HomePage2 extends JFrame {
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(215, 100, 960, 550);
-		frame.getContentPane().add(panel);
+		getContentPane().add(panel);
 
 		tableGuest = new JTable();
 		tableGuest.setFont(new Font("Time New Roman", Font.BOLD, 11));
@@ -464,7 +598,7 @@ public class HomePage2 extends JFrame {
 		btnCenter.setText("Room");
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
-		frame.getContentPane().add(panel);
+		getContentPane().add(panel);
 		panel.setLayout(null);
 
 		tableRooms = new JTable();
@@ -495,109 +629,6 @@ public class HomePage2 extends JFrame {
 		return panel;
 	}
 
-	private void initialize() {
-
-		frame.getContentPane().setBackground(State.background);
-
-		frame.setBounds(100, 100, 1200, 700);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setResizable(false);
-		frame.setVisible(true);
-
-		btnCenter = new JButton("null");
-		btnCenter.setFont(new Font("Serif", Font.BOLD, 30));
-		btnCenter.setBounds(510, 65, 200, 70);
-		btnCenter.setFocusable(false);
-		btnCenter.setBackground(new Color(135, 206, 250));
-		frame.getContentPane().add(btnCenter);
-
-		JPanel pnlTop = new JPanel();
-		pnlTop.setLayout(null);
-		pnlTop.setBackground(State.background);
-		pnlTop.setBounds(10, 10, 1165, 90);
-		frame.getContentPane().add(pnlTop);
-
-		JPanel pnlLeft = new JPanel();
-		pnlLeft.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		pnlLeft.setBackground(new Color(135, 206, 250));
-		pnlLeft.setBounds(10, 100, 200, 550);
-		frame.getContentPane().add(pnlLeft);
-
-		JPanel pnlAccount = new JPanel();
-		pnlAccount.setBounds(960, 10, 170, 60);
-		pnlAccount.setBackground(State.background);
-		pnlTop.add(pnlAccount);
-		pnlAccount.setLayout(null);
-
-		JLabel lblAvtCus = new JLabel("");
-		lblAvtCus.setIcon(new ImageIcon("libs/iconHuman.png"));
-		lblAvtCus.setBounds(0, 0, 42, 50);
-		pnlAccount.add(lblAvtCus);
-
-		JLabel lblNameCus = new JLabel("KH1");
-		lblNameCus.setForeground(Color.WHITE);
-		lblNameCus.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNameCus.setFont(new Font("Serif", Font.PLAIN, 20));
-		lblNameCus.setBounds(52, 0, 108, 24);
-		pnlAccount.add(lblNameCus);
-
-		JButton btnLogOut = new JButton("<html><u>Log Out</u></html>");
-		btnLogOut.setForeground(Color.WHITE);
-		btnLogOut.setBounds(62, 27, 89, 23);
-		btnLogOut.setFocusable(false);
-		pnlAccount.add(btnLogOut);
-		btnLogOut.setBackground(State.background);
-		pnlTop.add(pnlAccount);
-
-		JLabel lblLogo = new JLabel("");
-		lblLogo.setIcon(State.logo_small);
-		lblLogo.setBounds(23, -22, 100, 112);
-		pnlTop.add(lblLogo);
-
-		JLabel lblGroup17 = new JLabel("GROUP 17");
-		lblGroup17.setForeground(Color.WHITE);
-		lblGroup17.setFont(new Font("Serif", Font.BOLD, 18));
-		lblGroup17.setBounds(106, 24, 137, 48);
-		pnlTop.add(lblGroup17);
-
-		btnCheckIn = new JButton("Check In");
-		btnCheckIn.setBounds(10, 54, 180, 71);
-		btnCheckIn.setBackground(new Color(175, 238, 238));
-		btnCheckIn.setFont(new Font("Serif", Font.PLAIN, 30));
-		btnCheckIn.setFocusable(false);
-		btnCheckIn.addMouseListener(Adapter());
-
-		btnCheckOut = new JButton("Check Out");
-		btnCheckOut.setBackground(new Color(176, 224, 230));
-		btnCheckOut.setBounds(10, 178, 180, 71);
-		btnCheckOut.setBackground(new Color(175, 238, 238));
-		btnCheckOut.setFont(new Font("Serif", Font.PLAIN, 30));
-		btnCheckOut.setFocusable(false);
-		btnCheckOut.addMouseListener(Adapter());
-
-		btnRooms = new JButton("Rooms");
-		btnRooms.setBounds(10, 298, 180, 76);
-		btnRooms.setBackground(new Color(175, 238, 238));
-		btnRooms.setFont(new Font("Serif", Font.PLAIN, 30));
-		btnRooms.setFocusable(false);
-		btnRooms.addMouseListener(Adapter());
-
-		btnGuest = new JButton("Guest");
-		btnGuest.setBounds(10, 418, 180, 76);
-		btnGuest.setBackground(new Color(175, 238, 238));
-		btnGuest.setFont(new Font("Serif", Font.PLAIN, 30));
-		btnGuest.setFocusable(false);
-		btnGuest.addMouseListener(Adapter());
-
-		pnlLeft.setLayout(null);
-		pnlLeft.add(btnCheckIn);
-		pnlLeft.add(btnCheckOut);
-		pnlLeft.add(btnRooms);
-		pnlLeft.add(btnGuest);
-
-	}
-
 	private MouseListener Adapter() {
 		// TODO Auto-generated method stub
 		return new MouseAdapter() {
@@ -605,24 +636,24 @@ public class HomePage2 extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				super.mouseClicked(e);
-				frame.remove(panel);
+				remove(panel);
 				if (e.getSource() == btnGuest) {
 //					btnCenter.setText(btnGuest.getText());
-					frame.getContentPane().add(GuestTablePanel());
+					getContentPane().add(GuestTablePanel());
 				}
 				if (e.getSource() == btnRooms) {
 //					btnCenter.setText(btnRooms.getText());
-					frame.getContentPane().add(RoomTablePanel());
+					getContentPane().add(RoomTablePanel());
 				}
 				if (e.getSource() == btnCheckIn) {
 //					btnCenter.setText(btnCheckIn.getText());
-					frame.getContentPane().add(CheckInPanel());
+					getContentPane().add(CheckInPanel());
 				}
 				if (e.getSource() == btnCheckOut) {
 //					btnCenter.setText(btnCheckOut.getText());
-					frame.getContentPane().add(CheckOutPanel());
+					getContentPane().add(CheckOutPanel());
 				}
-				frame.repaint();
+				repaint();
 			}
 		};
 	}

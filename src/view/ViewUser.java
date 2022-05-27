@@ -16,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class ViewUser extends JFrame {
 
-	private JFrame frame;
 	private JTable table;
 
 	/**
@@ -27,7 +26,7 @@ public class ViewUser extends JFrame {
 			public void run() {
 				try {
 					ViewUser window = new ViewUser();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -39,34 +38,22 @@ public class ViewUser extends JFrame {
 	 * Create the application.
 	 */
 	public ViewUser() {
-		initialize();
-	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 600, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setBounds(100, 100, 600, 600);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(10, 10, 564, 90);
-//		panel.setBackground(new Color(72, 61, 139));
 		panel.setBackground(new Color(32, 83, 117));
-		frame.getContentPane().add(panel);
+		getContentPane().add(panel);
 
 		JButton btnNewButton_1 = new JButton("<Back");
 		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+	
 
 		btnNewButton_1.setBounds(25, 10, 81, 27);
-//		btnNewButton_1.setBackground(new Color(72, 61, 139));
 		btnNewButton_1.setBackground(new Color(32, 83, 117));
 
 		btnNewButton_1.setFocusable(false);
@@ -87,7 +74,7 @@ public class ViewUser extends JFrame {
 		panel_1.setLayout(null);
 		panel_1.setBackground(Color.LIGHT_GRAY);
 		panel_1.setBounds(10, 111, 564, 439);
-		frame.getContentPane().add(panel_1);
+		getContentPane().add(panel_1);
 
 		table = new JTable();
 		table.setBackground(Color.WHITE);
@@ -104,6 +91,40 @@ public class ViewUser extends JFrame {
 						{ null, null, null }, { null, null, null }, { null, null, null }, },
 				new String[] { "User Name", "Password", "Admin Status" }));
 		panel_1.add(table);
+		
+		
+
+		
+		
+		
+		//addActionListener	
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		btnNewButton_1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame refreshFrame = new Setting();
+				if (isVisible()) {
+					setVisible(false);
+				}
+				refreshFrame.setVisible(true);
+				refreshFrame.setLocationRelativeTo(refreshFrame);
+				refreshFrame.setSize(600, 600);
+			}
+		});
+		
+		lblNewLabel_7.addMouseListener(State.retureHomePage(lblNewLabel_7, this));
+
+		lblNewLabel_6.addMouseListener(State.retureHomePage(lblNewLabel_6, this));
+		
+		
+		
+		
 	}
 
 }
