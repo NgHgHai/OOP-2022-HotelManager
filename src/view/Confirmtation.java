@@ -3,25 +3,24 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-import java.awt.Font;
-import java.awt.SystemColor;
 
 public class Confirmtation {
 
 	private JFrame frame;
 	private JTextField name_TextField;
 	private JLabel roomType_label, roomCapacity_label, checkInDate_label, checkOutDate, roomID_label,
-			numberOfNights_label, nightCost_label, totalPrice_label;
+			numberOfNights_label, nightCost_label, totalPrice_label, name_label, tip_label;
 	private JButton btn_Cancel, btn_Save;
 	private JTextField phone_TextField, mail_TextField, addRess_TextField, city_TextField, nationality_TextField,
 			passport_textField, cvcCode_textField, cardNumber_textField;
@@ -76,28 +75,54 @@ public class Confirmtation {
 
 		JLabel labelName_6_12 = new JLabel("Night cost:");
 		labelName_6_12.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelName_6_12.setBounds(22, 58, 123, 22);
+		labelName_6_12.setBounds(22, 55, 75, 22);
 		panel_Price.add(labelName_6_12);
 
 		JLabel labelName_6_13 = new JLabel("Total price:");
 		labelName_6_13.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelName_6_13.setBounds(22, 90, 123, 22);
+		labelName_6_13.setBounds(22, 110, 123, 22);
 		panel_Price.add(labelName_6_13);
 
 		numberOfNights_label = new JLabel("1");
 		numberOfNights_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		numberOfNights_label.setBounds(155, 26, 97, 22);
+		numberOfNights_label.setBounds(155, 26, 34, 22);
 		panel_Price.add(numberOfNights_label);
 
 		nightCost_label = new JLabel("100");
 		nightCost_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		nightCost_label.setBounds(155, 58, 97, 22);
+		nightCost_label.setBounds(155, 55, 34, 22);
 		panel_Price.add(nightCost_label);
 
 		totalPrice_label = new JLabel("100");
 		totalPrice_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		totalPrice_label.setBounds(155, 90, 97, 22);
+		totalPrice_label.setBounds(155, 110, 34, 22);
 		panel_Price.add(totalPrice_label);
+		
+		JLabel tiplabel = new JLabel("Tip:");
+		tiplabel.setHorizontalAlignment(SwingConstants.LEFT);
+		tiplabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		tiplabel.setBounds(22, 83, 123, 22);
+		panel_Price.add(tiplabel);
+		
+		tip_label = new JLabel("100");
+		tip_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		tip_label.setBounds(155, 83, 34, 22);
+		panel_Price.add(tip_label);
+		
+		JLabel totalPrice_label_1_1 = new JLabel("$");
+		totalPrice_label_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		totalPrice_label_1_1.setBounds(146, 110, 21, 22);
+		panel_Price.add(totalPrice_label_1_1);
+		
+		JLabel totalPrice_label_1_1_1 = new JLabel("$");
+		totalPrice_label_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		totalPrice_label_1_1_1.setBounds(146, 55, 21, 22);
+		panel_Price.add(totalPrice_label_1_1_1);
+		
+		JLabel totalPrice_label_1_1_1_1 = new JLabel("%");
+		totalPrice_label_1_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		totalPrice_label_1_1_1_1.setBounds(181, 83, 21, 22);
+		panel_Price.add(totalPrice_label_1_1_1_1);
 
 		btn_Cancel = new JButton("Cancel");
 		btn_Cancel.setBackground(State.clear_button);
@@ -138,53 +163,63 @@ public class Confirmtation {
 
 		JLabel labelName_6_2 = new JLabel("Room type:");
 		labelName_6_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelName_6_2.setBounds(10, 29, 109, 22);
+		labelName_6_2.setBounds(10, 58, 109, 22);
 		panel_RoomData.add(labelName_6_2);
 
 		JLabel labelName_6_3 = new JLabel("Room capacity:");
 		labelName_6_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelName_6_3.setBounds(10, 61, 109, 22);
+		labelName_6_3.setBounds(10, 90, 109, 22);
 		panel_RoomData.add(labelName_6_3);
 
 		JLabel labelName_6_4 = new JLabel("Check in date:");
 		labelName_6_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelName_6_4.setBounds(10, 96, 109, 22);
+		labelName_6_4.setBounds(10, 125, 109, 22);
 		panel_RoomData.add(labelName_6_4);
 
 		JLabel labelName_6_5 = new JLabel("Check out date:");
 		labelName_6_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelName_6_5.setBounds(10, 128, 109, 22);
+		labelName_6_5.setBounds(10, 157, 109, 22);
 		panel_RoomData.add(labelName_6_5);
 
 		roomType_label = new JLabel("type");
 		roomType_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		roomType_label.setBounds(131, 29, 126, 22);
+		roomType_label.setBounds(131, 58, 126, 22);
 		panel_RoomData.add(roomType_label);
 
 		roomCapacity_label = new JLabel("capacity");
 		roomCapacity_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		roomCapacity_label.setBounds(129, 61, 128, 22);
+		roomCapacity_label.setBounds(129, 90, 128, 22);
 		panel_RoomData.add(roomCapacity_label);
 
 		checkInDate_label = new JLabel("dd/mm/yyyy");
 		checkInDate_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		checkInDate_label.setBounds(131, 96, 126, 22);
+		checkInDate_label.setBounds(131, 125, 126, 22);
 		panel_RoomData.add(checkInDate_label);
 
 		checkOutDate = new JLabel("dd/mm/yyyy");
 		checkOutDate.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		checkOutDate.setBounds(129, 128, 128, 22);
+		checkOutDate.setBounds(129, 157, 128, 22);
 		panel_RoomData.add(checkOutDate);
 
 		JLabel labelName_6_10 = new JLabel("Room ID:");
 		labelName_6_10.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		labelName_6_10.setBounds(39, 163, 88, 22);
+		labelName_6_10.setBounds(39, 192, 88, 22);
 		panel_RoomData.add(labelName_6_10);
 
 		roomID_label = new JLabel("01");
 		roomID_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		roomID_label.setBounds(139, 163, 48, 22);
+		roomID_label.setBounds(139, 192, 48, 22);
 		panel_RoomData.add(roomID_label);
+
+		name_label = new JLabel("name");
+		name_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		name_label.setBounds(131, 26, 126, 22);
+		panel_RoomData.add(name_label);
+
+		JLabel labelName_6_2_1 = new JLabel("Room name:");
+		labelName_6_2_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		labelName_6_2_1.setBounds(10, 26, 109, 22);
+		panel_RoomData.add(labelName_6_2_1);
 
 		JButton button_Confirm = new JButton("Confirmtation");
 		button_Confirm.setFont(new Font("Serif", Font.BOLD, 25));
@@ -237,7 +272,6 @@ public class Confirmtation {
 		panel_PersonalData.add(labelName);
 
 		name_TextField = new JTextField();
-		name_TextField.setText("Cris Ronaldo");
 		name_TextField.setBounds(98, 32, 330, 30);
 		panel_PersonalData.add(name_TextField);
 		name_TextField.setColumns(10);
@@ -288,49 +322,41 @@ public class Confirmtation {
 		panel_PersonalData.add(labelName_7_1);
 
 		phone_TextField = new JTextField();
-		phone_TextField.setText("0123456789");
 		phone_TextField.setColumns(10);
 		phone_TextField.setBounds(98, 72, 330, 30);
 		panel_PersonalData.add(phone_TextField);
 
 		mail_TextField = new JTextField();
-		mail_TextField.setText("name@gmail.com");
 		mail_TextField.setColumns(10);
 		mail_TextField.setBounds(98, 112, 330, 30);
 		panel_PersonalData.add(mail_TextField);
 
 		addRess_TextField = new JTextField();
-		addRess_TextField.setText("abc");
 		addRess_TextField.setColumns(10);
 		addRess_TextField.setBounds(98, 152, 330, 30);
 		panel_PersonalData.add(addRess_TextField);
 
 		city_TextField = new JTextField();
-		city_TextField.setText("Ho Chi Minh");
 		city_TextField.setColumns(10);
 		city_TextField.setBounds(98, 192, 330, 30);
 		panel_PersonalData.add(city_TextField);
 
 		nationality_TextField = new JTextField();
-		nationality_TextField.setText("VN");
 		nationality_TextField.setColumns(10);
 		nationality_TextField.setBounds(98, 232, 330, 30);
 		panel_PersonalData.add(nationality_TextField);
 
 		passport_textField = new JTextField();
-		passport_textField.setText("123456");
 		passport_textField.setColumns(10);
 		passport_textField.setBounds(98, 272, 330, 30);
 		panel_PersonalData.add(passport_textField);
 
 		cvcCode_textField = new JTextField();
-		cvcCode_textField.setText("147");
 		cvcCode_textField.setColumns(10);
 		cvcCode_textField.setBounds(98, 355, 330, 30);
 		panel_PersonalData.add(cvcCode_textField);
 
 		cardNumber_textField = new JTextField();
-		cardNumber_textField.setText("1596387");
 		cardNumber_textField.setColumns(10);
 		cardNumber_textField.setBounds(98, 395, 330, 30);
 		panel_PersonalData.add(cardNumber_textField);
