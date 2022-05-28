@@ -55,13 +55,7 @@ public class DeleteUser extends JFrame {
 		JPanel panelMain = new JPanel();
 		getContentPane().add(panelMain, BorderLayout.CENTER);
 		panelMain.setLayout(null);
-
-		JButton btnDeleteUser = new JButton("Delete user");
-		btnDeleteUser.setFont(new Font("Serif", Font.BOLD, 25));
-		btnDeleteUser.setBounds(195, 75, 180, 50);
-		panelMain.add(btnDeleteUser);
-		btnDeleteUser.setFocusable(false);
-		btnDeleteUser.setBackground(new Color(135, 206, 250));
+//		----------------------------
 		
 		JPanel pnlTop = new JPanel();
 		pnlTop.setBackground(State.background);
@@ -69,18 +63,27 @@ public class DeleteUser extends JFrame {
 		pnlTop.setBounds(0, 0, 570, 100);
 		panelMain.add(pnlTop);
 		pnlTop.setLayout(null);
+		
+		JButton btnBack = new JButton("<Back");
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnBack.setForeground(Color.WHITE);
+	
+		btnBack.setBounds(25, 35, 90, 30);
+		btnBack.setBackground(State.background);
+		btnBack.setFocusable(false);
+		pnlTop.add(btnBack);
 
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setIcon(State.logo_small);
-		lblLogo.setBounds(0, -22, 100, 112);
+		lblLogo.setBounds(185, -22, 100, 112);
 		pnlTop.add(lblLogo);
 
 		JLabel lblGroup17 = new JLabel("GROUP 17");
 		lblGroup17.setForeground(Color.WHITE);
 		lblGroup17.setFont(new Font("Serif", Font.BOLD, 18));
-		lblGroup17.setBounds(85, 24, 137, 48);
-		pnlTop.add(lblGroup17);
-		
+		lblGroup17.setBounds(265, 25, 137, 48);
+		pnlTop.add(lblGroup17);		
+//		---------------------------
 
 		JPanel pnlDeleteUser = new JPanel();
 		pnlDeleteUser.setLayout(null);
@@ -102,23 +105,16 @@ public class DeleteUser extends JFrame {
 		JButton btnClear = new JButton("Clear");
 		btnClear.setBackground(State.clear_button);
 		btnClear.setFont(new Font("Serif", Font.PLAIN, 20));
-		btnClear.setBounds(200, 170, 110, 35);
+		btnClear.setBounds(200, 170, 95, 35);
 		btnClear.setFocusable(false);
 		pnlDeleteUser.add(btnClear);
 
-		JButton btnCheckout = new JButton("Check out");
-		btnCheckout.setBackground(State.red_button);
-		btnCheckout.setFont(new Font("Serif", Font.PLAIN, 20));
-		btnCheckout.setBounds(315, 170, 120, 35);
-		btnCheckout.setFocusable(false);
-		pnlDeleteUser.add(btnCheckout);
-		
-		//addActionListener	
-		
-		btnDeleteUser.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		JButton btnDeleteID = new JButton("Delete user");
+		btnDeleteID.setBackground(State.red_button);
+		btnDeleteID.setFont(new Font("Serif", Font.PLAIN, 20));
+		btnDeleteID.setBounds(300, 170, 135, 35);
+		btnDeleteID.setFocusable(false);
+		pnlDeleteUser.add(btnDeleteID);
 		
 		txtName.addMouseListener(new MouseAdapter() {
 			@Override
