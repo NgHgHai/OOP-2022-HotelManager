@@ -49,7 +49,7 @@ public class DeleteUser extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setBounds(500, 10, 570, 550);
+		setBounds(500, 10, 600, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panelMain = new JPanel();
@@ -124,6 +124,21 @@ public class DeleteUser extends JFrame {
 				if (e.getSource() == txtName) {
 					txtName.setText("");
 				}
+			}
+		});
+		
+		btnBack.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame settingFrame = new Setting();
+				if (isVisible()) {
+					setVisible(false);
+				}
+				settingFrame.setVisible(true);
+				settingFrame.setLocationRelativeTo(settingFrame);
+				settingFrame.setSize(600, 600);
 			}
 		});
 		

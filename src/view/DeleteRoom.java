@@ -43,7 +43,7 @@ public class DeleteRoom extends JFrame {
 	 */
 	public DeleteRoom() {
 
-		setBounds(500, 10, 570, 550);
+		setBounds(500, 10, 600, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panelMain = new JPanel();
