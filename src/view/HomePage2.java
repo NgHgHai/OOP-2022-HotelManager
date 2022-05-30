@@ -202,6 +202,7 @@ public class HomePage2 extends JFrame {
 				}
 				loginFrame.setVisible(true);
 				loginFrame.setLocation(0, 0);
+				loginFrame.setLocationRelativeTo(loginFrame);
 				loginFrame.setSize(600, 600);
 			}
 		});
