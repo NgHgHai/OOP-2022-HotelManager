@@ -43,7 +43,7 @@ public class DeleteRoom extends JFrame {
 	 */
 	public DeleteRoom() {
 
-		setBounds(500, 10, 570, 550);
+		setBounds(500, 10, 600, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panelMain = new JPanel();
@@ -124,7 +124,21 @@ public class DeleteRoom extends JFrame {
 		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
 
 		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
+		
+		btnBack.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame settingFrame = new Setting();
+				if (isVisible()) {
+					setVisible(false);
+				}
+				settingFrame.setVisible(true);
+				settingFrame.setLocationRelativeTo(settingFrame);
+				settingFrame.setSize(600, 600);
+			}
+		});
 
 	}
 }

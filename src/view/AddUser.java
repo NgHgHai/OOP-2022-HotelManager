@@ -145,10 +145,7 @@ public class AddUser extends JFrame {
 			}
 		});
 		
-		back_button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+	
 
 		group17_label.addMouseListener(State.retureHomePage(group17_label, this));
 

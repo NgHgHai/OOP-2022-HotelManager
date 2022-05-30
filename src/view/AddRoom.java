@@ -76,6 +76,15 @@ public class AddRoom extends JFrame {
 		lblGroup17.setFont(new Font("Serif", Font.BOLD, 18));
 		lblGroup17.setBounds(106, 24, 137, 48);
 		pnlTop.add(lblGroup17);
+		
+		JButton btnBack = new JButton("<Back");
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnBack.setForeground(Color.WHITE);
+	
+		btnBack.setBounds(1020, 25, 90, 30);
+		btnBack.setBackground(State.background);
+		btnBack.setFocusable(false);
+		pnlTop.add(btnBack);
 
 //		phần nội dung
 
@@ -242,23 +251,21 @@ public class AddRoom extends JFrame {
 		
 		lblLogo.addMouseListener(State.retureHomePage(lblLogo,this));
 		
-		
-		
-		
-//		btnRefresh.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				// TODO Auto-generated method stub
-//				JFrame refreshFrame=new Setting();
-//				if(isVisible()) {
-//					setVisible(false);
-//				}
-//				refreshFrame.setVisible(true);
-//				refreshFrame.setLocationRelativeTo(refreshFrame);
-//				refreshFrame.setSize(600,600);
-//			}
-//		});
+		btnBack.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame settingFrame = new Setting();
+				if (isVisible()) {
+					setVisible(false);
+				}
+				settingFrame.setVisible(true);
+				settingFrame.setLocationRelativeTo(settingFrame);
+				settingFrame.setSize(600, 600);
+			}
+		});
 	}
+
+
 }

@@ -56,7 +56,7 @@ public class Setting extends JFrame {
 		back_button = new JButton("<Back");
 		back_button.setForeground(Color.WHITE);
 	
-		back_button.setBounds(21, 10, 89, 23);
+		back_button.setBounds(21, 10, 90, 30);
 		back_button.setBackground(State.background);
 		back_button.setFocusable(false);
 		top_panel.add(back_button);
@@ -212,7 +212,7 @@ public class Setting extends JFrame {
 				}
 				deleteUserFrame.setVisible(true);
 				deleteUserFrame.setLocationRelativeTo(deleteUserFrame);
-				deleteUserFrame.setSize(570, 550);
+				deleteUserFrame.setSize(600, 600);
 			}
 		});
 
@@ -241,7 +241,7 @@ public class Setting extends JFrame {
 				}
 				deleteRoomFrame.setVisible(true);
 				deleteRoomFrame.setLocationRelativeTo(deleteRoomFrame);
-				deleteRoomFrame.setSize(570, 550);
+				deleteRoomFrame.setSize(600, 600);
 			}
 		});
 		
