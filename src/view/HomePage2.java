@@ -649,7 +649,7 @@ public class HomePage2 extends JFrame {
 		pnlCheckOut.setBounds(250, 160, 450, 230);
 		panel.add(pnlCheckOut);
 
-		JLabel lblRoomNumber = new JLabel("Room number");
+		JLabel lblRoomNumber = new JLabel("Room ID");
 		lblRoomNumber.setFont(new Font("Times New Roman", Font.PLAIN, 23));
 		lblRoomNumber.setBounds(30, 70, 140, 70);
 		pnlCheckOut.add(lblRoomNumber);

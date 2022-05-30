@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class RoomManager {
-	private ArrayList<Room> rooms = new ArrayList<Room>();
+	private ArrayList<ARoom> rooms = new ArrayList<ARoom>();
 	static int countId = 1;
 	FactoryAttribute attribute = new FactoryAttribute();
 
@@ -13,7 +13,7 @@ public class RoomManager {
 	}
 
 	public void addRoom(String type, String capa, String name, double cost) {
-		rooms.add(new Room(attribute.produceType(type), attribute.produceCapacity(capa), name, cost, 1000 + countId++));
+		rooms.add(new Room(attribute.produceType(type), attribute.produceCapacity(capa), name, cost, 1000 + countId++, "clean"));
 	}
 
 	public void removeRoom(int id) {
@@ -67,7 +67,7 @@ public class RoomManager {
 		double resule = 0;
 		for (int i = 0; i < rooms.size(); i++) {
 			if (rooms.get(i).getId() == id) {
-				Room room = rooms.get(i);
+				ARoom room = rooms.get(i);
 //				System.out.println((((4.0 + 6.0) / 100) * 49.0) + 49);
 				resule = (((room.getCapa().tip() + room.getType().tip()) / 100) * room.getCost()) + room.getCost();
 			}

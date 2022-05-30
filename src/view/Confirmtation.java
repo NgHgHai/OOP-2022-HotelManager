@@ -232,6 +232,7 @@ public class Confirmtation extends JFrame {
 		button_PersonalData.setFocusable(false);
 		button_PersonalData.setEnabled(false);
 		button_PersonalData.setBorder(new LineBorder(new Color(0, 0, 0), 4));
+		panel_main.add(button_PersonalData);
 	
 
 		JPanel panel_PersonalData = new JPanel();
@@ -368,7 +369,6 @@ public class Confirmtation extends JFrame {
 			}
 		});
 		button_PersonalData.setBounds(169, 125, 100, 30);
-		panel_main.add(button_PersonalData);
 
 		label_group17.addMouseListener(State.retureHomePage(label_group17, this));
 
