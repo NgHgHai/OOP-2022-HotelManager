@@ -43,37 +43,37 @@ public class ViewUser extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
-		JPanel north_panel = new JPanel();
-		north_panel.setLayout(null);
-		north_panel.setBounds(10, 10, 564, 90);
-		north_panel.setBackground(new Color(32, 83, 117));
-		getContentPane().add(north_panel);
+		JPanel pnlTop = new JPanel();
+		pnlTop.setLayout(null);
+		pnlTop.setBounds(10, 10, 564, 90);
+		pnlTop.setBackground(new Color(32, 83, 117));
+		getContentPane().add(pnlTop);
 
-		JButton back_button = new JButton("<Back");
-		back_button.setForeground(Color.WHITE);
+		JButton btnBack = new JButton("<Back");
+		btnBack.setForeground(Color.WHITE);
 
-		back_button.setBounds(25, 10, 81, 27);
-		back_button.setBackground(new Color(32, 83, 117));
+		btnBack.setBounds(25, 10, 81, 27);
+		btnBack.setBackground(new Color(32, 83, 117));
 
-		back_button.setFocusable(false);
-		north_panel.add(back_button);
+		btnBack.setFocusable(false);
+		pnlTop.add(btnBack);
 
-		JLabel iconLogo_label = new JLabel("");
-		iconLogo_label.setIcon(new ImageIcon("libs/logo-small.png"));
-		iconLogo_label.setBounds(173, -28, 128, 128);
-		north_panel.add(iconLogo_label);
+		JLabel lblLogo = new JLabel("");
+		lblLogo.setIcon(new ImageIcon("libs/logo-small.png"));
+		lblLogo.setBounds(173, -28, 128, 128);
+		pnlTop.add(lblLogo);
 
-		JLabel group17_label = new JLabel("GROUP 17");
-		group17_label.setForeground(Color.WHITE);
-		group17_label.setFont(new Font("Serif", Font.BOLD, 18));
-		group17_label.setBounds(252, 38, 98, 27);
-		north_panel.add(group17_label);
+		JLabel lblGroup17 = new JLabel("GROUP 17");
+		lblGroup17.setForeground(Color.WHITE);
+		lblGroup17.setFont(new Font("Serif", Font.BOLD, 18));
+		lblGroup17.setBounds(252, 38, 98, 27);
+		pnlTop.add(lblGroup17);
 
-		JPanel table_panel = new JPanel();
-		table_panel.setLayout(null);
-		table_panel.setBackground(Color.LIGHT_GRAY);
-		table_panel.setBounds(10, 111, 564, 439);
-		getContentPane().add(table_panel);
+		JPanel pnlViewUser = new JPanel();
+		pnlViewUser.setLayout(null);
+		pnlViewUser.setBackground(Color.LIGHT_GRAY);
+		pnlViewUser.setBounds(10, 111, 564, 439);
+		getContentPane().add(pnlViewUser);
 
 		tableViewUser = new JTable();
 		tableViewUser.setBackground(Color.WHITE);
@@ -89,15 +89,11 @@ public class ViewUser extends JFrame {
 						{ null, null, null }, { null, null, null }, { null, null, null }, { null, null, null },
 						{ null, null, null }, { null, null, null }, { null, null, null }, },
 				new String[] { "User Name", "Password", "Admin Status" }));
-		table_panel.add(tableViewUser);
+		pnlViewUser.add(tableViewUser);
 
 		// addActionListener
-		back_button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 
-		back_button.addActionListener(new ActionListener() {
+		btnBack.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -112,9 +108,9 @@ public class ViewUser extends JFrame {
 			}
 		});
 
-		group17_label.addMouseListener(State.retureHomePage(group17_label, this));
+		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
 
-		iconLogo_label.addMouseListener(State.retureHomePage(iconLogo_label, this));
+		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
 
 	}
 

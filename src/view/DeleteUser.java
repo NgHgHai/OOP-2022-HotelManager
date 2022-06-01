@@ -56,18 +56,18 @@ public class DeleteUser extends JFrame {
 		getContentPane().add(panelMain, BorderLayout.CENTER);
 		panelMain.setLayout(null);
 //		----------------------------
-		
+
 		JPanel pnlTop = new JPanel();
 		pnlTop.setBackground(State.background);
 		pnlTop.setBorder(null);
 		pnlTop.setBounds(0, 0, 570, 100);
 		panelMain.add(pnlTop);
 		pnlTop.setLayout(null);
-		
+
 		JButton btnBack = new JButton("<Back");
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnBack.setForeground(Color.WHITE);
-	
+
 		btnBack.setBounds(25, 35, 90, 30);
 		btnBack.setBackground(State.background);
 		btnBack.setFocusable(false);
@@ -82,7 +82,7 @@ public class DeleteUser extends JFrame {
 		lblGroup17.setForeground(Color.WHITE);
 		lblGroup17.setFont(new Font("Serif", Font.BOLD, 18));
 		lblGroup17.setBounds(265, 25, 137, 48);
-		pnlTop.add(lblGroup17);		
+		pnlTop.add(lblGroup17);
 //		---------------------------
 
 		JPanel pnlDeleteUser = new JPanel();
@@ -95,8 +95,8 @@ public class DeleteUser extends JFrame {
 		lblName.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		lblName.setBounds(60, 70, 95, 70);
 		pnlDeleteUser.add(lblName);
-		txtName = new JTextField("Name");
-	
+		txtName = new JTextField();
+
 		txtName.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		txtName.setBounds(200, 85, 235, 40);
 		pnlDeleteUser.add(txtName);
@@ -115,33 +115,7 @@ public class DeleteUser extends JFrame {
 		btnDeleteID.setBounds(300, 170, 135, 35);
 		btnDeleteID.setFocusable(false);
 		pnlDeleteUser.add(btnDeleteID);
-		
-		txtName.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				super.mouseClicked(e);
-				if (e.getSource() == txtName) {
-					txtName.setText("");
-				}
-			}
-		});
-		
-		btnBack.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame settingFrame = new Setting();
-				if (isVisible()) {
-					setVisible(false);
-				}
-				settingFrame.setVisible(true);
-				settingFrame.setLocationRelativeTo(settingFrame);
-				settingFrame.setSize(600, 600);
-			}
-		});
-		
 		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
 
 		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));

@@ -55,7 +55,7 @@ public class Setting extends JFrame {
 
 		back_button = new JButton("<Back");
 		back_button.setForeground(Color.WHITE);
-	
+
 		back_button.setBounds(21, 10, 90, 30);
 		back_button.setBackground(State.background);
 		back_button.setFocusable(false);
@@ -77,7 +77,6 @@ public class Setting extends JFrame {
 		viewAllUser_button.setBounds(452, 69, 112, 21);
 		viewAllUser_button.setFocusable(false);
 		top_panel.add(viewAllUser_button);
-	
 
 		JPanel panel_main = new JPanel();
 		panel_main.setBackground(Color.LIGHT_GRAY);
@@ -93,7 +92,7 @@ public class Setting extends JFrame {
 
 		addUser_button = new JButton("");
 		addUser_button.setIcon(new ImageIcon("libs/add-user.png"));
-	
+
 		addUser_button.setBackground(new Color(135, 206, 250));
 		addUser_button.setFocusable(false);
 		addUser_button.setFont(new Font("Tahoma", Font.BOLD, 25));
@@ -111,7 +110,7 @@ public class Setting extends JFrame {
 		deleteRoom_button = new JButton("");
 		deleteRoom_button.setFocusable(false);
 		deleteRoom_button.setIcon(new ImageIcon("libs/delete-room.png"));
-	
+
 		deleteRoom_button.setFont(new Font("Tahoma", Font.BOLD, 25));
 		deleteRoom_button.setBackground(new Color(135, 206, 250));
 		deleteRoom_button.setBounds(288, 235, 190, 164);
@@ -148,30 +147,9 @@ public class Setting extends JFrame {
 		label_addRoom.setFont(new Font("Tahoma", Font.BOLD, 25));
 		label_addRoom.setBounds(88, 399, 190, 40);
 		panel_main.add(label_addRoom);
-		
-		
-		
-		//addActionListener	
-		back_button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		viewAllUser_button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		addUser_button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		deleteRoom_button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
+
+		// addActionListener
+
 		viewAllUser_button.addActionListener(new ActionListener() {
 
 			@Override
@@ -244,7 +222,7 @@ public class Setting extends JFrame {
 				deleteRoomFrame.setSize(600, 600);
 			}
 		});
-		
+
 		back_button.addActionListener(new ActionListener() {
 
 			@Override
@@ -259,13 +237,10 @@ public class Setting extends JFrame {
 				homePageFrame.setSize(1200, 700);
 			}
 		});
-		
 
-	
-		
 		label_group17.addMouseListener(State.retureHomePage(label_group17, this));
 
 		label_Logo.addMouseListener(State.retureHomePage(label_Logo, this));
-		
+
 	}
 }
