@@ -665,7 +665,7 @@ public class HomePage2 extends JFrame {
 			}
 		});
 		txtRoomNumber.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		txtRoomNumber.setBounds(210, 95, 235, 30);
+		txtRoomNumber.setBounds(200, 95, 235, 30);
 		pnlCheckOut.add(txtRoomNumber);
 		txtRoomNumber.setColumns(10);
 
