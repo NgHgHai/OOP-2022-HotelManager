@@ -20,6 +20,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
@@ -613,25 +614,30 @@ public class HomePage2 extends JFrame {
 		btnSubmit.setBackground(State.green_button);
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (e.getSource().equals(btnSubmit)) {
+					int output = JOptionPane.showConfirmDialog(null, "Xem lai thong tin", "HomePage2",
+							JOptionPane.YES_NO_OPTION);
+					if (output == JOptionPane.YES_OPTION) {
+						
+						JFrame homePageFrame = new HomePage();
+						if (isVisible()) {
+							setVisible(false);
+						}
+						homePageFrame.setVisible(true);
+						homePageFrame.setLocationRelativeTo(homePageFrame);
+						homePageFrame.setSize(1200, 700);
+					} 
+					else if (output == JOptionPane.NO_OPTION) {
+					}
+
+				}
+
 			}
 		});
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnSubmit.setFocusable(false);
 		btnSubmit.setBounds(820, 504, 100, 35);
 		panel.add(btnSubmit);
-
-		btnSubmit.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame confirmtationFrame = new Confirmtation();
-
-				confirmtationFrame.setVisible(true);
-				confirmtationFrame.setLocationRelativeTo(confirmtationFrame);
-				confirmtationFrame.setSize(745, 635);
-			}
-		});
 
 		return panel;
 	}
@@ -653,7 +659,7 @@ public class HomePage2 extends JFrame {
 		lblRoomNumber.setFont(new Font("Times New Roman", Font.PLAIN, 23));
 		lblRoomNumber.setBounds(30, 70, 140, 70);
 		pnlCheckOut.add(lblRoomNumber);
-		txtRoomNumber = new JTextField("Room number");
+		txtRoomNumber = new JTextField("Room ID");
 		txtRoomNumber.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -683,6 +689,19 @@ public class HomePage2 extends JFrame {
 		btnCheckout.setFocusable(false);
 		pnlCheckOut.add(btnCheckout);
 		txtRoomNumber.addMouseListener(new MouseAdapter() {
+		});
+
+		btnCheckout.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame confirmtationFrame = new Confirmtation();
+
+				confirmtationFrame.setVisible(true);
+				confirmtationFrame.setLocationRelativeTo(confirmtationFrame);
+				confirmtationFrame.setSize(745, 635);
+			}
 		});
 
 		return panel;

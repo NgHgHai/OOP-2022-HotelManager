@@ -156,7 +156,7 @@ public class AddRoom extends JFrame {
 
 		JLabel lblCost = new JLabel("Cost");
 		lblCost.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblCost.setBounds(10, 280, 140, 40);
+		lblCost.setBounds(10, 306, 140, 40);
 		pnlAddRoom.add(lblCost);
 
 		JRadioButton rdbtnSingle = new JRadioButton("Single");
@@ -184,30 +184,24 @@ public class AddRoom extends JFrame {
 
 		txtCost = new JTextField();
 		txtCost.setColumns(10);
-		txtCost.setBounds(160, 290, 280, 34);
+		txtCost.setBounds(160, 310, 280, 34);
 		pnlAddRoom.add(txtCost);
-
-		JButton btnDelete = new JButton("DELETE");
-		btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnDelete.setBounds(80, 410, 90, 40);
-		pnlAddRoom.add(btnDelete);
-		btnDelete.setFocusable(false);
 
 		JButton btnAdd = new JButton("ADD");
 		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnAdd.setBounds(80, 350, 90, 40);
+		btnAdd.setBounds(80, 383, 90, 40);
 		pnlAddRoom.add(btnAdd);
 		btnAdd.setFocusable(false);
 
 		JButton btnEdit = new JButton("EDIT");
 		btnEdit.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnEdit.setBounds(290, 350, 90, 40);
+		btnEdit.setBounds(185, 383, 90, 40);
 		pnlAddRoom.add(btnEdit);
 		btnEdit.setFocusable(false);
 
 		JButton btnSave = new JButton("SAVE");
 		btnSave.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnSave.setBounds(290, 410, 90, 40);
+		btnSave.setBounds(290, 383, 90, 40);
 		pnlAddRoom.add(btnSave);
 		btnSave.setFocusable(false);
 
@@ -219,7 +213,7 @@ public class AddRoom extends JFrame {
 
 		table = new JTable();
 		table.setFont(new Font("Time New Roman", Font.BOLD, 12));
-		table.setModel(new DefaultTableModel(new Object[][] { { "RNum", "RName", "RType", "Status", "Price" },
+		table.setModel(new DefaultTableModel(new Object[][] { { "RID", "RName", "RType", "Status", "Cost" },
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
@@ -231,11 +225,11 @@ public class AddRoom extends JFrame {
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
 				{ null, null, null, null, null }, { null, null, null, null, null }, },
-				new String[] { "RNum", "RName", "RType", "Status", "Price" }));
+				new String[] { "RID", "RName", "RType", "Status", "Cost" }));
 		table.setBounds(10, 10, 635, 444);
 		pnlTableAddRoom.add(table);
 
-		JButton btnRefresh = new JButton("Refresh");
+		JButton btnRefresh = new JButton("Sort");
 		btnRefresh.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnRefresh.setBounds(977, 14, 141, 36);
 		pnlContent.add(btnRefresh);

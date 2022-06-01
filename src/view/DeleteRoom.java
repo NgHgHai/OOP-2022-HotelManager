@@ -6,13 +6,10 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
@@ -114,6 +111,39 @@ public class DeleteRoom extends JFrame {
 
 		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
 
+		
+		
+	btnClear.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				txtID.setText("");
+			}
+		});
+	
+	btnDeleteRoom.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			if (e.getSource().equals(btnDeleteRoom)) {
+				
+				try {
+					int a=Integer.parseInt(txtID.getText().toString());
+					JOptionPane.showMessageDialog(null, "kieu String");
+					
+				} catch (Exception e2) {
+					String t=txtID.getText();
+					
+				}
+				
+				
+
+			}
+		}
+	});
+	
 		btnBack.addActionListener(new ActionListener() {
 
 			@Override
