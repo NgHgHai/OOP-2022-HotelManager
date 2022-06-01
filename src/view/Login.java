@@ -21,8 +21,8 @@ import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
 
-	private JTextField name_textField;
-	private JTextField password_textField;
+	private JTextField txtUsername;
+	private JTextField txtPassword;
 
 	/**
 	 * Launch the application.
@@ -50,93 +50,86 @@ public class Login extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
-		JPanel background_panel = new JPanel();
-		background_panel.setLayout(null);
-		background_panel.setBounds(10, 11, 564, 539);
-		background_panel.setBackground(State.background);
-		getContentPane().add(background_panel);
+		JPanel pnlMain = new JPanel();
+		pnlMain.setLayout(null);
+		pnlMain.setBounds(10, 11, 564, 539);
+		pnlMain.setBackground(State.background);
+		getContentPane().add(pnlMain);
 
-		JLabel group17_label = new JLabel("GROUP 17");
-		group17_label.setForeground(Color.WHITE);
-		group17_label.setFont(new Font("Serif", Font.BOLD, 21));
-		group17_label.setBounds(288, 130, 108, 27);
-		background_panel.add(group17_label);
+		JLabel lblGroup17 = new JLabel("GROUP 17");
+		lblGroup17.setForeground(Color.WHITE);
+		lblGroup17.setFont(new Font("Serif", Font.BOLD, 21));
+		lblGroup17.setBounds(288, 130, 108, 27);
+		pnlMain.add(lblGroup17);
 
-		name_textField = new JTextField();
-		name_textField.setText("Enter Username");
-		name_textField.setFont(new Font("Times New Roman", Font.PLAIN, 22));
+		txtUsername = new JTextField();
+		txtUsername.setText("Enter Username");
+		txtUsername.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 
+		txtUsername.setHorizontalAlignment(SwingConstants.LEFT);
+		txtUsername.setColumns(10);
+		txtUsername.setBounds(100, 222, 409, 44);
+		pnlMain.add(txtUsername);
 
-		name_textField.setHorizontalAlignment(SwingConstants.LEFT);
-		name_textField.setColumns(10);
-		name_textField.setBounds(100, 222, 409, 44);
-		background_panel.add(name_textField);
+		txtPassword = new JTextField();
+		txtPassword.setText("Enter Password");
+		txtPassword.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 
-		password_textField = new JTextField();
-		password_textField.setText("Enter Password");
-		password_textField.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-	
-		password_textField.setHorizontalAlignment(SwingConstants.LEFT);
-		password_textField.setColumns(10);
-		password_textField.setBounds(100, 311, 409, 44);
-		background_panel.add(password_textField);
+		txtPassword.setHorizontalAlignment(SwingConstants.LEFT);
+		txtPassword.setColumns(10);
+		txtPassword.setBounds(100, 311, 409, 44);
+		pnlMain.add(txtPassword);
 
-		JLabel iconName_label = new JLabel("");
-		iconName_label.setIcon(new ImageIcon("libs/user.png"));
-		iconName_label.setBounds(45, 223, 45, 43);
-		background_panel.add(iconName_label);
+		JLabel lblIconUser = new JLabel("");
+		lblIconUser.setIcon(new ImageIcon("libs/user.png"));
+		lblIconUser.setBounds(45, 223, 45, 43);
+		pnlMain.add(lblIconUser);
 
-		JLabel iconPassword_label = new JLabel("");
-		iconPassword_label.setIcon(new ImageIcon("libs/key.png"));
-		iconPassword_label.setBounds(55, 311, 35, 44);
-		background_panel.add(iconPassword_label);
+		JLabel lblIconKey = new JLabel("");
+		lblIconKey.setIcon(new ImageIcon("libs/key.png"));
+		lblIconKey.setBounds(55, 311, 35, 44);
+		pnlMain.add(lblIconKey);
 
-		JButton login_button = new JButton("LOGIN");
-		login_button.setBackground(State.background);
-		login_button.setForeground(Color.WHITE);
-		login_button.setFocusable(false);
-	
-		login_button.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		login_button.setBounds(217, 422, 136, 44);
-		login_button.setBorder(new LineBorder(Color.WHITE, 3));
-		background_panel.add(login_button);
+		JButton btnLogin = new JButton("LOGIN");
+		btnLogin.setBackground(State.background);
+		btnLogin.setForeground(Color.WHITE);
+		btnLogin.setFocusable(false);
 
-		JLabel iconLogo_label = new JLabel("");
-		iconLogo_label.setIcon(State.logo_big);
-		iconLogo_label.setBounds(56, -40, 263, 251);
-		background_panel.add(iconLogo_label);
+		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		btnLogin.setBounds(217, 422, 136, 44);
+		btnLogin.setBorder(new LineBorder(Color.WHITE, 3));
+		pnlMain.add(btnLogin);
+
+		JLabel lblLogin = new JLabel("");
+		lblLogin.setIcon(State.logo_big);
+		lblLogin.setBounds(56, -40, 263, 251);
+		pnlMain.add(lblLogin);
 
 		// addActionListener
-		name_textField.addMouseListener(new MouseAdapter() {
+		txtUsername.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				super.mouseClicked(e);
-				if (e.getSource() == name_textField) {
-					name_textField.setText("");
+				if (e.getSource() == txtUsername) {
+					txtUsername.setText("");
 				}
 			}
 
 		});
-		
-		password_textField.addMouseListener(new MouseAdapter() {
+
+		txtPassword.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				if (e.getSource() == password_textField) {
-					password_textField.setText("");
+				if (e.getSource() == txtPassword) {
+					txtPassword.setText("");
 				}
 			}
 
 		});
-		
-		login_button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 
-
-		login_button.addActionListener(new ActionListener() {
+		btnLogin.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -271,107 +271,100 @@ public class HomePage extends JFrame {
 		btnGuest.setBackground(new Color(135, 206, 250));
 		btnGuest.setBounds(10, 10, 280, 135);
 		pnlGuest.add(btnGuest);
-		
-		
-		//addActionListener	
-		
-			btnSetting.addActionListener(new ActionListener() {
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					JFrame SettingFrame = new Setting();
-					if (isVisible()) {
-						setVisible(false);
-					}
-					SettingFrame.setVisible(true);
-					SettingFrame.setLocationRelativeTo(SettingFrame);
-					SettingFrame.setSize(600, 600);
-				}
-			});
-			
-			btnCheckIn.addActionListener(new ActionListener() {
+		// addActionListener
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					JFrame homePage2Frame = new HomePage2("checkIn");
-					if (isVisible()) {
-						setVisible(false);
-					}
-					homePage2Frame.setVisible(true);
-					homePage2Frame.setLocationRelativeTo(homePage2Frame);
-					homePage2Frame.setSize(1200, 700);
-				}
-			});
-		
-			btnCheckOut.addActionListener(new ActionListener() {
+		btnSetting.addActionListener(new ActionListener() {
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					JFrame homePage2Frame = new HomePage2("checkOut");
-					if (isVisible()) {
-						setVisible(false);
-					}
-					homePage2Frame.setVisible(true);
-					homePage2Frame.setLocationRelativeTo(homePage2Frame);
-					homePage2Frame.setSize(1200, 700);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame SettingFrame = new Setting();
+				if (isVisible()) {
+					setVisible(false);
 				}
-			});
-			btnRooms.addActionListener(new ActionListener() {
+				SettingFrame.setVisible(true);
+				SettingFrame.setLocationRelativeTo(SettingFrame);
+				SettingFrame.setSize(600, 600);
+			}
+		});
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					JFrame homePage2Frame = new HomePage2("room");
-					if (isVisible()) {
-						setVisible(false);
-					}
-					homePage2Frame.setVisible(true);
-					homePage2Frame.setLocationRelativeTo(homePage2Frame);
-					homePage2Frame.setSize(1200, 700);
-				}
-			});
-			btnGuest.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					JFrame homePage2Frame = new HomePage2("guest");
-					if (isVisible()) {
-						setVisible(false);
-					}
-					homePage2Frame.setVisible(true);
-					homePage2Frame.setLocationRelativeTo(homePage2Frame);
-					homePage2Frame.setSize(1200, 700);
-				}
-			});
+		btnCheckIn.addActionListener(new ActionListener() {
 
-			
-			btnLogOut.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					JFrame loginFrame = new Login();
-					if (isVisible()) {
-						setVisible(false);
-					}
-					loginFrame.setVisible(true);
-					loginFrame.setLocationRelativeTo(loginFrame);
-					loginFrame.setSize(600, 600);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame homePage2Frame = new HomePage2("checkIn");
+				if (isVisible()) {
+					setVisible(false);
 				}
-			});
-			
-			lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
+				homePage2Frame.setVisible(true);
+				homePage2Frame.setLocationRelativeTo(homePage2Frame);
+				homePage2Frame.setSize(1200, 700);
+			}
+		});
 
-			lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
-			
-			
-			
-			
-			
-			
+		btnCheckOut.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame homePage2Frame = new HomePage2("checkOut");
+				if (isVisible()) {
+					setVisible(false);
+				}
+				homePage2Frame.setVisible(true);
+				homePage2Frame.setLocationRelativeTo(homePage2Frame);
+				homePage2Frame.setSize(1200, 700);
+			}
+		});
+		btnRooms.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame homePage2Frame = new HomePage2("room");
+				if (isVisible()) {
+					setVisible(false);
+				}
+				homePage2Frame.setVisible(true);
+				homePage2Frame.setLocationRelativeTo(homePage2Frame);
+				homePage2Frame.setSize(1200, 700);
+			}
+		});
+		btnGuest.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame homePage2Frame = new HomePage2("guest");
+				if (isVisible()) {
+					setVisible(false);
+				}
+				homePage2Frame.setVisible(true);
+				homePage2Frame.setLocationRelativeTo(homePage2Frame);
+				homePage2Frame.setSize(1200, 700);
+			}
+		});
+
+		btnLogOut.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame loginFrame = new Login();
+				if (isVisible()) {
+					setVisible(false);
+				}
+				loginFrame.setVisible(true);
+				loginFrame.setLocationRelativeTo(loginFrame);
+				loginFrame.setSize(600, 600);
+			}
+		});
+
+		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
+
+		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
+
 	}
 }

@@ -44,11 +44,11 @@ public class AddRoom extends JFrame {
 	 * Create the application.
 	 */
 	public AddRoom() {
-	
-	setResizable(false);
+
+		setResizable(false);
 		getContentPane().setBackground(State.background);
 		setBounds(100, 100, 1200, 700);
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
 //		phần logo
@@ -56,7 +56,7 @@ public class AddRoom extends JFrame {
 		btnCenter.setBackground(new Color(135, 206, 250));
 		btnCenter.setFont(new Font("Serif", Font.BOLD, 30));
 		btnCenter.setFocusable(false);
-	
+
 		btnCenter.setBounds(510, 65, 200, 70);
 		getContentPane().add(btnCenter);
 
@@ -76,11 +76,11 @@ public class AddRoom extends JFrame {
 		lblGroup17.setFont(new Font("Serif", Font.BOLD, 18));
 		lblGroup17.setBounds(106, 24, 137, 48);
 		pnlTop.add(lblGroup17);
-		
+
 		JButton btnBack = new JButton("<Back");
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnBack.setForeground(Color.WHITE);
-	
+
 		btnBack.setBounds(1020, 25, 90, 30);
 		btnBack.setBackground(State.background);
 		btnBack.setFocusable(false);
@@ -240,17 +240,13 @@ public class AddRoom extends JFrame {
 		btnRefresh.setBounds(977, 14, 141, 36);
 		pnlContent.add(btnRefresh);
 		btnRefresh.setFocusable(false);
-		
-		//addActionListener	
-		btnCenter.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17,this));
-		
-		lblLogo.addMouseListener(State.retureHomePage(lblLogo,this));
-		
+
+		// addActionListener
+
+		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
+
+		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
+
 		btnBack.addActionListener(new ActionListener() {
 
 			@Override
@@ -266,6 +262,5 @@ public class AddRoom extends JFrame {
 			}
 		});
 	}
-
 
 }

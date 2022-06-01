@@ -28,7 +28,7 @@ public class Confirmtation extends JFrame {
 			passport_textField, cvcCode_textField, cardNumber_textField;
 	private JTextField[] arr = { phone_TextField, mail_TextField, addRess_TextField, city_TextField,
 			nationality_TextField, passport_textField, cvcCode_textField, cardNumber_textField };
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -88,28 +88,28 @@ public class Confirmtation extends JFrame {
 		totalPrice_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		totalPrice_label.setBounds(155, 110, 34, 22);
 		panel_Price.add(totalPrice_label);
-		
+
 		JLabel tiplabel = new JLabel("Tip:");
 		tiplabel.setHorizontalAlignment(SwingConstants.LEFT);
 		tiplabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		tiplabel.setBounds(22, 83, 123, 22);
 		panel_Price.add(tiplabel);
-		
+
 		tip_label = new JLabel("100");
 		tip_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		tip_label.setBounds(155, 83, 34, 22);
 		panel_Price.add(tip_label);
-		
+
 		JLabel totalPrice_label_1_1 = new JLabel("$");
 		totalPrice_label_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		totalPrice_label_1_1.setBounds(146, 110, 21, 22);
 		panel_Price.add(totalPrice_label_1_1);
-		
+
 		JLabel totalPrice_label_1_1_1 = new JLabel("$");
 		totalPrice_label_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		totalPrice_label_1_1_1.setBounds(146, 55, 21, 22);
 		panel_Price.add(totalPrice_label_1_1_1);
-		
+
 		JLabel totalPrice_label_1_1_1_1 = new JLabel("%");
 		totalPrice_label_1_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		totalPrice_label_1_1_1_1.setBounds(181, 83, 21, 22);
@@ -118,14 +118,14 @@ public class Confirmtation extends JFrame {
 		btn_Cancel = new JButton("Cancel");
 		btn_Cancel.setBackground(State.clear_button);
 		btn_Cancel.setFocusable(false);
-	
+
 		btn_Cancel.setBounds(485, 537, 100, 35);
 		panel_main.add(btn_Cancel);
 
 		btn_Save = new JButton("Save");
 		btn_Save.setBackground(State.green_button);
 		btn_Save.setFocusable(false);
-	
+
 		btn_Save.setBounds(603, 537, 100, 35);
 		panel_main.add(btn_Save);
 
@@ -133,7 +133,7 @@ public class Confirmtation extends JFrame {
 		button_RoomData.setFocusable(false);
 		button_RoomData.setEnabled(false);
 		button_RoomData.setBorder(new LineBorder(new Color(0, 0, 0), 4));
-	
+
 		button_RoomData.setBounds(541, 125, 100, 30);
 		panel_main.add(button_RoomData);
 
@@ -233,7 +233,6 @@ public class Confirmtation extends JFrame {
 		button_PersonalData.setEnabled(false);
 		button_PersonalData.setBorder(new LineBorder(new Color(0, 0, 0), 4));
 		panel_main.add(button_PersonalData);
-	
 
 		JPanel panel_PersonalData = new JPanel();
 		panel_PersonalData.setBorder(new LineBorder(new Color(0, 0, 0), 4));
@@ -335,23 +334,16 @@ public class Confirmtation extends JFrame {
 		cardNumber_textField.setColumns(10);
 		cardNumber_textField.setBounds(98, 395, 330, 30);
 		panel_PersonalData.add(cardNumber_textField);
-		
-		
-		//addActionListener
+
+		// addActionListener
 		btn_Cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource().equals(btn_Cancel)) {
 					setVisible(false);
-				}	
+				}
 			}
 		});
-		btn_Save.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
-		});
-		
+
 		button_RoomData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource().equals(button_RoomData)) {
@@ -359,15 +351,7 @@ public class Confirmtation extends JFrame {
 				}
 			}
 		});
-		button_Confirm.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		button_PersonalData.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+
 		button_PersonalData.setBounds(169, 125, 100, 30);
 
 		label_group17.addMouseListener(State.retureHomePage(label_group17, this));
