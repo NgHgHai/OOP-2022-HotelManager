@@ -235,7 +235,7 @@ public class HomePage extends JFrame {
 		pnlRight.add(pnlCheckOut);
 		pnlCheckOut.setLayout(null);
 
-		JLabel lblCheckOut = new JLabel("Check  Out");
+		JLabel lblCheckOut = new JLabel("Check Out");
 		lblCheckOut.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCheckOut.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 45));
 		lblCheckOut.setBounds(10, 145, 280, 40);
