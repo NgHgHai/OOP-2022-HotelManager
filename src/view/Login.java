@@ -59,7 +59,7 @@ public class Login extends JFrame {
 		JLabel lblGroup17 = new JLabel("GROUP 17");
 		lblGroup17.setForeground(Color.WHITE);
 		lblGroup17.setFont(new Font("Serif", Font.BOLD, 21));
-		lblGroup17.setBounds(288, 130, 108, 27);
+		lblGroup17.setBounds(295, 130, 108, 27);
 		pnlMain.add(lblGroup17);
 
 		txtUsername = new JTextField();
@@ -102,7 +102,7 @@ public class Login extends JFrame {
 
 		JLabel lblLogin = new JLabel("");
 		lblLogin.setIcon(State.logo_big);
-		lblLogin.setBounds(56, -40, 263, 251);
+		lblLogin.setBounds(65, -40, 263, 251);
 		pnlMain.add(lblLogin);
 
 		// addActionListener
