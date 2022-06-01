@@ -126,7 +126,7 @@ public class AddUser extends JFrame {
 					name_textField.setText("");
 				}
 			}
-
+// abc
 		});
 		
 		password_textField.addMouseListener(new MouseAdapter() {
@@ -146,7 +146,7 @@ public class AddUser extends JFrame {
 		});
 		
 
-=======
+//=======
 	
 
 
