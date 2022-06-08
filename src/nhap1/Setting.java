@@ -1,4 +1,4 @@
-package view;
+package nhap1;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -55,8 +55,11 @@ public class Setting extends JFrame {
 
 		back_button = new JButton("<Back");
 		back_button.setForeground(Color.WHITE);
-
-		back_button.setBounds(21, 10, 90, 30);
+		back_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		back_button.setBounds(21, 10, 89, 23);
 		back_button.setBackground(State.background);
 		back_button.setFocusable(false);
 		top_panel.add(back_button);
@@ -77,6 +80,10 @@ public class Setting extends JFrame {
 		viewAllUser_button.setBounds(452, 69, 112, 21);
 		viewAllUser_button.setFocusable(false);
 		top_panel.add(viewAllUser_button);
+		viewAllUser_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 
 		JPanel panel_main = new JPanel();
 		panel_main.setBackground(Color.LIGHT_GRAY);
@@ -92,7 +99,10 @@ public class Setting extends JFrame {
 
 		addUser_button = new JButton("");
 		addUser_button.setIcon(new ImageIcon("libs/add-user.png"));
-
+		addUser_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		addUser_button.setBackground(new Color(135, 206, 250));
 		addUser_button.setFocusable(false);
 		addUser_button.setFont(new Font("Tahoma", Font.BOLD, 25));
@@ -110,7 +120,10 @@ public class Setting extends JFrame {
 		deleteRoom_button = new JButton("");
 		deleteRoom_button.setFocusable(false);
 		deleteRoom_button.setIcon(new ImageIcon("libs/delete-room.png"));
-
+		deleteRoom_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		deleteRoom_button.setFont(new Font("Tahoma", Font.BOLD, 25));
 		deleteRoom_button.setBackground(new Color(135, 206, 250));
 		deleteRoom_button.setBounds(288, 235, 190, 164);
@@ -147,9 +160,7 @@ public class Setting extends JFrame {
 		label_addRoom.setFont(new Font("Tahoma", Font.BOLD, 25));
 		label_addRoom.setBounds(88, 399, 190, 40);
 		panel_main.add(label_addRoom);
-
-		// addActionListener
-
+		
 		viewAllUser_button.addActionListener(new ActionListener() {
 
 			@Override
@@ -160,7 +171,7 @@ public class Setting extends JFrame {
 					setVisible(false);
 				}
 				viewUserFrame.setVisible(true);
-				viewUserFrame.setLocationRelativeTo(viewUserFrame);
+				viewUserFrame.setLocation(450, 450);
 				viewUserFrame.setSize(600, 600);
 			}
 		});
@@ -175,7 +186,7 @@ public class Setting extends JFrame {
 					setVisible(false);
 				}
 				addUserFrame.setVisible(true);
-				addUserFrame.setLocationRelativeTo(addUserFrame);
+				addUserFrame.setLocation(450, 450);
 				addUserFrame.setSize(600, 600);
 			}
 		});
@@ -189,8 +200,8 @@ public class Setting extends JFrame {
 					setVisible(false);
 				}
 				deleteUserFrame.setVisible(true);
-				deleteUserFrame.setLocationRelativeTo(deleteUserFrame);
-				deleteUserFrame.setSize(600, 600);
+				deleteUserFrame.setLocation(450, 450);
+				deleteUserFrame.setSize(570, 550);
 			}
 		});
 
@@ -204,7 +215,7 @@ public class Setting extends JFrame {
 					setVisible(false);
 				}
 				addRoomFrame.setVisible(true);
-				addRoomFrame.setLocationRelativeTo(addRoomFrame);
+				addRoomFrame.setLocation(450, 450);
 				addRoomFrame.setSize(1200, 700);
 			}
 		});
@@ -218,11 +229,11 @@ public class Setting extends JFrame {
 					setVisible(false);
 				}
 				deleteRoomFrame.setVisible(true);
-				deleteRoomFrame.setLocationRelativeTo(deleteRoomFrame);
-				deleteRoomFrame.setSize(600, 600);
+				deleteRoomFrame.setLocation(450, 450);
+				deleteRoomFrame.setSize(570, 550);
 			}
 		});
-
+		
 		back_button.addActionListener(new ActionListener() {
 
 			@Override
@@ -233,14 +244,11 @@ public class Setting extends JFrame {
 					setVisible(false);
 				}
 				homePageFrame.setVisible(true);
-				homePageFrame.setLocationRelativeTo(homePageFrame);
+				homePageFrame.setLocation(450, 450);
 				homePageFrame.setSize(1200, 700);
 			}
 		});
-
-		label_group17.addMouseListener(State.retureHomePage(label_group17, this));
-
-		label_Logo.addMouseListener(State.retureHomePage(label_Logo, this));
+		
 
 	}
 }

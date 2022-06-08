@@ -1,4 +1,4 @@
-package view;
+package nhap1;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -9,30 +9,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Properties;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
-
-import org.jdatepicker.impl.JDatePanelImpl;
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.SqlDateModel;
 
 public class HomePage2 extends JFrame {
 	private JTable tableGuest, tableRooms;
@@ -57,10 +46,6 @@ public class HomePage2 extends JFrame {
 	JButton btnCheckOut;
 	static JButton btnCheckIn;
 	private JLabel lblCity;
-	private Date checkInDate;
-	private Date checkOutDate;
-	private String roomType;
-	private String roomCapacity;
 
 	/**
 	 * Launch the application.
@@ -69,7 +54,7 @@ public class HomePage2 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HomePage2 window = new HomePage2("checkIn");
+					HomePage2 window = new HomePage2();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -89,7 +74,20 @@ public class HomePage2 extends JFrame {
 
 	}
 
-	public HomePage2(String s) {
+	public HomePage2() {
+//		if ("checkIn".equals(s)) {
+//			add(CheckInPanel());
+//		}
+//		if ("checkOut".equals(s)) {
+//			add(CheckOutPanel());
+//		}
+//		if ("room".equals(s)) {
+//			add(RoomTablePanel());
+//		}
+//		if ("guest".equals(s)) {
+//			add(GuestTablePanel());
+//		}
+
 
 		getContentPane().setBackground(State.background);
 
@@ -190,8 +188,6 @@ public class HomePage2 extends JFrame {
 		pnlLeft.add(btnRooms);
 		pnlLeft.add(btnGuest);
 
-//addActionListener		
-
 		btnLogOut.addActionListener(new ActionListener() {
 
 			@Override
@@ -202,32 +198,301 @@ public class HomePage2 extends JFrame {
 					setVisible(false);
 				}
 				loginFrame.setVisible(true);
-				loginFrame.setLocation(0, 0);
-				loginFrame.setLocationRelativeTo(loginFrame);
+				loginFrame.setLocation(450, 450);
 				loginFrame.setSize(600, 600);
 			}
 		});
 
-		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		---------------
+		btnCenter.setText("Check In");
+		panel = new JPanel();
+		panel.setBounds(215, 100, 960, 550);
+		getContentPane().add(panel);
+		panel.setLayout(null);
 
-		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
+//		Personal Data"
+		JButton buttonPersonalData = new JButton("Personal Data");
+		buttonPersonalData.setEnabled(false);
+		buttonPersonalData.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		buttonPersonalData.setBorder(new LineBorder(new Color(0, 0, 0), 4));
+		buttonPersonalData.setBounds(170, 38, 150, 36);
+		panel.add(buttonPersonalData);
 
-//		CheckInPanel();
-		if ("checkIn".equals(s)) {
-			CheckInPanel();
-		}
-		if ("checkOut".equals(s)) {
-			CheckOutPanel();
-		}
-		if ("room".equals(s)) {
-			RoomTablePanel();
-		}
-		if ("guest".equals(s)) {
-			GuestTablePanel();
-		}
+		JPanel pnlPersonalData = new JPanel();
+		pnlPersonalData.setLayout(null);
+		pnlPersonalData.setBorder(new LineBorder(new Color(0, 0, 0), 4));
+		pnlPersonalData.setBounds(10, 49, 490, 450);
+		panel.add(pnlPersonalData);
 
+		JLabel lblName = new JLabel("Name");
+		lblName.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblName.setBounds(10, 35, 110, 30);
+		pnlPersonalData.add(lblName);
+
+		txtName = new JTextField();
+		txtName.setColumns(10);
+		txtName.setBounds(140, 35, 340, 30);
+		pnlPersonalData.add(txtName);
+
+		txtPhone = new JTextField();
+		txtPhone.setColumns(10);
+		txtPhone.setBounds(140, 95, 340, 30);
+		pnlPersonalData.add(txtPhone);
+
+		JLabel lblPhone = new JLabel("Phone");
+		lblPhone.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblPhone.setBounds(10, 95, 110, 30);
+		pnlPersonalData.add(lblPhone);
+
+		txtEmail = new JTextField();
+		txtEmail.setColumns(10);
+		txtEmail.setBounds(140, 155, 340, 30);
+		pnlPersonalData.add(txtEmail);
+
+		JLabel lblEmail = new JLabel("Email");
+		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblEmail.setBounds(10, 155, 110, 30);
+		pnlPersonalData.add(lblEmail);
+
+		txtAddress = new JTextField();
+		txtAddress.setColumns(10);
+		txtAddress.setBounds(140, 215, 340, 30);
+		pnlPersonalData.add(txtAddress);
+
+		JLabel lblAddress = new JLabel("Address");
+		lblAddress.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblAddress.setBounds(10, 215, 110, 30);
+		pnlPersonalData.add(lblAddress);
+
+		txtPassportNo = new JTextField();
+		txtPassportNo.setColumns(10);
+		txtPassportNo.setBounds(140, 395, 340, 30);
+		pnlPersonalData.add(txtPassportNo);
+
+		lblCity = new JLabel("City");
+		lblCity.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblCity.setBounds(10, 275, 110, 30);
+		pnlPersonalData.add(lblCity);
+
+		txtCity = new JTextField();
+		txtCity.setColumns(10);
+		txtCity.setBounds(140, 275, 340, 30);
+		pnlPersonalData.add(txtCity);
+
+		JLabel lblNationality = new JLabel("Nationality");
+		lblNationality.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNationality.setBounds(10, 335, 110, 30);
+		pnlPersonalData.add(lblNationality);
+
+		txtNationality = new JTextField();
+		txtNationality.setColumns(10);
+		txtNationality.setBounds(140, 335, 340, 30);
+		pnlPersonalData.add(txtNationality);
+
+		JLabel lblPassportNo = new JLabel("Passport No");
+		lblPassportNo.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblPassportNo.setBounds(10, 395, 110, 30);
+		pnlPersonalData.add(lblPassportNo);
+
+//		Payment
+
+		JButton btnPayment = new JButton("Payment");
+		btnPayment.setEnabled(false);
+		btnPayment.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnPayment.setBorder(new LineBorder(new Color(0, 0, 0), 4));
+		btnPayment.setBounds(680, 38, 130, 36);
+		panel.add(btnPayment);
+
+		JPanel pnlPaymet = new JPanel();
+		pnlPaymet.setLayout(null);
+		pnlPaymet.setBorder(new LineBorder(new Color(0, 0, 0), 4));
+		pnlPaymet.setBounds(520, 49, 420, 155);
+		panel.add(pnlPaymet);
+
+		JLabel lblCardInformation = new JLabel("Credit Card Information:");
+		lblCardInformation.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblCardInformation.setBounds(20, 30, 215, 22);
+		pnlPaymet.add(lblCardInformation);
+
+		JLabel lblCardNumber = new JLabel("Card Number");
+		lblCardNumber.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblCardNumber.setBounds(20, 60, 130, 31);
+		pnlPaymet.add(lblCardNumber);
+
+		txtCardNumber = new JTextField();
+		txtCardNumber.setColumns(10);
+		txtCardNumber.setBounds(160, 63, 250, 30);
+		pnlPaymet.add(txtCardNumber);
+
+		txtCVCCode = new JTextField();
+		txtCVCCode.setColumns(10);
+		txtCVCCode.setBounds(160, 104, 250, 30);
+		pnlPaymet.add(txtCVCCode);
+
+		JLabel lblCVCCode = new JLabel("CVC Code");
+		lblCVCCode.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblCVCCode.setBounds(20, 100, 100, 30);
+		pnlPaymet.add(lblCVCCode);
+
+//	RoomData	
+		JButton btnRoomData = new JButton("Room Data");
+		btnRoomData.setEnabled(false);
+		btnRoomData.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnRoomData.setFocusable(false);
+		btnRoomData.setBorder(new LineBorder(new Color(0, 0, 0), 4));
+		btnRoomData.setBounds(670, 215, 140, 36);
+		panel.add(btnRoomData);
+
+		JButton btnClear = new JButton("Clear");
+		btnClear.setBackground(SystemColor.controlShadow);
+		btnClear.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnClear.setFocusable(false);
+		btnClear.setBounds(700, 504, 100, 35);
+		panel.add(btnClear);
+
+		JLabel labelRoomID = new JLabel("Room ID:");
+		labelRoomID.setBounds(129, 156, 61, 22);
+		pnlPaymet.add(labelRoomID);
+
+		JLabel labelName = new JLabel("Name");
+		labelName.setBounds(200, 156, 48, 22);
+		pnlPaymet.add(labelName);
+
+		JPanel pnlRoomData = new JPanel();
+		pnlRoomData.setLayout(null);
+		pnlRoomData.setBorder(new LineBorder(new Color(0, 0, 0), 4));
+		pnlRoomData.setBounds(520, 224, 420, 275);
+		panel.add(pnlRoomData);
+
+		JLabel lblRoomeType = new JLabel("Room Type");
+		lblRoomeType.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblRoomeType.setBounds(20, 30, 124, 25);
+		pnlRoomData.add(lblRoomeType);
+
+		JRadioButton rdbtnEconomy = new JRadioButton("Economy");
+		rdbtnEconomy.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtnEconomy.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		rdbtnEconomy.setBounds(160, 30, 96, 21);
+		pnlRoomData.add(rdbtnEconomy);
+
+		JRadioButton rdbtnNormal = new JRadioButton("Normal");
+		rdbtnNormal.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		rdbtnNormal.setBounds(260, 30, 85, 21);
+		pnlRoomData.add(rdbtnNormal);
+
+		JRadioButton rdbtnVIP = new JRadioButton("VIP");
+		rdbtnVIP.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		rdbtnVIP.setBounds(342, 30, 56, 21);
+		pnlRoomData.add(rdbtnVIP);
+
+		ButtonGroup btnGroupRoomType = new ButtonGroup();
+		btnGroupRoomType.add(rdbtnEconomy);
+		btnGroupRoomType.add(rdbtnNormal);
+		btnGroupRoomType.add(rdbtnVIP);
+
+		JLabel lblRoomCapacity = new JLabel("Room Capacity");
+		lblRoomCapacity.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblRoomCapacity.setBounds(20, 70, 159, 25);
+		pnlRoomData.add(lblRoomCapacity);
+
+		JRadioButton rdbtnSingle = new JRadioButton("Single");
+		rdbtnSingle.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtnSingle.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		rdbtnSingle.setBounds(163, 70, 70, 21);
+		pnlRoomData.add(rdbtnSingle);
+
+		JRadioButton rdbtnDouble = new JRadioButton("Double");
+		rdbtnDouble.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtnDouble.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		rdbtnDouble.setBounds(255, 70, 85, 21);
+		pnlRoomData.add(rdbtnDouble);
+
+		JRadioButton rdbtnTriple = new JRadioButton("Triple");
+		rdbtnTriple.setHorizontalAlignment(SwingConstants.CENTER);
+		rdbtnTriple.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		rdbtnTriple.setBounds(340, 70, 70, 21);
+		pnlRoomData.add(rdbtnTriple);
+
+		ButtonGroup btnGroupRoomCapacity = new ButtonGroup();
+		btnGroupRoomCapacity.add(rdbtnSingle);
+		btnGroupRoomCapacity.add(rdbtnDouble);
+		btnGroupRoomCapacity.add(rdbtnTriple);
+
+		JLabel lblCheckInDate = new JLabel("Check in date");
+		lblCheckInDate.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblCheckInDate.setBounds(20, 120, 159, 25);
+		pnlRoomData.add(lblCheckInDate);
+
+		txtCheckInDate = new JTextField();
+		txtCheckInDate.setBounds(175, 120, 200, 30);
+		pnlRoomData.add(txtCheckInDate);
+
+		JLabel lblCheckOutDate = new JLabel("Check out date");
+		lblCheckOutDate.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblCheckOutDate.setBounds(20, 170, 160, 25);
+		pnlRoomData.add(lblCheckOutDate);
+
+		txtCheckOutDate = new JTextField();
+		txtCheckOutDate.setBounds(175, 170, 200, 30);
+		pnlRoomData.add(txtCheckOutDate);
+
+		JLabel lblRoomID = new JLabel("Room ID:");
+		lblRoomID.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblRoomID.setBounds(20, 220, 96, 25);
+		pnlRoomData.add(lblRoomID);
+
+		txtRoomID = new JTextField();
+		txtRoomID.setColumns(10);
+		txtRoomID.setBounds(112, 220, 100, 30);
+		pnlRoomData.add(txtRoomID);
+
+		JButton btnSearch = new JButton("Search");
+		btnSearch.setBackground(State.blue_button);
+		btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnSearch.setFocusable(false);
+		btnSearch.setBounds(300, 220, 100, 35);
+		pnlRoomData.add(btnSearch);
+
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setBackground(State.green_button);
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnSubmit.setFocusable(false);
+		btnSubmit.setBounds(820, 504, 100, 35);
+		panel.add(btnSubmit);
+
+		btnSubmit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame confirmtationFrame = new Confirmtation();
+				if (isVisible()) {
+					setVisible(false);
+				}
+				confirmtationFrame.setVisible(true);
+				confirmtationFrame.setLocation(450, 450);
+				confirmtationFrame.setSize(745, 635);
+			}
+		});
 //		------------------------------
 	}
+
 
 	public JPanel CheckInPanel() {
 		btnCenter.setText("Check In");
@@ -399,47 +664,16 @@ public class HomePage2 extends JFrame {
 		rdbtnEconomy.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnEconomy.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		rdbtnEconomy.setBounds(160, 30, 96, 21);
-		rdbtnEconomy.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				super.mouseClicked(e);
-				if (e.getSource().equals(rdbtnEconomy)) {
-//					System.out.println(rdbtnEconomy.getText());
-					roomType = rdbtnEconomy.getText();
-				}
-			}
-		});
 		pnlRoomData.add(rdbtnEconomy);
 
 		JRadioButton rdbtnNormal = new JRadioButton("Normal");
 		rdbtnNormal.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		rdbtnNormal.setBounds(260, 30, 85, 21);
-		rdbtnNormal.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				super.mouseClicked(e);
-				if (e.getSource().equals(rdbtnNormal)) {
-//					System.out.println(rdbtnNormal.getText());
-					roomType = rdbtnNormal.getText();
-				}
-			}
-		});
 		pnlRoomData.add(rdbtnNormal);
 
 		JRadioButton rdbtnVIP = new JRadioButton("VIP");
 		rdbtnVIP.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		rdbtnVIP.setBounds(342, 30, 56, 21);
-		rdbtnVIP.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				super.mouseClicked(e);
-				if (e.getSource().equals(rdbtnVIP)) {
-//					System.out.println(rdbtnVIP.getText());
-					roomType = rdbtnVIP.getText();
-				}
-			}
-		});
 		pnlRoomData.add(rdbtnVIP);
 
 		ButtonGroup btnGroupRoomType = new ButtonGroup();
@@ -456,48 +690,18 @@ public class HomePage2 extends JFrame {
 		rdbtnSingle.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnSingle.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		rdbtnSingle.setBounds(163, 70, 70, 21);
-		rdbtnSingle.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				super.mouseClicked(e);
-				if (e.getSource().equals(rdbtnSingle)) {
-//					System.out.println(rdbtnSingle.getText());
-					roomCapacity = rdbtnSingle.getText();
-				}
-			}
-		});
 		pnlRoomData.add(rdbtnSingle);
 
 		JRadioButton rdbtnDouble = new JRadioButton("Double");
 		rdbtnDouble.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnDouble.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		rdbtnDouble.setBounds(255, 70, 85, 21);
-		rdbtnDouble.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				super.mouseClicked(e);
-				if (e.getSource().equals(rdbtnDouble)) {
-//					System.out.println(rdbtnDouble.getText());
-					roomCapacity = rdbtnDouble.getText();
-				}
-			}
-		});
 		pnlRoomData.add(rdbtnDouble);
 
 		JRadioButton rdbtnTriple = new JRadioButton("Triple");
 		rdbtnTriple.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnTriple.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		rdbtnTriple.setBounds(340, 70, 70, 21);
-		rdbtnTriple.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				super.mouseClicked(e);
-				if (e.getSource().equals(rdbtnTriple)) {
-//					System.out.println(rdbtnTriple.getText());
-					roomCapacity = rdbtnTriple.getText();
-				}
-			}
-		});
 		pnlRoomData.add(rdbtnTriple);
 
 		ButtonGroup btnGroupRoomCapacity = new ButtonGroup();
@@ -510,88 +714,18 @@ public class HomePage2 extends JFrame {
 		lblCheckInDate.setBounds(20, 120, 159, 25);
 		pnlRoomData.add(lblCheckInDate);
 
-//		txtCheckInDate = new JTextField();
-//		txtCheckInDate.setBounds(175, 120, 200, 30);
-//		pnlRoomData.add(txtCheckInDate);
-		JDatePickerImpl datePicker;
-		SqlDateModel model = new SqlDateModel();
-		Properties p = new Properties();
-		model.setSelected(true);
-//		model.setDate(29, 05, 2022);
-		p.put("text.day", "Day");
-		p.put("text.month", "Month");
-		p.put("text.year", "Year");
-		JDatePanelImpl panle = new JDatePanelImpl(model, p);
-		datePicker = new JDatePickerImpl(panle, new AbstractFormatter() {
-
-			@Override
-			public String valueToString(Object value) throws ParseException {
-				// TODO Auto-generated method stub
-				if (value != null) {
-					Calendar ca1 = (Calendar) value;
-					SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
-					String strDate = format.format(ca1.getTime());
-					checkInDate = ca1.getTime();
-//					System.out.println(checkInDate);
-					return strDate;
-				}
-				return "Today:";
-			}
-
-			@Override
-			public Object stringToValue(String text) throws ParseException {
-				// TODO Auto-generated method stub
-				return "";
-			}
-		});
-		datePicker.setBounds(175, 120, 200, 30);
-
-		pnlRoomData.add(datePicker);
-		pnlRoomData.setVisible(true);
+		txtCheckInDate = new JTextField();
+		txtCheckInDate.setBounds(175, 120, 200, 30);
+		pnlRoomData.add(txtCheckInDate);
 
 		JLabel lblCheckOutDate = new JLabel("Check out date");
 		lblCheckOutDate.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblCheckOutDate.setBounds(20, 170, 160, 25);
 		pnlRoomData.add(lblCheckOutDate);
 
-//		txtCheckOutDate = new JTextField();
-//		txtCheckOutDate.setBounds(175, 170, 200, 30);
-//		pnlRoomData.add(txtCheckOutDate);
-		JDatePickerImpl datePicker1;
-		SqlDateModel model1 = new SqlDateModel();
-		Properties p1 = new Properties();
-		model1.setSelected(true);
-//		model.setDate(03, 03, 2002);
-		p1.put("text.day", "Day");
-		p1.put("text.month", "Month");
-		p1.put("text.year", "Year");
-		JDatePanelImpl panle1 = new JDatePanelImpl(model1, p1);
-		datePicker1 = new JDatePickerImpl(panle1, new AbstractFormatter() {
-
-			@Override
-			public String valueToString(Object value) throws ParseException {
-				// TODO Auto-generated method stub
-				if (value != null) {
-					Calendar ca2 = (Calendar) value;
-					SimpleDateFormat format1 = new SimpleDateFormat("dd-MMM-yyyy");
-					String strDate1 = format1.format(ca2.getTime());
-					checkOutDate = ca2.getTime();
-//					System.out.println(checkOutDate);
-					return strDate1;
-				}
-				return "";
-			}
-
-			@Override
-			public Object stringToValue(String text) throws ParseException {
-				// TODO Auto-generated method stub
-				return "";
-			}
-		});
-		datePicker1.setBounds(175, 170, 200, 30);
-
-		pnlRoomData.add(datePicker1);
-		pnlRoomData.setVisible(true);
+		txtCheckOutDate = new JTextField();
+		txtCheckOutDate.setBounds(175, 170, 200, 30);
+		pnlRoomData.add(txtCheckOutDate);
 
 		JLabel lblRoomID = new JLabel("Room ID:");
 		lblRoomID.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -614,30 +748,27 @@ public class HomePage2 extends JFrame {
 		btnSubmit.setBackground(State.green_button);
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (e.getSource().equals(btnSubmit)) {
-					int output = JOptionPane.showConfirmDialog(null, "Xem lai thong tin", "HomePage2",
-							JOptionPane.YES_NO_OPTION);
-					if (output == JOptionPane.YES_OPTION) {
-						
-						JFrame homePageFrame = new HomePage();
-						if (isVisible()) {
-							setVisible(false);
-						}
-						homePageFrame.setVisible(true);
-						homePageFrame.setLocationRelativeTo(homePageFrame);
-						homePageFrame.setSize(1200, 700);
-					} 
-					else if (output == JOptionPane.NO_OPTION) {
-					}
-
-				}
-
 			}
 		});
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnSubmit.setFocusable(false);
 		btnSubmit.setBounds(820, 504, 100, 35);
 		panel.add(btnSubmit);
+
+		btnSubmit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame confirmtationFrame = new Confirmtation();
+				if (isVisible()) {
+					setVisible(false);
+				}
+				confirmtationFrame.setVisible(true);
+				confirmtationFrame.setLocation(450, 450);
+				confirmtationFrame.setSize(745, 635);
+			}
+		});
 
 		return panel;
 	}
@@ -655,11 +786,11 @@ public class HomePage2 extends JFrame {
 		pnlCheckOut.setBounds(250, 160, 450, 230);
 		panel.add(pnlCheckOut);
 
-		JLabel lblRoomNumber = new JLabel("Room ID");
+		JLabel lblRoomNumber = new JLabel("Room number");
 		lblRoomNumber.setFont(new Font("Times New Roman", Font.PLAIN, 23));
 		lblRoomNumber.setBounds(30, 70, 140, 70);
 		pnlCheckOut.add(lblRoomNumber);
-		txtRoomNumber = new JTextField("Room ID");
+		txtRoomNumber = new JTextField("Room number");
 		txtRoomNumber.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -671,7 +802,7 @@ public class HomePage2 extends JFrame {
 			}
 		});
 		txtRoomNumber.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		txtRoomNumber.setBounds(200, 95, 235, 30);
+		txtRoomNumber.setBounds(210, 95, 235, 30);
 		pnlCheckOut.add(txtRoomNumber);
 		txtRoomNumber.setColumns(10);
 
@@ -689,19 +820,6 @@ public class HomePage2 extends JFrame {
 		btnCheckout.setFocusable(false);
 		pnlCheckOut.add(btnCheckout);
 		txtRoomNumber.addMouseListener(new MouseAdapter() {
-		});
-
-		btnCheckout.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame confirmtationFrame = new Bill();
-
-				confirmtationFrame.setVisible(true);
-				confirmtationFrame.setLocationRelativeTo(confirmtationFrame);
-				confirmtationFrame.setSize(745, 635);
-			}
 		});
 
 		return panel;
@@ -790,6 +908,7 @@ public class HomePage2 extends JFrame {
 
 		return panel;
 	}
+
 
 	private MouseListener Adapter() {
 		// TODO Auto-generated method stub

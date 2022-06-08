@@ -1,4 +1,4 @@
-package view;
+package nhap1;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class ViewUser extends JFrame {
 
-	private JTable tableViewUser;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -43,43 +43,47 @@ public class ViewUser extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
-		JPanel pnlTop = new JPanel();
-		pnlTop.setLayout(null);
-		pnlTop.setBounds(10, 10, 564, 90);
-		pnlTop.setBackground(new Color(32, 83, 117));
-		getContentPane().add(pnlTop);
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(10, 10, 564, 90);
+		panel.setBackground(new Color(32, 83, 117));
+		getContentPane().add(panel);
 
-		JButton btnBack = new JButton("<Back");
-		btnBack.setForeground(Color.WHITE);
+		JButton btnNewButton_1 = new JButton("<Back");
+		btnNewButton_1.setForeground(Color.WHITE);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 
-		btnBack.setBounds(25, 10, 81, 27);
-		btnBack.setBackground(new Color(32, 83, 117));
+		btnNewButton_1.setBounds(25, 10, 81, 27);
+		btnNewButton_1.setBackground(new Color(32, 83, 117));
 
-		btnBack.setFocusable(false);
-		pnlTop.add(btnBack);
+		btnNewButton_1.setFocusable(false);
+		panel.add(btnNewButton_1);
 
-		JLabel lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon("libs/logo-small.png"));
-		lblLogo.setBounds(173, -28, 128, 128);
-		pnlTop.add(lblLogo);
+		JLabel lblNewLabel_6 = new JLabel("");
+		lblNewLabel_6.setIcon(new ImageIcon("libs/logo-small.png"));
+		lblNewLabel_6.setBounds(173, -28, 128, 128);
+		panel.add(lblNewLabel_6);
 
-		JLabel lblGroup17 = new JLabel("GROUP 17");
-		lblGroup17.setForeground(Color.WHITE);
-		lblGroup17.setFont(new Font("Serif", Font.BOLD, 18));
-		lblGroup17.setBounds(252, 38, 98, 27);
-		pnlTop.add(lblGroup17);
+		JLabel lblNewLabel_7 = new JLabel("GROUP 17");
+		lblNewLabel_7.setForeground(Color.WHITE);
+		lblNewLabel_7.setFont(new Font("Serif", Font.BOLD, 18));
+		lblNewLabel_7.setBounds(252, 38, 98, 27);
+		panel.add(lblNewLabel_7);
 
-		JPanel pnlViewUser = new JPanel();
-		pnlViewUser.setLayout(null);
-		pnlViewUser.setBackground(Color.LIGHT_GRAY);
-		pnlViewUser.setBounds(10, 111, 564, 439);
-		getContentPane().add(pnlViewUser);
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBackground(Color.LIGHT_GRAY);
+		panel_1.setBounds(10, 111, 564, 439);
+		getContentPane().add(panel_1);
 
-		tableViewUser = new JTable();
-		tableViewUser.setBackground(Color.WHITE);
-		tableViewUser.setFont(new Font("Time New Roman", Font.BOLD, 11));
-		tableViewUser.setBounds(0, 0, 564, 439);
-		tableViewUser.setModel(new DefaultTableModel(
+		table = new JTable();
+		table.setBackground(Color.WHITE);
+		table.setFont(new Font("Time New Roman", Font.BOLD, 11));
+		table.setBounds(0, 0, 564, 439);
+		table.setModel(new DefaultTableModel(
 				new Object[][] { { "User Name", "Password", "Admin Status" }, { null, null, null },
 						{ null, null, null }, { null, null, null }, { null, null, null }, { null, null, null },
 						{ null, null, null }, { null, null, null }, { null, null, null }, { null, null, null },
@@ -89,11 +93,10 @@ public class ViewUser extends JFrame {
 						{ null, null, null }, { null, null, null }, { null, null, null }, { null, null, null },
 						{ null, null, null }, { null, null, null }, { null, null, null }, },
 				new String[] { "User Name", "Password", "Admin Status" }));
-		pnlViewUser.add(tableViewUser);
-
-		// addActionListener
-
-		btnBack.addActionListener(new ActionListener() {
+		panel_1.add(table);
+		
+		
+		btnNewButton_1.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -103,15 +106,10 @@ public class ViewUser extends JFrame {
 					setVisible(false);
 				}
 				refreshFrame.setVisible(true);
-				refreshFrame.setLocationRelativeTo(refreshFrame);
+				refreshFrame.setLocation(450, 450);
 				refreshFrame.setSize(600, 600);
 			}
 		});
-
-		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
-
-		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
-
 	}
 
 }

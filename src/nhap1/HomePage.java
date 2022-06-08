@@ -1,4 +1,4 @@
-package view;
+package nhap1;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -171,11 +171,11 @@ public class HomePage extends JFrame {
 		lblGetReservedRooms.setBounds(25, 45, 135, 55);
 		pnlReservedRooms.add(lblGetReservedRooms);
 
-		JButton btnLogOut = new JButton("Log Out");
+		JButton btnLogOut = new JButton("<html><u>Log Out</u></html>");
 		btnLogOut.setForeground(Color.WHITE);
 		btnLogOut.setBounds(51, 505, 89, 23);
 		btnLogOut.setFocusable(false);
-		btnLogOut.setBackground(State.red_button);
+		btnLogOut.setBackground(State.background);
 		pnlLeft.add(btnLogOut);
 
 //		---------------------------------		
@@ -235,7 +235,7 @@ public class HomePage extends JFrame {
 		pnlRight.add(pnlCheckOut);
 		pnlCheckOut.setLayout(null);
 
-		JLabel lblCheckOut = new JLabel("Check Out");
+		JLabel lblCheckOut = new JLabel("Check  Out");
 		lblCheckOut.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCheckOut.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 45));
 		lblCheckOut.setBounds(10, 145, 280, 40);
@@ -271,100 +271,102 @@ public class HomePage extends JFrame {
 		btnGuest.setBackground(new Color(135, 206, 250));
 		btnGuest.setBounds(10, 10, 280, 135);
 		pnlGuest.add(btnGuest);
+		
+			btnSetting.addActionListener(new ActionListener() {
 
-		// addActionListener
-
-		btnSetting.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame SettingFrame = new Setting();
-				if (isVisible()) {
-					setVisible(false);
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					JFrame SettingFrame = new Setting();
+					if (isVisible()) {
+						setVisible(false);
+					}
+					SettingFrame.setVisible(true);
+					SettingFrame.setLocation(450, 450);
+					SettingFrame.setSize(600, 600);
 				}
-				SettingFrame.setVisible(true);
-				SettingFrame.setLocationRelativeTo(SettingFrame);
-				SettingFrame.setSize(600, 600);
-			}
-		});
+			});
+			
+			btnCheckIn.addActionListener(new ActionListener() {
 
-		btnCheckIn.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame homePage2Frame = new HomePage2("checkIn");
-				if (isVisible()) {
-					setVisible(false);
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					JFrame homePage2Frame = new HomePage2();
+					if (isVisible()) {
+						setVisible(false);
+					}
+					homePage2Frame.setVisible(true);
+					homePage2Frame.setLocation(450, 450);
+					homePage2Frame.setSize(1200, 700);
 				}
-				homePage2Frame.setVisible(true);
-				homePage2Frame.setLocationRelativeTo(homePage2Frame);
-				homePage2Frame.setSize(1200, 700);
-			}
-		});
+			});
+		
+			btnCheckOut.addActionListener(new ActionListener() {
 
-		btnCheckOut.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame homePage2Frame = new HomePage2("checkOut");
-				if (isVisible()) {
-					setVisible(false);
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					JFrame homePage2Frame = new HomePage2();
+					if (isVisible()) {
+						setVisible(false);
+					}
+					homePage2Frame.setVisible(true);
+					homePage2Frame.setLocation(450, 450);
+					homePage2Frame.setSize(1200, 700);
 				}
-				homePage2Frame.setVisible(true);
-				homePage2Frame.setLocationRelativeTo(homePage2Frame);
-				homePage2Frame.setSize(1200, 700);
-			}
-		});
-		btnRooms.addActionListener(new ActionListener() {
+			});
+			btnRooms.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame homePage2Frame = new HomePage2("room");
-				if (isVisible()) {
-					setVisible(false);
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					JFrame homePage2Frame = new HomePage2();
+					if (isVisible()) {
+						setVisible(false);
+					}
+					homePage2Frame.setVisible(true);
+					homePage2Frame.setLocation(450, 450);
+					homePage2Frame.setSize(1200, 700);
 				}
-				homePage2Frame.setVisible(true);
-				homePage2Frame.setLocationRelativeTo(homePage2Frame);
-				homePage2Frame.setSize(1200, 700);
-			}
-		});
-		btnGuest.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame homePage2Frame = new HomePage2("guest");
-				if (isVisible()) {
-					setVisible(false);
+			});
+			btnGuest.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					JFrame homePage2Frame = new HomePage2();
+					if (isVisible()) {
+						setVisible(false);
+					}
+					homePage2Frame.setVisible(true);
+					homePage2Frame.setLocation(450, 450);
+					homePage2Frame.setSize(1200, 700);
 				}
-				homePage2Frame.setVisible(true);
-				homePage2Frame.setLocationRelativeTo(homePage2Frame);
-				homePage2Frame.setSize(1200, 700);
-			}
-		});
+			});
 
-		btnLogOut.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame loginFrame = new Login();
-				if (isVisible()) {
-					setVisible(false);
+			
+			btnLogOut.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					JFrame loginFrame = new Login();
+					if (isVisible()) {
+						setVisible(false);
+					}
+					loginFrame.setVisible(true);
+					loginFrame.setLocation(450, 450);
+					loginFrame.setSize(600, 600);
 				}
-				loginFrame.setVisible(true);
-				loginFrame.setLocationRelativeTo(loginFrame);
-				loginFrame.setSize(600, 600);
-			}
-		});
-
-		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
-
-		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
-
+			});
+			
+			
+			
+			
+			
+			
+			
+			
 	}
 }

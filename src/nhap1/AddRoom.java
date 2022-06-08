@@ -1,4 +1,4 @@
-package view;
+package nhap1;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -44,11 +44,11 @@ public class AddRoom extends JFrame {
 	 * Create the application.
 	 */
 	public AddRoom() {
-
-		setResizable(false);
+	
+	setResizable(false);
 		getContentPane().setBackground(State.background);
 		setBounds(100, 100, 1200, 700);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
 //		phần logo
@@ -56,7 +56,10 @@ public class AddRoom extends JFrame {
 		btnCenter.setBackground(new Color(135, 206, 250));
 		btnCenter.setFont(new Font("Serif", Font.BOLD, 30));
 		btnCenter.setFocusable(false);
-
+		btnCenter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnCenter.setBounds(510, 65, 200, 70);
 		getContentPane().add(btnCenter);
 
@@ -76,15 +79,6 @@ public class AddRoom extends JFrame {
 		lblGroup17.setFont(new Font("Serif", Font.BOLD, 18));
 		lblGroup17.setBounds(106, 24, 137, 48);
 		pnlTop.add(lblGroup17);
-
-		JButton btnBack = new JButton("<Back");
-		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnBack.setForeground(Color.WHITE);
-
-		btnBack.setBounds(1020, 25, 90, 30);
-		btnBack.setBackground(State.background);
-		btnBack.setFocusable(false);
-		pnlTop.add(btnBack);
 
 //		phần nội dung
 
@@ -156,7 +150,7 @@ public class AddRoom extends JFrame {
 
 		JLabel lblCost = new JLabel("Cost");
 		lblCost.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblCost.setBounds(10, 306, 140, 40);
+		lblCost.setBounds(10, 280, 140, 40);
 		pnlAddRoom.add(lblCost);
 
 		JRadioButton rdbtnSingle = new JRadioButton("Single");
@@ -184,24 +178,30 @@ public class AddRoom extends JFrame {
 
 		txtCost = new JTextField();
 		txtCost.setColumns(10);
-		txtCost.setBounds(160, 310, 280, 34);
+		txtCost.setBounds(160, 290, 280, 34);
 		pnlAddRoom.add(txtCost);
+
+		JButton btnDelete = new JButton("DELETE");
+		btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnDelete.setBounds(80, 410, 90, 40);
+		pnlAddRoom.add(btnDelete);
+		btnDelete.setFocusable(false);
 
 		JButton btnAdd = new JButton("ADD");
 		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnAdd.setBounds(80, 383, 90, 40);
+		btnAdd.setBounds(80, 350, 90, 40);
 		pnlAddRoom.add(btnAdd);
 		btnAdd.setFocusable(false);
 
 		JButton btnEdit = new JButton("EDIT");
 		btnEdit.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnEdit.setBounds(185, 383, 90, 40);
+		btnEdit.setBounds(290, 350, 90, 40);
 		pnlAddRoom.add(btnEdit);
 		btnEdit.setFocusable(false);
 
 		JButton btnSave = new JButton("SAVE");
 		btnSave.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnSave.setBounds(290, 383, 90, 40);
+		btnSave.setBounds(290, 410, 90, 40);
 		pnlAddRoom.add(btnSave);
 		btnSave.setFocusable(false);
 
@@ -213,7 +213,7 @@ public class AddRoom extends JFrame {
 
 		table = new JTable();
 		table.setFont(new Font("Time New Roman", Font.BOLD, 12));
-		table.setModel(new DefaultTableModel(new Object[][] { { "RID", "RName", "RType", "Status", "Cost" },
+		table.setModel(new DefaultTableModel(new Object[][] { { "RNum", "RName", "RType", "Status", "Price" },
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
@@ -225,36 +225,39 @@ public class AddRoom extends JFrame {
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
 				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
 				{ null, null, null, null, null }, { null, null, null, null, null }, },
-				new String[] { "RID", "RName", "RType", "Status", "Cost" }));
+				new String[] { "RNum", "RName", "RType", "Status", "Price" }));
 		table.setBounds(10, 10, 635, 444);
 		pnlTableAddRoom.add(table);
 
-		JButton btnRefresh = new JButton("Sort");
+		JButton btnRefresh = new JButton("Refresh");
 		btnRefresh.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnRefresh.setBounds(977, 14, 141, 36);
 		pnlContent.add(btnRefresh);
 		btnRefresh.setFocusable(false);
-
-		// addActionListener
-
-		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
-
-		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
-
-		btnBack.addActionListener(new ActionListener() {
-
+		
+		rdbtnNormal.addActionListener(new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				JFrame settingFrame = new Setting();
-				if (isVisible()) {
-					setVisible(false);
-				}
-				settingFrame.setVisible(true);
-				settingFrame.setLocationRelativeTo(settingFrame);
-				settingFrame.setSize(600, 600);
+				System.out.println("bcuava");
 			}
 		});
-	}
+		
+//		btnRefresh.addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+//				JFrame refreshFrame=new Setting();
+//				if(isVisible()) {
+//					setVisible(false);
+//				}
+//				refreshFrame.setVisible(true);
+//				refreshFrame.setLocation(450,450);
+//				refreshFrame.setSize(600,600);
+//			}
+//		});
 
+	}
 }

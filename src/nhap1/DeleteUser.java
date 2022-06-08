@@ -1,4 +1,4 @@
-package view;
+package nhap1;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -6,10 +6,13 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
@@ -46,14 +49,23 @@ public class DeleteUser extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setBounds(500, 10, 600, 600);
+		setBounds(500, 10, 570, 550);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panelMain = new JPanel();
 		getContentPane().add(panelMain, BorderLayout.CENTER);
 		panelMain.setLayout(null);
-//		----------------------------
 
+		JButton btnDeleteUser = new JButton("Delete user");
+		btnDeleteUser.setFont(new Font("Serif", Font.BOLD, 25));
+		btnDeleteUser.setBounds(195, 75, 180, 50);
+		panelMain.add(btnDeleteUser);
+		btnDeleteUser.setFocusable(false);
+		btnDeleteUser.setBackground(new Color(135, 206, 250));
+		btnDeleteUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		JPanel pnlTop = new JPanel();
 		pnlTop.setBackground(State.background);
 		pnlTop.setBorder(null);
@@ -61,26 +73,17 @@ public class DeleteUser extends JFrame {
 		panelMain.add(pnlTop);
 		pnlTop.setLayout(null);
 
-		JButton btnBack = new JButton("<Back");
-		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnBack.setForeground(Color.WHITE);
-
-		btnBack.setBounds(25, 35, 90, 30);
-		btnBack.setBackground(State.background);
-		btnBack.setFocusable(false);
-		pnlTop.add(btnBack);
-
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setIcon(State.logo_small);
-		lblLogo.setBounds(185, -22, 100, 112);
+		lblLogo.setBounds(0, -22, 100, 112);
 		pnlTop.add(lblLogo);
 
 		JLabel lblGroup17 = new JLabel("GROUP 17");
 		lblGroup17.setForeground(Color.WHITE);
 		lblGroup17.setFont(new Font("Serif", Font.BOLD, 18));
-		lblGroup17.setBounds(265, 25, 137, 48);
+		lblGroup17.setBounds(85, 24, 137, 48);
 		pnlTop.add(lblGroup17);
-//		---------------------------
+		;
 
 		JPanel pnlDeleteUser = new JPanel();
 		pnlDeleteUser.setLayout(null);
@@ -92,8 +95,17 @@ public class DeleteUser extends JFrame {
 		lblName.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 		lblName.setBounds(60, 70, 95, 70);
 		pnlDeleteUser.add(lblName);
-		txtName = new JTextField();
-
+		txtName = new JTextField("Name");
+		txtName.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				super.mouseClicked(e);
+				if (e.getSource() == txtName) {
+					txtName.setText("");
+				}
+			}
+		});
 		txtName.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		txtName.setBounds(200, 85, 235, 40);
 		pnlDeleteUser.add(txtName);
@@ -102,64 +114,16 @@ public class DeleteUser extends JFrame {
 		JButton btnClear = new JButton("Clear");
 		btnClear.setBackground(State.clear_button);
 		btnClear.setFont(new Font("Serif", Font.PLAIN, 20));
-		btnClear.setBounds(200, 170, 95, 35);
+		btnClear.setBounds(200, 170, 110, 35);
 		btnClear.setFocusable(false);
 		pnlDeleteUser.add(btnClear);
 
-		JButton btnDeleteID = new JButton("Delete user");
-		btnDeleteID.setBackground(State.red_button);
-		btnDeleteID.setFont(new Font("Serif", Font.PLAIN, 20));
-		btnDeleteID.setBounds(300, 170, 135, 35);
-		btnDeleteID.setFocusable(false);
-		pnlDeleteUser.add(btnDeleteID);
+		JButton btnCheckout = new JButton("Check out");
+		btnCheckout.setBackground(State.red_button);
+		btnCheckout.setFont(new Font("Serif", Font.PLAIN, 20));
+		btnCheckout.setBounds(315, 170, 120, 35);
+		btnCheckout.setFocusable(false);
+		pnlDeleteUser.add(btnCheckout);
 
-		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
-
-		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
-
-		btnClear.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				txtName.setText("");
-			}
-		});
-		btnDeleteID.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				if (e.getSource().equals(btnDeleteID)) {
-					
-					try {
-						int a=Integer.parseInt(txtName.getText().toString());
-						JOptionPane.showMessageDialog(null, "kieu String");
-						
-					} catch (Exception e2) {
-						String t=txtName.getText();
-						
-					}
-					
-					
-
-				}
-			}
-		});
-		
-		btnBack.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame settingFrame = new Setting();
-				if (isVisible()) {
-					setVisible(false);
-				}
-				settingFrame.setVisible(true);
-				settingFrame.setLocationRelativeTo(settingFrame);
-				settingFrame.setSize(600, 600);
-			}
-		});
 	}
 }
