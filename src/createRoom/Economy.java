@@ -2,13 +2,13 @@ package createRoom;
 
 public class Economy extends AType {
 
+
 	public Economy() {
-		super.type = " Economy ";
+		super.name = "Economy";
+		super.description = "this is a room for veryone has some money";
+		super.view = "City view";
 	}
-	@Override
-	public double tip() {
-		// TODO Auto-generated method stub
-		return 6;
-	}
+
+
 
 }

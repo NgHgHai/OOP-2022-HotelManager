@@ -1,19 +1,22 @@
 package createRoom;
 
-public abstract class AType implements IType {
-	String type;
+public abstract class AType {
+	protected String name;
+	protected String description;
+	protected String view;
 
-	public AType() {
-		super();
+	public String getName() {
+		return name;
 	}
 
-	public String getType() {
-		return type;
+	public String getDescription() {
+		return description;
 	}
 
-	@Override
-	public String toString() {
-		return type;
+	public String getView() {
+		return view;
 	}
 
+	
+	
 }

@@ -3,13 +3,9 @@ package createRoom;
 public class Normal extends AType {
 
 	public Normal() {
-		super.type = " Normal ";
-	}
-
-	@Override
-	public double tip() {
-		// TODO Auto-generated method stub
-		return 3;
+		super.name = "Normal";
+		super.description = "this is a room for veryone";
+		super.view = "";
 	}
 
 }

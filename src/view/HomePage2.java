@@ -770,7 +770,7 @@ public class HomePage2 extends JFrame {
 		tableRooms
 				.setModel(new DefaultTableModel(
 						new Object[][] {
-								{ "ID", "RoomType", "Room Capacity", "Check-in Date", "Check-out Date",
+								{ "ID", "RoomType", "Room Capacity", "Name", "State",
 										"is Available?" },
 								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
 								{ null, null, null, null, null, null }, { null, null, null, null, null, null },

@@ -1,11 +1,16 @@
 package createRoom;
 
 public class Room extends ARoom {
-
-	public Room(IType type, ICapacity capa, String name, double cost, int id, String roomState) {
-		super(type, capa, name, cost, id, roomState);
-		// TODO Auto-generated constructor stub
+	private AType type;
+	private int capacity;
+	public Room(String id, String name, String roomState, double cost, boolean available, AType type, int capacity) {
+		super(id, name, roomState, cost, available);
+		this.type = type;
+		this.capacity = capacity;
 	}
+	
+
+
 
 
 

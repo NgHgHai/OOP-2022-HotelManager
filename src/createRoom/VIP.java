@@ -3,13 +3,10 @@ package createRoom;
 public class VIP extends AType {
 
 	public VIP() {
-		super.type = " VIP ";
+		super.name = "VIP";
+		super.description = "this is a room for very important person";
+		super.view = "sea view";
 	}
 
-	@Override
-	public double tip() {
-		// TODO Auto-generated method stub
-		return 10;
-	}
 
 }
