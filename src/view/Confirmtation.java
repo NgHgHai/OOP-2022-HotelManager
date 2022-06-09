@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import controller.Controller;
 import model.Observable;
 import model.Observer;
 
@@ -22,8 +23,9 @@ import java.awt.Font;
 import java.awt.SystemColor;
 
 public class Confirmtation extends JFrame implements Observer  {
-	Observable hotelObs;
 	HomePage2 homePage2;
+	private Observable hotelObs;
+	private Controller controller;
 	
 	private JFrame frame;
 	private JTextField name_TextField;
@@ -41,13 +43,15 @@ public class Confirmtation extends JFrame implements Observer  {
 	
  	// nho khai bao cac bien can thiet thanh bien toan cuc
 	JButton button_RoomData;
+	
 
 
-	public Confirmtation(Observable hotelObs, HomePage2 homePage2) {
-		// add obs
+	public Confirmtation(Observable hotelObs, Controller controller, HomePage2 homePage2) {
 		this.hotelObs = hotelObs;
-		hotelObs.addObs(this);
+		this.controller = controller;
 		this.homePage2 = homePage2;
+		// add obs
+		hotelObs.addObs(this);
 
 		
 		init();

@@ -16,6 +16,7 @@ public class HotelManager extends model.Observable {
 	FactoryAttribute attribute = new FactoryAttribute();
 
 	public HotelManager() {
+
 	}
 
 	// hoi quyen truy cap : setting, guest,...
@@ -30,19 +31,25 @@ public class HotelManager extends model.Observable {
 
 	// homepage
 	public String getRank() {
-		return "";
+		return user.getRank();
 	}
 
 	public String getNameUser() {
-		return "";
+		return user.getName();
 	}
 
 	public int totalRoom() {
-		return 0;
+		return rooms.size();
 	}
 
 	public int totalReadyRoom() {
-		return 0;
+		int result = 0;
+		for (int i = 0; i < rooms.size(); i++) {
+			if (rooms.get(i).isAvailable()) {
+				result++;
+			}
+		}
+		return result;
 	}
 
 	// checkIn
@@ -77,22 +84,23 @@ public class HotelManager extends model.Observable {
 	public void remove(Account account) {
 
 	}
+	
+	
+
+	public ArrayList<ARoom> getRooms() {
+		return rooms;
+	}
+
+	public ArrayList<Account> getAccounts() {
+		return accounts;
+	}
+
+	public ArrayList<CheckIn> getCheckIns() {
+		return checkIns;
+	}
 
 	public static void main(String[] args) {
 
 	}
 
-	public int getAllRoom() {
-		return rooms.size();
-	}
-
-	public int getAvaiRoom() {
-		int result = 0;
-		for (int i = 0; i < rooms.size(); i++) {
-			if (rooms.get(i).isAvailable()) {
-				result++;
-			}
-		}
-		return result;
-	}
 }

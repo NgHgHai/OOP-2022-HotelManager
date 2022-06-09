@@ -34,12 +34,14 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.SqlDateModel;
 
+import controller.Controller;
 import model.Observable;
 import model.Observer;
 
 public class HomePage2 extends JFrame implements Observer {
-	Observable hotelObs;
 	HomePage homePage;
+	private Observable hotelObs;
+	private Controller controller;
 
 	private JTable tableGuest, tableRooms;
 	private JTextField txtCardNumber;
@@ -72,8 +74,9 @@ public class HomePage2 extends JFrame implements Observer {
 	JButton btnCheckOut_command = new JButton("Check out");
 	static JButton btnCheckIn;// ?
 
-	public HomePage2(String s, Observable hotelObs, HomePage homePage) {
+	public HomePage2(String s, Observable hotelObs, Controller controller, HomePage homePage) {
 		this.hotelObs = hotelObs;
+		this.controller = controller;
 		hotelObs.addObs(this);
 		this.homePage = homePage;
 
@@ -82,7 +85,6 @@ public class HomePage2 extends JFrame implements Observer {
 		actionListener(this);
 
 	}
-	
 
 	private void init(String s) {
 		getContentPane().setBackground(State.background);
@@ -203,7 +205,7 @@ public class HomePage2 extends JFrame implements Observer {
 		}
 
 //		------------------------------
-		
+
 	}
 
 	public JPanel CheckInPanel() {
@@ -643,10 +645,9 @@ public class HomePage2 extends JFrame implements Observer {
 		btnCheckOut_command.setFont(new Font("Serif", Font.PLAIN, 20));
 		btnCheckOut_command.setBounds(315, 170, 120, 35);
 		btnCheckOut_command.setFocusable(false);
-		
+
 		pnlCheckOut.add(btnCheckOut_command);
-		
-		
+
 		txtRoomNumber.addMouseListener(new MouseAdapter() {
 		});
 
@@ -758,6 +759,9 @@ public class HomePage2 extends JFrame implements Observer {
 						setVisible(false);
 						homePage.setVisible(true);
 						homePage.setLocationRelativeTo(null);
+						// ====
+						//
+						//
 					} else if (output == JOptionPane.NO_OPTION) {
 					}
 
@@ -772,7 +776,7 @@ public class HomePage2 extends JFrame implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				JFrame confirmtationFrame = new Confirmtation(hotelObs, homePage2);
+				JFrame confirmtationFrame = new Confirmtation(hotelObs, controller, homePage2);
 				confirmtationFrame.setVisible(true);
 				confirmtationFrame.setLocationRelativeTo(null);
 //				confirmtationFrame.setLocation(0, 0);

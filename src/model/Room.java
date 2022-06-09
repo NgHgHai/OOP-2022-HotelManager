@@ -1,8 +1,8 @@
 package model;
 
 public class Room extends ARoom {
-	private AType type;
-	private int capacity;
+	AType type;
+	int capacity;
 	public Room(String id, String name, String roomState, double cost, boolean available, AType type, int capacity) {
 		super(id, name, roomState, cost, available);
 		this.type = type;
@@ -11,20 +11,7 @@ public class Room extends ARoom {
 	public AType getType() {
 		return type;
 	}
-	public void setType(AType type) {
-		this.type = type;
-	}
 	public int getCapacity() {
 		return capacity;
 	}
-	public void setCapacity(int capacity) {
-		this.capacity = capacity;
-	}
-	
-	
-
-
-
-
-
 }

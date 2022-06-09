@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import controller.Controller;
 import model.Observable;
 import model.Observer;
 
@@ -26,12 +27,14 @@ public class AddUser extends JFrame implements Observer {
 	private JTextField txtUsername;
 	private JTextField txtPassword;
 	private JButton btnBack;
+	private Controller controller;
 
-	public AddUser(Observable hotelObs, Setting setting) {
+	public AddUser(Observable hotelObs, Controller controller, Setting setting) {
 		// add obs
 		this.hotelObs = hotelObs;
-		hotelObs.addObs(this);
 		this.setting = setting;
+		this.controller = controller;
+		hotelObs.addObs(this);
 
 		init();
 		// addActionListener

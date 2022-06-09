@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import controller.Controller;
 import model.Observable;
 
 public class DeleteUser extends JFrame {
@@ -23,10 +24,12 @@ public class DeleteUser extends JFrame {
 	private JButton btnDeleteID;
 	private JButton btnClear;
 	private JButton btnBack;
+	private Controller controller;
 	static JButton btnCheckIn;
 
-	public DeleteUser(Setting setting) {
+	public DeleteUser(Controller controller, Setting setting) {
 		this.setting = setting;
+		this.controller = controller;
 
 		init();
 		// addActionListener

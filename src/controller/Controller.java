@@ -14,7 +14,7 @@ private Login login;
 public Controller(HotelManager manager) {
 	super();
 	this.manager = manager;
-	login = new Login(manager);
+	login = new Login(manager, this);
 	login.setVisible(true);
 	
 }
@@ -35,7 +35,7 @@ public static void main(String[] args) {
 				ARoom r2 = new Room("123", "hoanghai", "Clean", 100.0, true, new VIP(), 1);
 				manager.add(r1 );
 				manager.add(r2 );
-				System.out.println(manager.getAllRoom());
+				System.out.println(manager.totalRoom());
 //				manager.notifyObs();
 				
 				

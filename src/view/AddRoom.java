@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controller.Controller;
 import model.Observable;
 import model.Observer;
 
@@ -31,12 +32,14 @@ public class AddRoom extends JFrame implements Observer {
 	private JTextField txtName;
 	// nho dua cac nut can thiet len thanh bien toan cuc.
 	private JButton btnBack;
+	private Controller controller;
 
-	public AddRoom(Observable hotelObs, Setting setting) {
+	public AddRoom(Observable hotelObs, Controller controller, Setting setting) {
 		// add obs
 		this.hotelObs = hotelObs;
-		hotelObs.addObs(this);
 		this.setting = setting;
+		this.controller = controller;
+		hotelObs.addObs(this);
 
 		init();
 		// addActionListener

@@ -13,20 +13,23 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import controller.Controller;
 import model.Observable;
 import model.Observer;
 
 public class Setting extends JFrame implements Observer {
-	Observable hotelObs;
 	HomePage homePage;
+	private Observable hotelObs;
+	private Controller controller;
 	private JButton addUser_button, deleteUser_button, deleteRoom_button, addRoom_button, viewAllUser_button,
 			back_button;
 
-	public Setting(Observable hotelObs, HomePage homePage) {
+	public Setting(Observable hotelObs, Controller controller, HomePage homePage) {
 		// add obs
 		this.hotelObs = hotelObs;
-		hotelObs.addObs(this);
+		this.controller = controller;
 		this.homePage = homePage;
+		hotelObs.addObs(this);
 
 		init();
 		// addActionListener
@@ -151,7 +154,7 @@ public class Setting extends JFrame implements Observer {
 		viewAllUser_button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFrame viewUserFrame = new ViewUser(hotelObs, setting);
+				JFrame viewUserFrame = new ViewUser(hotelObs,controller, setting);
 				setVisible(false);
 				viewUserFrame.setVisible(true);
 				viewUserFrame.setLocationRelativeTo(null);
@@ -162,7 +165,7 @@ public class Setting extends JFrame implements Observer {
 		addUser_button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFrame addUserFrame = new AddUser(hotelObs, setting);
+				JFrame addUserFrame = new AddUser(hotelObs,controller,  setting);
 				setVisible(false);
 				addUserFrame.setVisible(true);
 				addUserFrame.setLocationRelativeTo(null);
@@ -173,7 +176,7 @@ public class Setting extends JFrame implements Observer {
 		deleteUser_button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFrame deleteUserFrame = new DeleteUser(setting);
+				JFrame deleteUserFrame = new DeleteUser(controller, setting);
 				setVisible(false);
 				deleteUserFrame.setVisible(true);
 				deleteUserFrame.setLocationRelativeTo(null);
@@ -184,7 +187,7 @@ public class Setting extends JFrame implements Observer {
 		addRoom_button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFrame addRoomFrame = new AddRoom(hotelObs, setting);
+				JFrame addRoomFrame = new AddRoom(hotelObs,controller,  setting);
 				setVisible(false);
 				addRoomFrame.setVisible(true);
 				addRoomFrame.setLocationRelativeTo(null);
@@ -195,7 +198,7 @@ public class Setting extends JFrame implements Observer {
 		deleteRoom_button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFrame deleteRoomFrame = new DeleteRoom(setting);
+				JFrame deleteRoomFrame = new DeleteRoom(controller, setting);
 				setVisible(false);
 				deleteRoomFrame.setVisible(true);
 				deleteRoomFrame.setLocationRelativeTo(null);

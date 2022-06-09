@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import controller.Controller;
 import model.Observable;
 import model.Observer;
 
@@ -21,12 +22,14 @@ public class ViewUser extends JFrame implements Observer {
 	Setting setting;
 	private JTable tableViewUser;
 	private JButton btnBack;
+	private Controller controller;
 
-	public ViewUser(Observable hotelObs, Setting setting) {
+	public ViewUser(Observable hotelObs, Controller controller, Setting setting) {
 		// add obs
+		this.controller = controller;
 		this.hotelObs = hotelObs;
-		hotelObs.addObs(this);
 		this.setting = setting;
+		hotelObs.addObs(this);
 
 		init();
 	}

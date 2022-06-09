@@ -40,32 +40,25 @@ public abstract class Account {
 	protected boolean accessSetting() {
 		return false;// the hook
 	}
+	protected abstract String getRank();
 
 	protected boolean isAdmin() {
 		return admin;
 	}
 
-	protected abstract String getRank();
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getPass() {
 		return pass;
 	}
+	
 
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
+	
 
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
-	}
+
 	
 
 }

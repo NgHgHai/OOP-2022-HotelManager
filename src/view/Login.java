@@ -17,17 +17,20 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import controller.Controller;
 import model.Observable;
 import model.Observer;
 
 public class Login extends JFrame implements ActionListener {
-	Observable hotelObs;
+	private Observable hotelObs;
+	private Controller controller;
 	private JTextField txtUsername;
 	private JTextField txtPassword;
 	private JButton btnLogin;
 
-	public Login(Observable hotelObs) {
+	public Login(Observable hotelObs, Controller controller ) {
 		this.hotelObs = hotelObs;
+		this.controller = controller;
 		init();
 		actionListener();
 	}
@@ -123,7 +126,7 @@ public class Login extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(btnLogin)) {
 				setVisible(false);
-				JFrame homePageFrame = new HomePage(hotelObs, this);
+				JFrame homePageFrame = new HomePage(hotelObs,controller, this);
 				homePageFrame.setVisible(true);
 				homePageFrame.setLocationRelativeTo(null);
 		}

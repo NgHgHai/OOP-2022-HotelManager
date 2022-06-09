@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import controller.Controller;
+
 public class DeleteRoom extends JFrame {
 	Setting setting;
 	private JTextField txtID;
@@ -22,9 +24,11 @@ public class DeleteRoom extends JFrame {
 
 	JButton btnBack;
 	JButton btnDeleteRoom;
+	private Controller controller;
 
-	public DeleteRoom(Setting setting) {
+	public DeleteRoom(Controller controller, Setting setting) {
 		this.setting = setting;
+		this.controller = controller;
 		init();
 		// addActionListener
 		actionListener();
