@@ -14,13 +14,22 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+
+import model.Observable;
+import model.Observer;
+
 import java.awt.Font;
 import java.awt.SystemColor;
 
-public class Confirmtation extends JFrame {
-
+public class Confirmtation extends JFrame implements Observer  {
+	Observable hotelObs;
+	HomePage2 homePage2;
+	
 	private JFrame frame;
 	private JTextField name_TextField;
+	
+	
+	// dinh dang lai cho nay di, nhin no kho chiu lam
 	private JLabel roomType_label, roomCapacity_label, checkInDate_label, checkOutDate, roomID_label,
 			numberOfNights_label, nightCost_label, totalPrice_label, name_label, tip_label;
 	private JButton btn_Cancel, btn_Save;
@@ -28,24 +37,49 @@ public class Confirmtation extends JFrame {
 			passport_textField, cvcCode_textField, cardNumber_textField;
 	private JTextField[] arr = { phone_TextField, mail_TextField, addRess_TextField, city_TextField,
 			nationality_TextField, passport_textField, cvcCode_textField, cardNumber_textField };
+	//*
+	
+ 	// nho khai bao cac bien can thiet thanh bien toan cuc
+	JButton button_RoomData;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Confirmtation window = new Confirmtation();
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+
+	public Confirmtation(Observable hotelObs, HomePage2 homePage2) {
+		// add obs
+		this.hotelObs = hotelObs;
+		hotelObs.addObs(this);
+		this.homePage2 = homePage2;
+
+		
+		init();
+		// addActionListener
+		actionListener();
+
+	}
+
+
+	private void actionListener() {
+		// ======
+		btn_Cancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource().equals(btn_Cancel)) {
+					setVisible(false);
+				}
+			}
+		});
+		//======
+		button_RoomData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource().equals(button_RoomData)) {
+					setVisible(false);
 				}
 			}
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
-	public Confirmtation() {
+
+	private void init() {
+		setResizable(false);
+//		setUndecorated(true);
 		setBounds(500, 10, 745, 635);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -129,7 +163,7 @@ public class Confirmtation extends JFrame {
 		btn_Save.setBounds(603, 537, 100, 35);
 		panel_main.add(btn_Save);
 
-		JButton button_RoomData = new JButton("Room Data");
+		button_RoomData = new JButton("Room Data");
 		button_RoomData.setFocusable(false);
 		button_RoomData.setEnabled(false);
 		button_RoomData.setBorder(new LineBorder(new Color(0, 0, 0), 4));
@@ -334,29 +368,19 @@ public class Confirmtation extends JFrame {
 		cardNumber_textField.setColumns(10);
 		cardNumber_textField.setBounds(98, 395, 330, 30);
 		panel_PersonalData.add(cardNumber_textField);
-
-		// addActionListener
-		btn_Cancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (e.getSource().equals(btn_Cancel)) {
-					setVisible(false);
-				}
-			}
-		});
-
-		button_RoomData.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (e.getSource().equals(button_RoomData)) {
-					setVisible(false);
-				}
-			}
-		});
-
+		
 		button_PersonalData.setBounds(169, 125, 100, 30);
+		
+		// logo action
+//		label_group17.addMouseListener(State.retureHomePage(label_group17, this,homePage2.homePage));
+//		label_logo.addMouseListener(State.retureHomePage(label_logo, this,homePage2.homePage));
 
-		label_group17.addMouseListener(State.retureHomePage(label_group17, this));
+	}
 
-		label_logo.addMouseListener(State.retureHomePage(label_logo, this));
 
+	@Override
+	public void update() {
+		// viet update o day
+		
 	}
 }

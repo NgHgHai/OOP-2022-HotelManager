@@ -1,6 +1,4 @@
-package createRoom;
-
-import java.util.Date;
+package model;
 
 public abstract class ARoom {
 	protected String id;
@@ -8,7 +6,7 @@ public abstract class ARoom {
 	protected String roomState = "clean";
 	protected double cost;
 	protected boolean available = true;
-	public ARoom(String id, String name, String roomState, double cost, boolean available) {
+	protected ARoom(String id, String name, String roomState, double cost, boolean available) {
 		super();
 		this.id = id;
 		this.name = name;

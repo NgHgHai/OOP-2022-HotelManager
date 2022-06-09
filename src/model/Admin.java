@@ -1,4 +1,4 @@
-package createRoom;
+package model;
 
 public class Admin extends Account {
 

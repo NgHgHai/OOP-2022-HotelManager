@@ -1,4 +1,4 @@
-package createRoom;
+package model;
 
 public abstract class AType {
 	protected String name;

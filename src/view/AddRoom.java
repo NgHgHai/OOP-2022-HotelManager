@@ -19,32 +19,50 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-public class AddRoom extends JFrame {
+import model.Observable;
+import model.Observer;
+
+public class AddRoom extends JFrame implements Observer {
+	Observable hotelObs;
+	Setting setting;
+
 	private JTable table;
 	private JTextField txtCost;
 	private JTextField txtName;
+	// nho dua cac nut can thiet len thanh bien toan cuc.
+	private JButton btnBack;
 
-	/**
-	 * * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AddRoom window = new AddRoom();
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public AddRoom(Observable hotelObs, Setting setting) {
+		// add obs
+		this.hotelObs = hotelObs;
+		hotelObs.addObs(this);
+		this.setting = setting;
+
+		init();
+		// addActionListener
+		actionListener();
+
 	}
 
-	/**
-	 * Create the application.
-	 */
-	public AddRoom() {
+	private void actionListener() {
+		// ===== back
+		btnBack.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				setting.setVisible(true);
+				setting.setLocationRelativeTo(null);
 
+			}
+		});
+
+		// viet them cac action cua cac nut khac o day
+		//
+		//
+
+	}
+
+	private void init() {
 		setResizable(false);
 		getContentPane().setBackground(State.background);
 		setBounds(100, 100, 1200, 700);
@@ -77,7 +95,7 @@ public class AddRoom extends JFrame {
 		lblGroup17.setBounds(106, 24, 137, 48);
 		pnlTop.add(lblGroup17);
 
-		JButton btnBack = new JButton("<Back");
+		btnBack = new JButton("<Back");
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnBack.setForeground(Color.WHITE);
 
@@ -235,26 +253,15 @@ public class AddRoom extends JFrame {
 		pnlContent.add(btnRefresh);
 		btnRefresh.setFocusable(false);
 
-		// addActionListener
+		// logo action
+		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this, setting.homePage));
+		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this, setting.homePage));
 
-		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
+	}
 
-		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
-
-		btnBack.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame settingFrame = new Setting();
-				if (isVisible()) {
-					setVisible(false);
-				}
-				settingFrame.setVisible(true);
-				settingFrame.setLocationRelativeTo(settingFrame);
-				settingFrame.setSize(600, 600);
-			}
-		});
+	@Override
+	public void update() {
+		// update viet o day
 	}
 
 }

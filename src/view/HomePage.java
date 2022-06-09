@@ -5,8 +5,6 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,30 +14,37 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-public class HomePage extends JFrame {
-//	private HomePage2 homePage2 = new HomePage2();
+import model.HotelManager;
+import model.Observable;
+import model.Observer;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HomePage window = new HomePage();
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+public class HomePage extends JFrame implements Observer, ActionListener {
+	Observable hotelObs;
+	Login login;
+
+	private int allRoom = 0;
+	private int avaiRoom = 0;
+	private JFrame homePage2Frame;
+
+	private JButton btnGuest;
+	private JButton btnCheckOut;
+	private JButton btnRooms;
+	private JButton btnLogOut;
+	private JButton btnSetting;
+	private JButton btnCheckIn;
+
+	public HomePage(Observable hotelObs, Login login) {
+		// add obs
+		this.hotelObs = hotelObs;
+		hotelObs.addObs(this);
+		this.login = login;
+
+		update();
+		init();// khoi tao
+
 	}
 
-	/**
-	 * Create the application.
-	 */
-	public HomePage() {
-
+	private void init() {
 		setBounds(100, 100, 1200, 700);
 		setResizable(false);
 		getContentPane().setBackground(State.background);
@@ -64,7 +69,7 @@ public class HomePage extends JFrame {
 		getContentPane().add(pnlTop);
 		pnlTop.setLayout(null);
 
-		JButton btnSetting = new JButton("Setting");
+		btnSetting = new JButton("Setting");
 		btnSetting.setFont(new Font("Serif", Font.BOLD, 25));
 		btnSetting.setIcon(new ImageIcon("libs/iconSetting.png"));
 		btnSetting.setBackground(new Color(32, 83, 117));
@@ -138,7 +143,7 @@ public class HomePage extends JFrame {
 		pnlAvailableRooms.setBounds(10, 140, 180, 150);
 		pnlLeft.add(pnlAvailableRooms);
 
-		JLabel lblGetAvailableRooms = new JLabel("99/100");
+		JLabel lblGetAvailableRooms = new JLabel(avaiRoom + " / " + allRoom);
 		lblGetAvailableRooms.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGetAvailableRooms.setForeground(new Color(0, 0, 0));
 		lblGetAvailableRooms.setBounds(25, 45, 135, 55);
@@ -164,14 +169,14 @@ public class HomePage extends JFrame {
 		pnlReservedRooms.setLayout(null);
 		pnlReservedRooms.setBorder(new LineBorder(new Color(0, 0, 0), 4));
 
-		JLabel lblGetReservedRooms = new JLabel("1/100");
+		JLabel lblGetReservedRooms = new JLabel((allRoom - avaiRoom) + " / " + allRoom);
 		lblGetReservedRooms.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGetReservedRooms.setForeground(Color.BLACK);
 		lblGetReservedRooms.setFont(new Font("Tahoma", Font.BOLD, 25));
 		lblGetReservedRooms.setBounds(25, 45, 135, 55);
 		pnlReservedRooms.add(lblGetReservedRooms);
 
-		JButton btnLogOut = new JButton("Log Out");
+		btnLogOut = new JButton("Log Out");
 		btnLogOut.setForeground(Color.WHITE);
 		btnLogOut.setBounds(51, 505, 89, 23);
 		btnLogOut.setFocusable(false);
@@ -197,7 +202,7 @@ public class HomePage extends JFrame {
 		lblCheckIn.setBounds(10, 145, 280, 40);
 		pnlCheckIn.add(lblCheckIn);
 
-		JButton btnCheckIn = new JButton("");
+		btnCheckIn = new JButton("");
 		btnCheckIn.setIcon(new ImageIcon("libs/log-in.png"));
 		btnCheckIn.setHorizontalAlignment(SwingConstants.CENTER);
 		btnCheckIn.setFocusable(false);
@@ -219,7 +224,7 @@ public class HomePage extends JFrame {
 		lblRooms.setBounds(10, 145, 280, 40);
 		pnlRooms.add(lblRooms);
 
-		JButton btnRooms = new JButton("");
+		btnRooms = new JButton("");
 		btnRooms.setIcon(new ImageIcon("libs/room.png"));
 		btnRooms.setHorizontalAlignment(SwingConstants.CENTER);
 		btnRooms.setBackground(new Color(135, 206, 250));
@@ -241,7 +246,7 @@ public class HomePage extends JFrame {
 		lblCheckOut.setBounds(10, 145, 280, 40);
 		pnlCheckOut.add(lblCheckOut);
 
-		JButton btnCheckOut = new JButton("");
+		btnCheckOut = new JButton("");
 		btnCheckOut.setIcon(new ImageIcon("libs/log-out.png"));
 		btnCheckOut.setHorizontalAlignment(SwingConstants.CENTER);
 		btnCheckOut.setBackground(new Color(135, 206, 250));
@@ -263,7 +268,7 @@ public class HomePage extends JFrame {
 		lblGuest.setBounds(10, 145, 280, 40);
 		pnlGuest.add(lblGuest);
 
-		JButton btnGuest = new JButton("");
+		btnGuest = new JButton("");
 		btnGuest.setIcon(new ImageIcon("libs/guest.png"));
 		btnGuest.setHorizontalAlignment(SwingConstants.CENTER);
 		btnGuest.setFocusable(false);
@@ -272,99 +277,85 @@ public class HomePage extends JFrame {
 		btnGuest.setBounds(10, 10, 280, 135);
 		pnlGuest.add(btnGuest);
 
+		// logo ActionListener
+		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this, this));
+		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this, this));
+
 		// addActionListener
+		actionListener();
+	}
 
-		btnSetting.addActionListener(new ActionListener() {
+	private void actionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame SettingFrame = new Setting();
-				if (isVisible()) {
-					setVisible(false);
-				}
-				SettingFrame.setVisible(true);
-				SettingFrame.setLocationRelativeTo(SettingFrame);
-				SettingFrame.setSize(600, 600);
-			}
-		});
+		btnSetting.addActionListener(this);
+		
+		btnLogOut.addActionListener(this);
+		
+		btnCheckIn.addActionListener(this);
+		btnCheckIn.setActionCommand("checkIn");
+		btnCheckOut.addActionListener(this);
+		btnCheckOut.setActionCommand("checkOut");
+		btnGuest.addActionListener(this);
+		btnGuest.setActionCommand("guest");
+		btnRooms.addActionListener(this);
+		btnRooms.setActionCommand("room");
 
-		btnCheckIn.addActionListener(new ActionListener() {
+	}
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame homePage2Frame = new HomePage2("checkIn");
-				if (isVisible()) {
-					setVisible(false);
-				}
-				homePage2Frame.setVisible(true);
-				homePage2Frame.setLocationRelativeTo(homePage2Frame);
-				homePage2Frame.setSize(1200, 700);
-			}
-		});
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// ===== setting
+		if (e.getActionCommand().equals(btnSetting.getText())) {
+			JFrame SettingFrame = new Setting(hotelObs, this);
+			setVisible(false);
+			SettingFrame.setVisible(true);
+			SettingFrame.setLocationRelativeTo(null);
+		}
+		// ====== exit
+		if (e.getActionCommand().equals(btnLogOut.getText())) {
+			setVisible(false);
+			login.setVisible(true);
+			login.setLocationRelativeTo(null);
+		}
+		// ====== dieu huong
+		if (e.getActionCommand().equals(btnCheckIn.getActionCommand())) {
+			setVisible(false);
+			homePage2Frame = new HomePage2("checkIn",hotelObs , this );
+			homePage2Frame.setLocationRelativeTo(null);
+			homePage2Frame.setVisible(true);
+		} else if (e.getActionCommand().equals(btnCheckOut.getActionCommand())) {
+			setVisible(false);
+			homePage2Frame = new HomePage2("checkOut",hotelObs , this );
+			homePage2Frame.setVisible(true);
+			homePage2Frame.setLocationRelativeTo(null);
 
-		btnCheckOut.addActionListener(new ActionListener() {
+		} else if (e.getActionCommand().equals(btnGuest.getActionCommand())) {
+			setVisible(false);
+			homePage2Frame = new HomePage2("guest",hotelObs , this );
+			homePage2Frame.setVisible(true);
+			homePage2Frame.setLocationRelativeTo(null);
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame homePage2Frame = new HomePage2("checkOut");
-				if (isVisible()) {
-					setVisible(false);
-				}
-				homePage2Frame.setVisible(true);
-				homePage2Frame.setLocationRelativeTo(homePage2Frame);
-				homePage2Frame.setSize(1200, 700);
-			}
-		});
-		btnRooms.addActionListener(new ActionListener() {
+		} else if (e.getActionCommand().equals(btnRooms.getActionCommand())) {
+			setVisible(false);
+			homePage2Frame = new HomePage2("room",hotelObs , this );
+			homePage2Frame.setVisible(true);
+			homePage2Frame.setLocationRelativeTo(null);
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame homePage2Frame = new HomePage2("room");
-				if (isVisible()) {
-					setVisible(false);
-				}
-				homePage2Frame.setVisible(true);
-				homePage2Frame.setLocationRelativeTo(homePage2Frame);
-				homePage2Frame.setSize(1200, 700);
-			}
-		});
-		btnGuest.addActionListener(new ActionListener() {
+		}
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame homePage2Frame = new HomePage2("guest");
-				if (isVisible()) {
-					setVisible(false);
-				}
-				homePage2Frame.setVisible(true);
-				homePage2Frame.setLocationRelativeTo(homePage2Frame);
-				homePage2Frame.setSize(1200, 700);
-			}
-		});
+	}
 
-		btnLogOut.addActionListener(new ActionListener() {
+	@Override
+	public void update() {
+		HotelManager manager = (HotelManager) hotelObs;
+		this.allRoom = manager.getAllRoom();
+		this.avaiRoom = manager.getAvaiRoom();
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame loginFrame = new Login();
-				if (isVisible()) {
-					setVisible(false);
-				}
-				loginFrame.setVisible(true);
-				loginFrame.setLocationRelativeTo(loginFrame);
-				loginFrame.setSize(600, 600);
-			}
-		});
+		init();// khoi tao
 
-		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
-
-		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
+		System.out.println("da update");
+		System.out.println(allRoom);
+		System.out.println(avaiRoom);
 
 	}
 }

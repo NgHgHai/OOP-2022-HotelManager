@@ -17,32 +17,28 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class AddUser extends JFrame {
+import model.Observable;
+import model.Observer;
 
+public class AddUser extends JFrame implements Observer {
+	Observable hotelObs;
+	Setting setting;
 	private JTextField txtUsername;
 	private JTextField txtPassword;
+	private JButton btnBack;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AddUser window = new AddUser();
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public AddUser(Observable hotelObs, Setting setting) {
+		// add obs
+		this.hotelObs = hotelObs;
+		hotelObs.addObs(this);
+		this.setting = setting;
+
+		init();
+		// addActionListener
+		actionListener();
 	}
 
-	/**
-	 * Create the application.
-	 */
-	public AddUser() {
-
+	private void init() {
 		setBounds(100, 100, 600, 600);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,7 +61,7 @@ public class AddUser extends JFrame {
 		lblGroup17.setBounds(252, 38, 98, 27);
 		pnlTop.add(lblGroup17);
 
-		JButton btnBack = new JButton("<Back");
+		btnBack = new JButton("<Back");
 		btnBack.setForeground(Color.WHITE);
 
 		btnBack.setBounds(25, 10, 81, 27);
@@ -115,7 +111,7 @@ public class AddUser extends JFrame {
 		cbReceptionist.setBounds(223, 378, 142, 43);
 		getContentPane().add(cbReceptionist);
 
-//		addActionListener
+		// text action
 		txtUsername.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -125,7 +121,6 @@ public class AddUser extends JFrame {
 					txtUsername.setText("");
 				}
 			}
-
 		});
 
 		txtPassword.addMouseListener(new MouseAdapter() {
@@ -136,26 +131,28 @@ public class AddUser extends JFrame {
 					txtPassword.setText("");
 				}
 			}
-
 		});
+		// logo action
+		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this, setting.homePage));
+		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this, setting.homePage));
+	}
 
-		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
-
-		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
-
+	private void actionListener() {
+		// back
 		btnBack.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame settingFrame = new Setting();
-				if (isVisible()) {
-					setVisible(false);
-				}
-				settingFrame.setVisible(true);
-				settingFrame.setLocationRelativeTo(settingFrame);
-				settingFrame.setSize(600, 600);
+				System.out.println("adduser");
+				setVisible(false);
+				setting.setVisible(true);
+				setting.setLocationRelativeTo(null);
 			}
 		});
+
+	}
+
+	@Override
+	public void update() {
+
 	}
 }

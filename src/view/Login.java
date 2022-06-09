@@ -3,6 +3,8 @@ package view;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -10,44 +12,31 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class Login extends JFrame {
+import model.Observable;
+import model.Observer;
 
+public class Login extends JFrame implements ActionListener {
+	Observable hotelObs;
 	private JTextField txtUsername;
 	private JTextField txtPassword;
+	private JButton btnLogin;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login window = new Login();
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public Login(Observable hotelObs) {
+		this.hotelObs = hotelObs;
+		init();
+		actionListener();
 	}
 
-	/**
-	 * Create the application.
-	 */
-	public Login() {
-
+	private void init() {
 		setBounds(100, 100, 600, 600);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 
 		JPanel pnlMain = new JPanel();
@@ -90,7 +79,7 @@ public class Login extends JFrame {
 		lblIconKey.setBounds(55, 311, 35, 44);
 		pnlMain.add(lblIconKey);
 
-		JButton btnLogin = new JButton("LOGIN");
+		btnLogin = new JButton("LOGIN");
 		btnLogin.setBackground(State.background);
 		btnLogin.setForeground(Color.WHITE);
 		btnLogin.setFocusable(false);
@@ -105,46 +94,39 @@ public class Login extends JFrame {
 		lblLogin.setBounds(65, -40, 263, 251);
 		pnlMain.add(lblLogin);
 
-		// addActionListener
+		// text action
 		txtUsername.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				super.mouseClicked(e);
 				if (e.getSource() == txtUsername) {
 					txtUsername.setText("");
 				}
 			}
-
 		});
 
 		txtPassword.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				if (e.getSource() == txtPassword) {
 					txtPassword.setText("");
 				}
 			}
-
 		});
+	}
 
-		btnLogin.addActionListener(new ActionListener() {
+	private void actionListener() {
+		btnLogin.addActionListener(this);
+	}
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame homePageFrame = new HomePage();
-				if (isVisible()) {
-					setVisible(false);
-				}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource().equals(btnLogin)) {
+				setVisible(false);
+				JFrame homePageFrame = new HomePage(hotelObs, this);
 				homePageFrame.setVisible(true);
-//				homePageFrame.setLocation(0, 0);
-				homePageFrame.setLocationRelativeTo(homePageFrame);
-
-				homePageFrame.setSize(1200, 700);
-			}
-		});
-
+				homePageFrame.setLocationRelativeTo(null);
+		}
+		
 	}
 }

@@ -1,4 +1,4 @@
-package createRoom;
+package model;
 
 public class Room extends ARoom {
 	private AType type;

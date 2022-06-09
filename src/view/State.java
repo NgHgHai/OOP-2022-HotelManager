@@ -20,15 +20,15 @@ public class State {
 	final static Icon logo_small = new ImageIcon("libs/logo-small.png");
 	final static Icon logo_big = new ImageIcon("libs/logo-big.png");
 	
-	public static MouseAdapter retureHomePage(JComponent c, JFrame main) { // if c was clicked , hide frame main and open a new HomePage()
+	public static MouseAdapter retureHomePage(JComponent c, JFrame main , HomePage homePage) { // if c was clicked , hide frame main and open a HomePage()
 		return new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				super.mouseClicked(e);
-				JFrame homePageFrame=new HomePage();
+				JFrame homePageFrame= homePage ;
 				if (e.getSource().equals(c)) {
 					homePageFrame.setVisible(true);
-					homePageFrame.setLocationRelativeTo(homePageFrame);
+					homePageFrame.setLocationRelativeTo(null);
 					homePageFrame.setSize(1200, 700);
 					main.setVisible(false);
 				}

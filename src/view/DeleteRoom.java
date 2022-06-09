@@ -15,31 +15,52 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 public class DeleteRoom extends JFrame {
+	Setting setting;
 	private JTextField txtID;
 	JPanel panel;
 	static JButton btnCheckIn;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DeleteRoom window = new DeleteRoom();
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+	JButton btnBack;
+	JButton btnDeleteRoom;
+
+	public DeleteRoom(Setting setting) {
+		this.setting = setting;
+		init();
+		// addActionListener
+		actionListener();
+
+	}
+
+	private void actionListener() {
+		btnDeleteRoom.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource().equals(btnDeleteRoom)) {
+					try {
+						// ====
+
+						int a = Integer.parseInt(txtID.getText().toString());
+						JOptionPane.showMessageDialog(null, "kieu String");
+
+					} catch (Exception e2) {
+						String t = txtID.getText();
+					}
 				}
 			}
 		});
+
+		btnBack.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				setting.setVisible(true);
+				setting.setLocationRelativeTo(null);
+			}
+		});
+
 	}
 
-	/**
-	 * Create the application.
-	 */
-	public DeleteRoom() {
-
+	private void init() {
 		setBounds(500, 10, 600, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -55,7 +76,7 @@ public class DeleteRoom extends JFrame {
 		panelMain.add(pnlTop);
 		pnlTop.setLayout(null);
 
-		JButton btnBack = new JButton("<Back");
+		btnBack = new JButton("<Back");
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnBack.setForeground(Color.WHITE);
 
@@ -100,62 +121,22 @@ public class DeleteRoom extends JFrame {
 		btnClear.setFocusable(false);
 		pnlDeleteRoom.add(btnClear);
 
-		JButton btnDeleteRoom = new JButton("Delete room");
+		btnDeleteRoom = new JButton("Delete room");
 		btnDeleteRoom.setBackground(State.red_button);
 		btnDeleteRoom.setFont(new Font("Serif", Font.PLAIN, 20));
 		btnDeleteRoom.setBounds(300, 170, 135, 35);
 		btnDeleteRoom.setFocusable(false);
 		pnlDeleteRoom.add(btnDeleteRoom);
 
-		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
+		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this, setting.homePage));
+		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this, setting.homePage));
 
-		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
+		btnClear.addActionListener(new ActionListener() {
 
-		
-		
-	btnClear.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				txtID.setText("");
-			}
-		});
-	
-	btnDeleteRoom.addActionListener(new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			if (e.getSource().equals(btnDeleteRoom)) {
-				
-				try {
-					int a=Integer.parseInt(txtID.getText().toString());
-					JOptionPane.showMessageDialog(null, "kieu String");
-					
-				} catch (Exception e2) {
-					String t=txtID.getText();
-					
-				}
-				
-				
-
-			}
-		}
-	});
-	
-		btnBack.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame settingFrame = new Setting();
-				if (isVisible()) {
-					setVisible(false);
-				}
-				settingFrame.setVisible(true);
-				settingFrame.setLocationRelativeTo(settingFrame);
-				settingFrame.setSize(600, 600);
 			}
 		});
 

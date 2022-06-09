@@ -13,36 +13,27 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class Setting extends JFrame {
+import model.Observable;
+import model.Observer;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Setting extends JFrame implements Observer {
+	Observable hotelObs;
+	HomePage homePage;
 	private JButton addUser_button, deleteUser_button, deleteRoom_button, addRoom_button, viewAllUser_button,
 			back_button;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Setting window = new Setting();
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public Setting(Observable hotelObs, HomePage homePage) {
+		// add obs
+		this.hotelObs = hotelObs;
+		hotelObs.addObs(this);
+		this.homePage = homePage;
+
+		init();
+		// addActionListener
+		actionListener(this);
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public Setting() {
-
+	private void init() {
 		setBounds(100, 100, 600, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
@@ -148,99 +139,82 @@ public class Setting extends JFrame {
 		label_addRoom.setBounds(88, 399, 190, 40);
 		panel_main.add(label_addRoom);
 
-		// addActionListener
+		// logo ActionListener
+		label_group17.addMouseListener(State.retureHomePage(label_group17, this, homePage));
+		label_Logo.addMouseListener(State.retureHomePage(label_Logo, this, homePage));
 
+	}
+
+	private void actionListener(Setting setting) {
+
+		// ====== view
 		viewAllUser_button.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame viewUserFrame = new ViewUser();
-				if (isVisible()) {
-					setVisible(false);
-				}
+				JFrame viewUserFrame = new ViewUser(hotelObs, setting);
+				setVisible(false);
 				viewUserFrame.setVisible(true);
-				viewUserFrame.setLocationRelativeTo(viewUserFrame);
-				viewUserFrame.setSize(600, 600);
+				viewUserFrame.setLocationRelativeTo(null);
 			}
 		});
-
+		
+		// ====== addUser
 		addUser_button.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame addUserFrame = new AddUser();
-				if (isVisible()) {
-					setVisible(false);
-				}
+				JFrame addUserFrame = new AddUser(hotelObs, setting);
+				setVisible(false);
 				addUserFrame.setVisible(true);
-				addUserFrame.setLocationRelativeTo(addUserFrame);
-				addUserFrame.setSize(600, 600);
+				addUserFrame.setLocationRelativeTo(null);
 			}
 		});
+		
+		// ====== deleteUser
 		deleteUser_button.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame deleteUserFrame = new DeleteUser();
-				if (isVisible()) {
-					setVisible(false);
-				}
+				JFrame deleteUserFrame = new DeleteUser(setting);
+				setVisible(false);
 				deleteUserFrame.setVisible(true);
-				deleteUserFrame.setLocationRelativeTo(deleteUserFrame);
-				deleteUserFrame.setSize(600, 600);
+				deleteUserFrame.setLocationRelativeTo(null);
 			}
 		});
-
+		
+		// ====== addRoom
 		addRoom_button.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame addRoomFrame = new AddRoom();
-				if (isVisible()) {
-					setVisible(false);
-				}
+				JFrame addRoomFrame = new AddRoom(hotelObs, setting);
+				setVisible(false);
 				addRoomFrame.setVisible(true);
-				addRoomFrame.setLocationRelativeTo(addRoomFrame);
-				addRoomFrame.setSize(1200, 700);
+				addRoomFrame.setLocationRelativeTo(null);
 			}
 		});
+		
+		// ====== deleteRoom
 		deleteRoom_button.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame deleteRoomFrame = new DeleteRoom();
-				if (isVisible()) {
-					setVisible(false);
-				}
+				JFrame deleteRoomFrame = new DeleteRoom(setting);
+				setVisible(false);
 				deleteRoomFrame.setVisible(true);
-				deleteRoomFrame.setLocationRelativeTo(deleteRoomFrame);
-				deleteRoomFrame.setSize(600, 600);
+				deleteRoomFrame.setLocationRelativeTo(null);
 			}
 		});
-
+		
+		// ====== back
 		back_button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame homePageFrame = new HomePage();
-				if (isVisible()) {
-					setVisible(false);
-				}
-				homePageFrame.setVisible(true);
-				homePageFrame.setLocationRelativeTo(homePageFrame);
-				homePageFrame.setSize(1200, 700);
+				setVisible(false);
+				homePage.setVisible(true);
 			}
 		});
+	}
 
-		label_group17.addMouseListener(State.retureHomePage(label_group17, this));
-
-		label_Logo.addMouseListener(State.retureHomePage(label_Logo, this));
+	@Override
+	public void update() {
 
 	}
 }

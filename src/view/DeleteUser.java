@@ -14,38 +14,26 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import model.Observable;
+
 public class DeleteUser extends JFrame {
+	private Setting setting;
 	private JTextField txtName;
-	JPanel panel;
+	private JPanel panel;
+	private JButton btnDeleteID;
+	private JButton btnClear;
+	private JButton btnBack;
 	static JButton btnCheckIn;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DeleteUser window = new DeleteUser();
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public DeleteUser(Setting setting) {
+		this.setting = setting;
+
+		init();
+		// addActionListener
+		actionListener();
 	}
 
-	/**
-	 * Create the application.
-	 */
-	public DeleteUser() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
+	private void init() {
 		setBounds(500, 10, 600, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -61,7 +49,7 @@ public class DeleteUser extends JFrame {
 		panelMain.add(pnlTop);
 		pnlTop.setLayout(null);
 
-		JButton btnBack = new JButton("<Back");
+		btnBack = new JButton("<Back");
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnBack.setForeground(Color.WHITE);
 
@@ -99,66 +87,57 @@ public class DeleteUser extends JFrame {
 		pnlDeleteUser.add(txtName);
 		txtName.setColumns(10);
 
-		JButton btnClear = new JButton("Clear");
+		btnClear = new JButton("Clear");
 		btnClear.setBackground(State.clear_button);
 		btnClear.setFont(new Font("Serif", Font.PLAIN, 20));
 		btnClear.setBounds(200, 170, 95, 35);
 		btnClear.setFocusable(false);
 		pnlDeleteUser.add(btnClear);
 
-		JButton btnDeleteID = new JButton("Delete user");
+		btnDeleteID = new JButton("Delete user");
 		btnDeleteID.setBackground(State.red_button);
 		btnDeleteID.setFont(new Font("Serif", Font.PLAIN, 20));
 		btnDeleteID.setBounds(300, 170, 135, 35);
 		btnDeleteID.setFocusable(false);
 		pnlDeleteUser.add(btnDeleteID);
 
-		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
+		// logo action
+		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this, setting.homePage));
+		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this, setting.homePage));
 
-		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
-
+		// text action
 		btnClear.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				txtName.setText("");
 			}
 		});
+
+	}
+
+	private void actionListener() {
 		btnDeleteID.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				if (e.getSource().equals(btnDeleteID)) {
-					
 					try {
-						int a=Integer.parseInt(txtName.getText().toString());
+						// =======
+						int a = Integer.parseInt(txtName.getText().toString());
 						JOptionPane.showMessageDialog(null, "kieu String");
-						
-					} catch (Exception e2) {
-						String t=txtName.getText();
-						
-					}
-					
-					
 
+					} catch (Exception e2) {
+						String t = txtName.getText();
+					}
 				}
 			}
 		});
-		
-		btnBack.addActionListener(new ActionListener() {
 
+		btnBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame settingFrame = new Setting();
-				if (isVisible()) {
-					setVisible(false);
-				}
-				settingFrame.setVisible(true);
-				settingFrame.setLocationRelativeTo(settingFrame);
-				settingFrame.setSize(600, 600);
+				setVisible(false);
+				setting.setVisible(true);
+				setting.setLocationRelativeTo(null);
 			}
 		});
 	}

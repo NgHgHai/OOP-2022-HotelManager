@@ -1,4 +1,4 @@
-package createRoom;
+package model;
 
 import java.util.Date;
 

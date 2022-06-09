@@ -1,13 +1,14 @@
-package createRoom;
+package model;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Observable;
 
 import javax.security.auth.login.AccountException;
 
 import view.Confirmtation;
 
-public class HotelManager {
+public class HotelManager extends model.Observable {
 	private ArrayList<ARoom> rooms = new ArrayList<ARoom>();
 	private ArrayList<Account> accounts = new ArrayList<Account>();
 	private ArrayList<CheckIn> checkIns = new ArrayList<CheckIn>();
@@ -56,6 +57,9 @@ public class HotelManager {
 
 	// add room
 	public void add(ARoom room) {
+		rooms.add(room);
+		notifyObs();
+		System.out.println("da notiify");
 
 	}
 
@@ -74,8 +78,21 @@ public class HotelManager {
 
 	}
 
-
 	public static void main(String[] args) {
-		
+
+	}
+
+	public int getAllRoom() {
+		return rooms.size();
+	}
+
+	public int getAvaiRoom() {
+		int result = 0;
+		for (int i = 0; i < rooms.size(); i++) {
+			if (rooms.get(i).isAvailable()) {
+				result++;
+			}
+		}
+		return result;
 	}
 }

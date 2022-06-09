@@ -18,6 +18,7 @@ import java.util.Properties;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,7 +27,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -34,9 +34,14 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.SqlDateModel;
 
-public class HomePage2 extends JFrame {
+import model.Observable;
+import model.Observer;
+
+public class HomePage2 extends JFrame implements Observer {
+	Observable hotelObs;
+	HomePage homePage;
+
 	private JTable tableGuest, tableRooms;
-	private double count = 2;
 	private JTextField txtCardNumber;
 	private JTextField txtCVCCode;
 	private JTextField txtName;
@@ -46,51 +51,40 @@ public class HomePage2 extends JFrame {
 	private JTextField txtPassportNo;
 	private JTextField txtCity;
 	private JTextField txtNationality;
-	private JTextField txtCheckInDate;
-	private JTextField txtCheckOutDate;
 	private JTextField txtRoomID;
 	private JTextField txtRoomNumber;
+
 	JPanel panel;
-	JButton btnCenter;
-	JButton btnGuest;
-	JButton btnRooms;
-	JButton btnCheckOut;
-	static JButton btnCheckIn;
+
 	private JLabel lblCity;
 	private Date checkInDate;
 	private Date checkOutDate;
 	private String roomType;
 	private String roomCapacity;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HomePage2 window = new HomePage2("checkIn");
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	// nho khai bao cac bien can thiet thanh bien toan cuc
+	JButton btnCenter;
+	JButton btnGuest;
+	JButton btnRooms;
+	JButton btnLogOut;
+	JButton btnCheckOut;
+	JButton btnSubmit = new JButton("Submit");
+	JButton btnCheckOut_command = new JButton("Check out");
+	static JButton btnCheckIn;// ?
 
-	/**
-	 * Create the application.
-	 */
+	public HomePage2(String s, Observable hotelObs, HomePage homePage) {
+		this.hotelObs = hotelObs;
+		hotelObs.addObs(this);
+		this.homePage = homePage;
 
-	public void change(JPanel panelChange, String string) {
-		btnCenter.setText(string);
-		remove(panel);
-		getContentPane().add(panelChange);
+		init(s);
+		// addActionListener
+		actionListener(this);
 
 	}
+	
 
-	public HomePage2(String s) {
-
+	private void init(String s) {
 		getContentPane().setBackground(State.background);
 
 		setBounds(100, 100, 1200, 700);
@@ -136,7 +130,7 @@ public class HomePage2 extends JFrame {
 		lblNameCus.setBounds(52, 0, 108, 24);
 		pnlAccount.add(lblNameCus);
 
-		JButton btnLogOut = new JButton("<html><u>Log Out</u></html>");
+		btnLogOut = new JButton("<html><u>Log Out</u></html>");
 		btnLogOut.setForeground(Color.WHITE);
 		btnLogOut.setBounds(62, 27, 89, 23);
 		btnLogOut.setFocusable(false);
@@ -160,7 +154,7 @@ public class HomePage2 extends JFrame {
 		btnCheckIn.setBackground(new Color(175, 238, 238));
 		btnCheckIn.setFont(new Font("Serif", Font.PLAIN, 30));
 		btnCheckIn.setFocusable(false);
-		btnCheckIn.addMouseListener(Adapter());
+		btnCheckIn.addMouseListener(mouseAdapter());
 
 		btnCheckOut = new JButton("Check Out");
 		btnCheckOut.setBackground(new Color(176, 224, 230));
@@ -168,51 +162,33 @@ public class HomePage2 extends JFrame {
 		btnCheckOut.setBackground(new Color(175, 238, 238));
 		btnCheckOut.setFont(new Font("Serif", Font.PLAIN, 30));
 		btnCheckOut.setFocusable(false);
-		btnCheckOut.addMouseListener(Adapter());
+		btnCheckOut.addMouseListener(mouseAdapter());
 
 		btnRooms = new JButton("Rooms");
 		btnRooms.setBounds(10, 298, 180, 76);
 		btnRooms.setBackground(new Color(175, 238, 238));
 		btnRooms.setFont(new Font("Serif", Font.PLAIN, 30));
 		btnRooms.setFocusable(false);
-		btnRooms.addMouseListener(Adapter());
+		btnRooms.addMouseListener(mouseAdapter());
 
 		btnGuest = new JButton("Guest");
 		btnGuest.setBounds(10, 418, 180, 76);
 		btnGuest.setBackground(new Color(175, 238, 238));
 		btnGuest.setFont(new Font("Serif", Font.PLAIN, 30));
 		btnGuest.setFocusable(false);
-		btnGuest.addMouseListener(Adapter());
+		btnGuest.addMouseListener(mouseAdapter());
 
 		pnlLeft.setLayout(null);
 		pnlLeft.add(btnCheckIn);
 		pnlLeft.add(btnCheckOut);
 		pnlLeft.add(btnRooms);
 		pnlLeft.add(btnGuest);
-
-//addActionListener		
-
-		btnLogOut.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame loginFrame = new Login();
-				if (isVisible()) {
-					setVisible(false);
-				}
-				loginFrame.setVisible(true);
-				loginFrame.setLocation(0, 0);
-				loginFrame.setLocationRelativeTo(loginFrame);
-				loginFrame.setSize(600, 600);
-			}
-		});
-
-		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this));
-
-		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this));
+		// logo action
+		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this, homePage));
+		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this, homePage));
 
 //		CheckInPanel();
+		System.out.println(s);
 		if ("checkIn".equals(s)) {
 			CheckInPanel();
 		}
@@ -227,6 +203,7 @@ public class HomePage2 extends JFrame {
 		}
 
 //		------------------------------
+		
 	}
 
 	public JPanel CheckInPanel() {
@@ -610,30 +587,9 @@ public class HomePage2 extends JFrame {
 		btnSearch.setBounds(300, 220, 100, 35);
 		pnlRoomData.add(btnSearch);
 
-		JButton btnSubmit = new JButton("Submit");
+		// submit
+//		btnSubmit = new JButton("Submit");
 		btnSubmit.setBackground(State.green_button);
-		btnSubmit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (e.getSource().equals(btnSubmit)) {
-					int output = JOptionPane.showConfirmDialog(null, "Xem lai thong tin", "HomePage2",
-							JOptionPane.YES_NO_OPTION);
-					if (output == JOptionPane.YES_OPTION) {
-						
-						JFrame homePageFrame = new HomePage();
-						if (isVisible()) {
-							setVisible(false);
-						}
-						homePageFrame.setVisible(true);
-						homePageFrame.setLocationRelativeTo(homePageFrame);
-						homePageFrame.setSize(1200, 700);
-					} 
-					else if (output == JOptionPane.NO_OPTION) {
-					}
-
-				}
-
-			}
-		});
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnSubmit.setFocusable(false);
 		btnSubmit.setBounds(820, 504, 100, 35);
@@ -682,26 +638,16 @@ public class HomePage2 extends JFrame {
 		btnClear.setFocusable(false);
 		pnlCheckOut.add(btnClear);
 
-		JButton btnCheckout = new JButton("Check out");
-		btnCheckout.setBackground(State.red_button);
-		btnCheckout.setFont(new Font("Serif", Font.PLAIN, 20));
-		btnCheckout.setBounds(315, 170, 120, 35);
-		btnCheckout.setFocusable(false);
-		pnlCheckOut.add(btnCheckout);
+//		btnCheckout = new JButton("Check out");
+		btnCheckOut_command.setBackground(State.red_button);
+		btnCheckOut_command.setFont(new Font("Serif", Font.PLAIN, 20));
+		btnCheckOut_command.setBounds(315, 170, 120, 35);
+		btnCheckOut_command.setFocusable(false);
+		
+		pnlCheckOut.add(btnCheckOut_command);
+		
+		
 		txtRoomNumber.addMouseListener(new MouseAdapter() {
-		});
-
-		btnCheckout.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JFrame confirmtationFrame = new Confirmtation();
-
-				confirmtationFrame.setVisible(true);
-				confirmtationFrame.setLocationRelativeTo(confirmtationFrame);
-				confirmtationFrame.setSize(745, 635);
-			}
 		});
 
 		return panel;
@@ -767,56 +713,104 @@ public class HomePage2 extends JFrame {
 		tableRooms.setFont(new Font("Time New Roman", Font.BOLD, 11));
 		tableRooms.setBounds(5, 50, 950, 490);
 		panel.add(tableRooms);
-		tableRooms
-				.setModel(new DefaultTableModel(
-						new Object[][] {
-								{ "ID", "RoomType", "Room Capacity", "Name", "State",
-										"is Available?" },
-								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-								{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-								{ null, null, null, null, null, null }, },
-						new String[] { "RoomID", "Name", "Email", "New column", "New column", "New column" }));
+		tableRooms.setModel(new DefaultTableModel(
+				new Object[][] { { "ID", "RoomType", "Room Capacity", "Name", "State", "is Available?" },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, },
+				new String[] { "RoomID", "Name", "Email", "New column", "New column", "New column" }));
 
 		return panel;
 	}
 
-	private MouseListener Adapter() {
-		// TODO Auto-generated method stub
+	private void actionListener(HomePage2 homePage2) {
+		// addActionListener
+		btnLogOut.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				JFrame loginFrame = homePage.login;
+				if (isVisible()) {
+					setVisible(false);
+				}
+				loginFrame.setVisible(true);
+				loginFrame.setLocationRelativeTo(null);
+			}
+		});
+		// checkIn
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource().equals(btnSubmit)) {
+					int output = JOptionPane.showConfirmDialog(null, "luu lai thong tin ? ", "HomePage2",
+							JOptionPane.YES_NO_OPTION);
+					if (output == JOptionPane.YES_OPTION) {
+						setVisible(false);
+						homePage.setVisible(true);
+						homePage.setLocationRelativeTo(null);
+					} else if (output == JOptionPane.NO_OPTION) {
+					}
+
+				}
+
+			}
+		});
+
+		// CheckOut
+		btnCheckOut_command.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame confirmtationFrame = new Confirmtation(hotelObs, homePage2);
+				confirmtationFrame.setVisible(true);
+				confirmtationFrame.setLocationRelativeTo(null);
+//				confirmtationFrame.setLocation(0, 0);
+			}
+		});
+
+	}
+
+	// ======
+	private MouseListener mouseAdapter() {
 		return new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				super.mouseClicked(e);
-				remove(panel);
+
+				remove(panel); // xoa panel cu
+
 				if (e.getSource() == btnGuest) {
-//					btnCenter.setText(btnGuest.getText());
 					getContentPane().add(GuestTablePanel());
 				}
 				if (e.getSource() == btnRooms) {
-//					btnCenter.setText(btnRooms.getText());
 					getContentPane().add(RoomTablePanel());
 				}
 				if (e.getSource() == btnCheckIn) {
-//					btnCenter.setText(btnCheckIn.getText());
 					getContentPane().add(CheckInPanel());
 				}
 				if (e.getSource() == btnCheckOut) {
-//					btnCenter.setText(btnCheckOut.getText());
 					getContentPane().add(CheckOutPanel());
 				}
-				repaint();
+
+				repaint();// ve lai
 			}
 		};
+	}
+
+	@Override
+	public void update() {
+		// viet update tai day
+
 	}
 }
