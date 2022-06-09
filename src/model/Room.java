@@ -8,6 +8,19 @@ public class Room extends ARoom {
 		this.type = type;
 		this.capacity = capacity;
 	}
+	public AType getType() {
+		return type;
+	}
+	public void setType(AType type) {
+		this.type = type;
+	}
+	public int getCapacity() {
+		return capacity;
+	}
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+	
 	
 
 
