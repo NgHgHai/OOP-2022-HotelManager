@@ -54,7 +54,9 @@ public class HotelManager extends model.Observable {
 
 	// checkIn
 	public void add(CheckIn checkIn) {
+		checkIn.room.available = false;
 		checkIns.add(checkIn);
+		notifyObs();
 	}
 
 	// checkOut
@@ -66,22 +68,27 @@ public class HotelManager extends model.Observable {
 	public void add(ARoom room) {
 		rooms.add(room);
 		notifyObs();
-		System.out.println("da notiify");
 
 	}
 
 	// remove room
 	public void remove(ARoom room) {
+		rooms.remove(room);
+		notifyObs();
 
 	}
 
 	// add Account
 	public void add(Account account) {
+		accounts.add(account);
+		notifyObs();
 
 	}
 
 	// remove Account
 	public void remove(Account account) {
+		accounts.remove(account);
+		notifyObs();
 
 	}
 	
@@ -99,8 +106,5 @@ public class HotelManager extends model.Observable {
 		return checkIns;
 	}
 
-	public static void main(String[] args) {
-
-	}
 
 }

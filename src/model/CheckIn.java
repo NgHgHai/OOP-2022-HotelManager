@@ -1,5 +1,6 @@
 package model;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public class CheckIn {
@@ -25,6 +26,11 @@ public class CheckIn {
 		pay = true;
 	}
 
+	public int getDateBetweenTwoDate(Date date1, Date date2) {
+		Long result = ChronoUnit.DAYS.between(date1.toInstant(), date2.toInstant());
+		return Math.abs(Math.toIntExact(result));
+	}
+
 	public PersonalData getPersonalData() {
 		return personalData;
 	}
@@ -48,5 +54,6 @@ public class CheckIn {
 	public Date getCheckOutDate() {
 		return checkOutDate;
 	}
+
 
 }

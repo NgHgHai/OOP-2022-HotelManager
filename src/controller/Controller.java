@@ -29,7 +29,7 @@ public static void main(String[] args) {
 		
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
+			// Chay chuong Trinh
 			try {
 				
 				HotelManager manager = new HotelManager(); // tao model

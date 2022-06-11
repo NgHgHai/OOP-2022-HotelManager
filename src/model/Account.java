@@ -42,7 +42,7 @@ public abstract class Account {
 	}
 	protected abstract String getRank();
 
-	protected boolean isAdmin() {
+	public boolean isAdmin() {
 		return admin;
 	}
 

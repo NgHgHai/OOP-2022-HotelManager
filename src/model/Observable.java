@@ -11,8 +11,6 @@ public void removeObs(Observer observer) {
 	list.remove(observer);
 }
 public void notifyObs() {
-	System.out.println(list.size());
-	System.out.println("goi tung man hinh update");
 	for (Observer observer : list) {
 		observer.update();
 	}
