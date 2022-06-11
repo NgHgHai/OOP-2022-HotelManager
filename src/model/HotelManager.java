@@ -1,12 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Observable;
-
-import javax.security.auth.login.AccountException;
-
-import view.Confirmtation;
 
 public class HotelManager extends model.Observable {
 	private ArrayList<ARoom> rooms = new ArrayList<ARoom>();
@@ -91,8 +85,6 @@ public class HotelManager extends model.Observable {
 		notifyObs();
 
 	}
-	
-	
 
 	public ArrayList<ARoom> getRooms() {
 		return rooms;
@@ -105,6 +97,5 @@ public class HotelManager extends model.Observable {
 	public ArrayList<CheckIn> getCheckIns() {
 		return checkIns;
 	}
-
 
 }
