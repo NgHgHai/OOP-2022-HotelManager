@@ -93,7 +93,7 @@ public class Controller {
 					manager.add(a2);
 					manager.add(a3);
 
-					System.out.println(manager.totalRoom());
+	
 //				manager.notifyObs();
 
 				} catch (Exception e) {

@@ -44,6 +44,9 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 
 		update();
 		init();// khoi tao
+		
+		homePage2Frame = new HomePage2("checkIn", hotelObs, controller, this);
+		homePage2Frame.setVisible(false);
 
 	}
 
@@ -279,10 +282,7 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 		btnGuest.setBackground(new Color(135, 206, 250));
 		btnGuest.setBounds(10, 10, 280, 135);
 		pnlGuest.add(btnGuest);
-
-		// logo ActionListener
-		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this, this));
-		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this, this));
+;
 
 		// addActionListener
 		actionListener();
@@ -322,28 +322,29 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 		}
 		// ====== dieu huong
 		if (e.getActionCommand().equals(btnCheckIn.getActionCommand())) {
+		
 			setVisible(false);
-			homePage2Frame = new HomePage2("checkIn", hotelObs, controller, this);
+			homePage2Frame.setCommandToChoosePanel("checkIn");
 			homePage2Frame.currentPanel= "1";
 			homePage2Frame.setLocationRelativeTo(null);
 			homePage2Frame.setVisible(true);
 		} else if (e.getActionCommand().equals(btnCheckOut.getActionCommand())) {
 			setVisible(false);
-			homePage2Frame = new HomePage2("checkOut", hotelObs, controller, this);
+			homePage2Frame.setCommandToChoosePanel("checkOut");
 			homePage2Frame.currentPanel= "2";
 			homePage2Frame.setVisible(true);
 			homePage2Frame.setLocationRelativeTo(null);
 
 		} else if (e.getActionCommand().equals(btnGuest.getActionCommand())) {
 			setVisible(false);
-			homePage2Frame = new HomePage2("guest", hotelObs, controller, this);
+			homePage2Frame.setCommandToChoosePanel("guest");
 			homePage2Frame.currentPanel= "3";
 			homePage2Frame.setVisible(true);
 			homePage2Frame.setLocationRelativeTo(null);
 
 		} else if (e.getActionCommand().equals(btnRooms.getActionCommand())) {
 			setVisible(false);
-			homePage2Frame = new HomePage2("room", hotelObs, controller, this);
+			homePage2Frame.setCommandToChoosePanel("room");
 			homePage2Frame.currentPanel= "4";
 			homePage2Frame.setVisible(true);
 			homePage2Frame.setLocationRelativeTo(null);
@@ -360,9 +361,6 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 
 		init();// khoi tao
 
-		System.out.println("da update");
-		System.out.println(allRoom);
-		System.out.println(avaiRoom);
 
 	}
 }

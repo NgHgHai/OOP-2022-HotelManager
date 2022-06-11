@@ -76,21 +76,27 @@ public class HomePage2 extends JFrame implements Observer {
 	JButton btnCheckOut_command = new JButton("Check out");
 	JButton btnCheckIn;// ?
 	
-	String currentPanel ="";
+	String currentPanel ="";  // 1= checkInPanel , 2 =CheckOutPanel,  3= guestTablePanel, 4= roomTablePanel
+	private	String commandToChoosePanel;
 
-
-	public HomePage2(String s, Observable hotelObs, Controller controller, HomePage homePage) {
+	public HomePage2(String commandToChoosePanel, Observable hotelObs, Controller controller, HomePage homePage) {
 		this.hotelObs = hotelObs;
 		this.controller = controller;
 		hotelObs.addObs(this);
 		this.homePage = homePage;
-
-		init(s);
+		this.commandToChoosePanel =commandToChoosePanel;
+		init();
+	}
 	
 
+	public void setCommandToChoosePanel(String s) {
+		remove(panel);
+		this.commandToChoosePanel = s;
+		init();
 	}
 
-	private void init(String s) {
+
+	private void init() {
 		getContentPane().setBackground(State.background);
 
 		setBounds(100, 100, 1200, 700);
@@ -160,7 +166,7 @@ public class HomePage2 extends JFrame implements Observer {
 		btnCheckIn.setBackground(new Color(175, 238, 238));
 		btnCheckIn.setFont(new Font("Serif", Font.PLAIN, 30));
 		btnCheckIn.setFocusable(false);
-//		btnCheckIn.addMouseListener(mouseAdapter());
+
 
 		btnCheckOut = new JButton("Check Out");
 		btnCheckOut.setBackground(new Color(176, 224, 230));
@@ -168,21 +174,20 @@ public class HomePage2 extends JFrame implements Observer {
 		btnCheckOut.setBackground(new Color(175, 238, 238));
 		btnCheckOut.setFont(new Font("Serif", Font.PLAIN, 30));
 		btnCheckOut.setFocusable(false);
-//		btnCheckOut.addMouseListener(mouseAdapter());
+
 
 		btnRooms = new JButton("Rooms");
 		btnRooms.setBounds(10, 298, 180, 76);
 		btnRooms.setBackground(new Color(175, 238, 238));
 		btnRooms.setFont(new Font("Serif", Font.PLAIN, 30));
 		btnRooms.setFocusable(false);
-//		btnRooms.addMouseListener(mouseAdapter());
+
 
 		btnGuest = new JButton("Guest");
 		btnGuest.setBounds(10, 418, 180, 76);
 		btnGuest.setBackground(new Color(175, 238, 238));
 		btnGuest.setFont(new Font("Serif", Font.PLAIN, 30));
 		btnGuest.setFocusable(false);
-//		btnGuest.addMouseListener(mouseAdapter());
 
 		pnlLeft.setLayout(null);
 		pnlLeft.add(btnCheckIn);
@@ -193,19 +198,19 @@ public class HomePage2 extends JFrame implements Observer {
 		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this, homePage));
 		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this, homePage));
 
-//		CheckInPanel();
-		System.out.println(s);
-		if ("checkIn".equals(s)) {
-			CheckInPanel();
+
+
+		if ("checkIn".equals(commandToChoosePanel)) {
+		getContentPane().add(checkInPanel())	;
 		}
-		if ("checkOut".equals(s)) {
-			CheckOutPanel();
+		if ("checkOut".equals(commandToChoosePanel)) {
+			getContentPane().add(checkOutPanel());
 		}
-		if ("room".equals(s)) {
-			RoomTablePanel();
+		if ("room".equals(commandToChoosePanel)) {
+			getContentPane().add(roomTablePanel());
 		}
-		if ("guest".equals(s)) {
-			GuestTablePanel();
+		if ("guest".equals(commandToChoosePanel)) {
+			getContentPane().add(guestTablePanel());
 		}
 
 //		------------------------------
@@ -214,7 +219,7 @@ public class HomePage2 extends JFrame implements Observer {
 
 	}
 
-	public JPanel CheckInPanel() {
+	public JPanel checkInPanel() {
 		btnCenter.setText("Check In");
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
@@ -608,7 +613,7 @@ public class HomePage2 extends JFrame implements Observer {
 		return panel;
 	}
 
-	public JPanel CheckOutPanel() {
+	public JPanel checkOutPanel() {
 		btnCenter.setText("Check Out");
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
@@ -662,7 +667,7 @@ public class HomePage2 extends JFrame implements Observer {
 		return panel;
 	}
 
-	public JPanel GuestTablePanel() {
+	public JPanel guestTablePanel() {
 		btnCenter.setText("Guest");
 		panel = new JPanel();
 		panel.setLayout(null);
@@ -711,7 +716,7 @@ public class HomePage2 extends JFrame implements Observer {
 		return panel;
 	}
 
-	public JPanel RoomTablePanel() {
+	public JPanel roomTablePanel() {
 		btnCenter.setText("Room");
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
@@ -796,7 +801,7 @@ public class HomePage2 extends JFrame implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				if (!currentPanel.equals("1")) {				
 					remove(panel); // xoa panel cu
-					getContentPane().add(CheckInPanel());
+					getContentPane().add(checkInPanel());
 					repaint();// ve lai
 					currentPanel ="1";
 				}
@@ -809,7 +814,7 @@ public class HomePage2 extends JFrame implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				if (!currentPanel.equals("2")) {	
 				remove(panel); // xoa panel cu
-				getContentPane().add(CheckOutPanel());
+				getContentPane().add(checkOutPanel());
 				repaint();// ve lai
 				currentPanel = "2";
 				}
@@ -821,7 +826,7 @@ public class HomePage2 extends JFrame implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				if (!currentPanel.equals("3")) {	
 				remove(panel); // xoa panel cu	
-				getContentPane().add(GuestTablePanel());
+				getContentPane().add(guestTablePanel());
 				repaint();// ve lai
 				currentPanel = "3";
 				}
@@ -833,7 +838,7 @@ public class HomePage2 extends JFrame implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				if (!currentPanel.equals("4")) {	
 				remove(panel); // xoa panel cu
-				getContentPane().add(RoomTablePanel());
+				getContentPane().add(roomTablePanel());
 				repaint();// ve lai
 				currentPanel = "4";
 				}
