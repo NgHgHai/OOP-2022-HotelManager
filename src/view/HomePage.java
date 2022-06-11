@@ -26,7 +26,7 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 
 	private int allRoom = 0;
 	private int avaiRoom = 0;
-	private JFrame homePage2Frame;
+	private HomePage2 homePage2Frame;
 
 	private JButton btnGuest;
 	private JButton btnCheckOut;
@@ -324,23 +324,27 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 		if (e.getActionCommand().equals(btnCheckIn.getActionCommand())) {
 			setVisible(false);
 			homePage2Frame = new HomePage2("checkIn", hotelObs, controller, this);
+			homePage2Frame.currentPanel= "1";
 			homePage2Frame.setLocationRelativeTo(null);
 			homePage2Frame.setVisible(true);
 		} else if (e.getActionCommand().equals(btnCheckOut.getActionCommand())) {
 			setVisible(false);
 			homePage2Frame = new HomePage2("checkOut", hotelObs, controller, this);
+			homePage2Frame.currentPanel= "2";
 			homePage2Frame.setVisible(true);
 			homePage2Frame.setLocationRelativeTo(null);
 
 		} else if (e.getActionCommand().equals(btnGuest.getActionCommand())) {
 			setVisible(false);
 			homePage2Frame = new HomePage2("guest", hotelObs, controller, this);
+			homePage2Frame.currentPanel= "3";
 			homePage2Frame.setVisible(true);
 			homePage2Frame.setLocationRelativeTo(null);
 
 		} else if (e.getActionCommand().equals(btnRooms.getActionCommand())) {
 			setVisible(false);
 			homePage2Frame = new HomePage2("room", hotelObs, controller, this);
+			homePage2Frame.currentPanel= "4";
 			homePage2Frame.setVisible(true);
 			homePage2Frame.setLocationRelativeTo(null);
 

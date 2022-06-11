@@ -75,6 +75,9 @@ public class HomePage2 extends JFrame implements Observer {
 	JButton btnSubmit = new JButton("Submit");
 	JButton btnCheckOut_command = new JButton("Check out");
 	JButton btnCheckIn;// ?
+	
+	String currentPanel ="";
+
 
 	public HomePage2(String s, Observable hotelObs, Controller controller, HomePage homePage) {
 		this.hotelObs = hotelObs;
@@ -83,8 +86,7 @@ public class HomePage2 extends JFrame implements Observer {
 		this.homePage = homePage;
 
 		init(s);
-		// addActionListener
-		actionListener(this);
+	
 
 	}
 
@@ -158,7 +160,7 @@ public class HomePage2 extends JFrame implements Observer {
 		btnCheckIn.setBackground(new Color(175, 238, 238));
 		btnCheckIn.setFont(new Font("Serif", Font.PLAIN, 30));
 		btnCheckIn.setFocusable(false);
-		btnCheckIn.addMouseListener(mouseAdapter());
+//		btnCheckIn.addMouseListener(mouseAdapter());
 
 		btnCheckOut = new JButton("Check Out");
 		btnCheckOut.setBackground(new Color(176, 224, 230));
@@ -166,21 +168,21 @@ public class HomePage2 extends JFrame implements Observer {
 		btnCheckOut.setBackground(new Color(175, 238, 238));
 		btnCheckOut.setFont(new Font("Serif", Font.PLAIN, 30));
 		btnCheckOut.setFocusable(false);
-		btnCheckOut.addMouseListener(mouseAdapter());
+//		btnCheckOut.addMouseListener(mouseAdapter());
 
 		btnRooms = new JButton("Rooms");
 		btnRooms.setBounds(10, 298, 180, 76);
 		btnRooms.setBackground(new Color(175, 238, 238));
 		btnRooms.setFont(new Font("Serif", Font.PLAIN, 30));
 		btnRooms.setFocusable(false);
-		btnRooms.addMouseListener(mouseAdapter());
+//		btnRooms.addMouseListener(mouseAdapter());
 
 		btnGuest = new JButton("Guest");
 		btnGuest.setBounds(10, 418, 180, 76);
 		btnGuest.setBackground(new Color(175, 238, 238));
 		btnGuest.setFont(new Font("Serif", Font.PLAIN, 30));
 		btnGuest.setFocusable(false);
-		btnGuest.addMouseListener(mouseAdapter());
+//		btnGuest.addMouseListener(mouseAdapter());
 
 		pnlLeft.setLayout(null);
 		pnlLeft.add(btnCheckIn);
@@ -207,6 +209,8 @@ public class HomePage2 extends JFrame implements Observer {
 		}
 
 //		------------------------------
+		// addActionListener
+		actionListener(this);
 
 	}
 
@@ -753,7 +757,7 @@ public class HomePage2 extends JFrame implements Observer {
 				loginFrame.setLocationRelativeTo(null);
 			}
 		});
-		// checkIn
+		//	submit
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource().equals(btnSubmit)) {
@@ -787,36 +791,58 @@ public class HomePage2 extends JFrame implements Observer {
 			}
 		});
 
+		btnCheckIn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (!currentPanel.equals("1")) {				
+					remove(panel); // xoa panel cu
+					getContentPane().add(CheckInPanel());
+					repaint();// ve lai
+					currentPanel ="1";
+				}
+				
+			}
+		});
+		btnCheckOut.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (!currentPanel.equals("2")) {	
+				remove(panel); // xoa panel cu
+				getContentPane().add(CheckOutPanel());
+				repaint();// ve lai
+				currentPanel = "2";
+				}
+			}
+		});
+		btnGuest.addActionListener(new  ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (!currentPanel.equals("3")) {	
+				remove(panel); // xoa panel cu	
+				getContentPane().add(GuestTablePanel());
+				repaint();// ve lai
+				currentPanel = "3";
+				}
+			}
+		});
+		btnRooms.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (!currentPanel.equals("4")) {	
+				remove(panel); // xoa panel cu
+				getContentPane().add(RoomTablePanel());
+				repaint();// ve lai
+				currentPanel = "4";
+				}
+			}
+		});
 	}
 
 	// ======
-	private MouseListener mouseAdapter() {
-		return new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				super.mouseClicked(e);
 
-				if (e.getSource() == btnGuest && !panel.equals(GuestTablePanel())) {
-					remove(panel); // xoa panel cu
-					getContentPane().add(GuestTablePanel());
-				}
-				if (e.getSource() == btnRooms && !panel.equals(RoomTablePanel())) {
-					remove(panel); // xoa panel cu
-					getContentPane().add(RoomTablePanel());
-				}
-				if (e.getSource() == btnCheckIn && !panel.equals(CheckInPanel())) {
-					remove(panel); // xoa panel cu
-					getContentPane().add(CheckInPanel());
-				}
-				if (e.getSource() == btnCheckOut && !panel.equals(CheckOutPanel())) {
-					remove(panel); // xoa panel cu
-					getContentPane().add(CheckOutPanel());
-				}
-
-				repaint();// ve lai
-			}
-		};
-	}
 
 	@Override
 	public void update() {
