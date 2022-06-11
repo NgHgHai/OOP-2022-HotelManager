@@ -5,11 +5,10 @@ public abstract class Account {
 	protected String pass;
 	protected boolean admin;
 
-	public Account(String name, String pass, boolean admin) {
+	public Account(String name, String pass) {
 		super();
 		this.name = name;
 		this.pass = pass;
-		this.admin = admin;
 	}
 
 	// template

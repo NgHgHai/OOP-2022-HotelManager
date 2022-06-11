@@ -34,6 +34,9 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 	private JButton btnLogOut;
 	private JButton btnSetting;
 	private JButton btnCheckIn;
+	
+	private String nameUser ="";
+	private String rankUser ="";
 
 	public HomePage(Observable hotelObs, Controller controller, Login login) {
 		// add obs
@@ -110,14 +113,16 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 		pnlInfor.setBounds(10, 20, 180, 100);
 		pnlLeft.add(pnlInfor);
 
-		JLabel lblGetName = new JLabel(".............................................................................");
+		JLabel lblGetName = new JLabel(nameUser);
+		lblGetName.setForeground(State.red_button);
 		lblGetName.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblGetName.setBounds(75, 35, 95, 13);
+		lblGetName.setBounds(75, 31, 95, 20);
 		pnlInfor.add(lblGetName);
 
-		JLabel lblGetRank = new JLabel(".............................................................................");
+		JLabel lblGetRank = new JLabel(rankUser);
+		lblGetRank.setForeground(State.red_button);
 		lblGetRank.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblGetRank.setBounds(75, 67, 95, 13);
+		lblGetRank.setBounds(75, 63, 95, 13);
 		pnlInfor.add(lblGetRank);
 
 		JLabel lblName = new JLabel("Name:");
@@ -358,8 +363,11 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 		HotelManager manager = (HotelManager) hotelObs;
 		this.allRoom = manager.totalRoom();
 		this.avaiRoom = manager.totalReadyRoom();
+		this.nameUser = manager.getNameUser();
+		this.rankUser = manager.getRank();
 
 		init();// khoi tao
+
 
 
 	}

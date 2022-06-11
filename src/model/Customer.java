@@ -2,8 +2,8 @@ package model;
 
 public class Customer extends Account {
 
-	public Customer(String name, String pass, boolean admin) {
-		super(name, pass, admin);
+	public Customer(String name, String pass) {
+		super(name, pass);
 	}
 
 	@Override

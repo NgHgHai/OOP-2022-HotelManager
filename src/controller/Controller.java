@@ -3,10 +3,13 @@ package controller;
 import java.awt.EventQueue;
 import java.util.Date;
 
+import javax.swing.JTextField;
+
 import model.ARoom;
 import model.Account;
 import model.Admin;
 import model.CheckIn;
+import model.Customer;
 import model.Economy;
 import model.HotelManager;
 import model.Normal;
@@ -86,9 +89,9 @@ public class Controller {
 					manager.add(ck1);
 					manager.add(ck2);
 					manager.add(ck3);
-					Account a1 = new Admin("admin", "admin", true);
-					Account a2 = new Admin("hoanghai", "1", false);
-					Account a3 = new Admin("sinhvien", "1", false);
+					Account a1 = new Admin("admin", "admin");
+					Account a2 = new Customer("hoanghai", "1");
+					Account a3 = new Admin("sinhvien", "1");
 					manager.add(a1);
 					manager.add(a2);
 					manager.add(a3);
@@ -102,5 +105,10 @@ public class Controller {
 			}
 		});
 
+	}
+
+	public boolean isAccout(String name, String pass) {
+	
+		return manager.isAccount(name, pass);
 	}
 }

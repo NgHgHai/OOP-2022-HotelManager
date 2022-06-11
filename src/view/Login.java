@@ -55,7 +55,7 @@ public class Login extends JFrame implements ActionListener {
 		pnlMain.add(lblGroup17);
 
 		txtUsername = new JTextField();
-		txtUsername.setText("Enter Username");
+		txtUsername.setText("admin");
 		txtUsername.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 
 		txtUsername.setHorizontalAlignment(SwingConstants.LEFT);
@@ -64,7 +64,7 @@ public class Login extends JFrame implements ActionListener {
 		pnlMain.add(txtUsername);
 
 		txtPassword = new JTextField();
-		txtPassword.setText("Enter Password");
+		txtPassword.setText("admin");
 		txtPassword.setFont(new Font("Times New Roman", Font.PLAIN, 22));
 
 		txtPassword.setHorizontalAlignment(SwingConstants.LEFT);
@@ -125,10 +125,14 @@ public class Login extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(btnLogin)) {
+			if (controller.isAccout(txtUsername.getText(),txtPassword.getText())) {
+//			
 				setVisible(false);
 				JFrame homePageFrame = new HomePage(hotelObs,controller, this);
 				homePageFrame.setVisible(true);
 				homePageFrame.setLocationRelativeTo(null);
+			}else 
+				System.out.println("sai tk + mk");
 		}
 		
 	}
