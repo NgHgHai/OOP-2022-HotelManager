@@ -35,12 +35,13 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.SqlDateModel;
 
 import controller.Controller;
+import model.HotelManager;
 import model.Observable;
 import model.Observer;
 
 public class HomePage2 extends JFrame implements Observer {
 	HomePage homePage;
-	private Observable hotelObs;
+	private Observable hotelObs;// model
 	private Controller controller;
 
 	private JTable tableGuest, tableRooms;
@@ -65,6 +66,7 @@ public class HomePage2 extends JFrame implements Observer {
 	private Date checkOutDate;
 	private String roomType;
 	private String roomCapacity;
+	private String nameUser = "" ;
 
 	// nho khai bao cac bien can thiet thanh bien toan cuc
 	JButton btnCenter;
@@ -85,6 +87,7 @@ public class HomePage2 extends JFrame implements Observer {
 		hotelObs.addObs(this);
 		this.homePage = homePage;
 		this.commandToChoosePanel =commandToChoosePanel;
+		update();
 		init();
 	}
 	
@@ -135,7 +138,7 @@ public class HomePage2 extends JFrame implements Observer {
 		lblAvtCus.setBounds(0, 0, 42, 50);
 		pnlAccount.add(lblAvtCus);
 
-		JLabel lblNameCus = new JLabel("KH1");
+		JLabel lblNameCus = new JLabel(nameUser);
 		lblNameCus.setForeground(Color.WHITE);
 		lblNameCus.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNameCus.setFont(new Font("Serif", Font.PLAIN, 20));
@@ -852,6 +855,8 @@ public class HomePage2 extends JFrame implements Observer {
 	@Override
 	public void update() {
 		// viet update tai day
+		HotelManager manager = (HotelManager) hotelObs;
+		this.nameUser = manager.getNameUser();
 
 	}
 }

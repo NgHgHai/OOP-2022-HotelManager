@@ -3,9 +3,8 @@ package model;
 public abstract class Account {
 	protected String name;
 	protected String pass;
-	protected boolean admin;
 
-	public Account(String name, String pass) {
+	public Account(String name, String pass ) {
 		super();
 		this.name = name;
 		this.pass = pass;
@@ -42,7 +41,7 @@ public abstract class Account {
 	protected abstract String getRank();
 
 	public boolean isAdmin() {
-		return admin;
+		return false;
 	}
 
 

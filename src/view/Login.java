@@ -126,7 +126,6 @@ public class Login extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(btnLogin)) {
 			if (controller.isAccout(txtUsername.getText(),txtPassword.getText())) {
-//			
 				setVisible(false);
 				JFrame homePageFrame = new HomePage(hotelObs,controller, this);
 				homePageFrame.setVisible(true);

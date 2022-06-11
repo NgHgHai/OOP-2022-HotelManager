@@ -22,7 +22,7 @@ public class HotelManager extends model.Observable {
 	public boolean isAccount(String name, String pass) {
 		for (Account account : accounts) {
 			if (account.getName().equals(name) && account.getPass().equals(pass)) {
-				user = account;
+				user = account; // luu lai acc
 				return true;
 			}
 		}
