@@ -55,6 +55,8 @@ public class HomePage2 extends JFrame implements Observer {
 	private JTextField txtNationality;
 	private JTextField txtRoomID;
 	private JTextField txtRoomNumber;
+	JDatePanelImpl panelDate;
+	JDatePanelImpl panelDate1;
 
 	JPanel panel;
 
@@ -72,7 +74,7 @@ public class HomePage2 extends JFrame implements Observer {
 	JButton btnCheckOut;
 	JButton btnSubmit = new JButton("Submit");
 	JButton btnCheckOut_command = new JButton("Check out");
-	static JButton btnCheckIn;// ?
+	JButton btnCheckIn;// ?
 
 	public HomePage2(String s, Observable hotelObs, Controller controller, HomePage homePage) {
 		this.hotelObs = hotelObs;
@@ -500,8 +502,9 @@ public class HomePage2 extends JFrame implements Observer {
 		p.put("text.day", "Day");
 		p.put("text.month", "Month");
 		p.put("text.year", "Year");
-		JDatePanelImpl panle = new JDatePanelImpl(model, p);
-		datePicker = new JDatePickerImpl(panle, new AbstractFormatter() {
+		// =======================================================================
+		panelDate = new JDatePanelImpl(model, p);
+		datePicker = new JDatePickerImpl(panelDate, new AbstractFormatter() {
 
 			@Override
 			public String valueToString(Object value) throws ParseException {
@@ -544,8 +547,9 @@ public class HomePage2 extends JFrame implements Observer {
 		p1.put("text.day", "Day");
 		p1.put("text.month", "Month");
 		p1.put("text.year", "Year");
-		JDatePanelImpl panle1 = new JDatePanelImpl(model1, p1);
-		datePicker1 = new JDatePickerImpl(panle1, new AbstractFormatter() {
+		// =======================================================================
+		panelDate1 = new JDatePanelImpl(model1, p1);
+		datePicker1 = new JDatePickerImpl(panelDate1, new AbstractFormatter() {
 
 			@Override
 			public String valueToString(Object value) throws ParseException {
@@ -792,18 +796,20 @@ public class HomePage2 extends JFrame implements Observer {
 			public void mouseClicked(MouseEvent e) {
 				super.mouseClicked(e);
 
-				remove(panel); // xoa panel cu
-
-				if (e.getSource() == btnGuest) {
+				if (e.getSource() == btnGuest && !panel.equals(GuestTablePanel())) {
+					remove(panel); // xoa panel cu
 					getContentPane().add(GuestTablePanel());
 				}
-				if (e.getSource() == btnRooms) {
+				if (e.getSource() == btnRooms && !panel.equals(RoomTablePanel())) {
+					remove(panel); // xoa panel cu
 					getContentPane().add(RoomTablePanel());
 				}
-				if (e.getSource() == btnCheckIn) {
+				if (e.getSource() == btnCheckIn && !panel.equals(CheckInPanel())) {
+					remove(panel); // xoa panel cu
 					getContentPane().add(CheckInPanel());
 				}
-				if (e.getSource() == btnCheckOut) {
+				if (e.getSource() == btnCheckOut && !panel.equals(CheckOutPanel())) {
+					remove(panel); // xoa panel cu
 					getContentPane().add(CheckOutPanel());
 				}
 
