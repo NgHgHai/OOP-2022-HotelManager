@@ -6,6 +6,15 @@ public class HotelManager extends model.Observable {
 	private ArrayList<ARoom> rooms = new ArrayList<ARoom>();
 	private ArrayList<Account> accounts = new ArrayList<Account>();
 	private ArrayList<CheckIn> checkIns = new ArrayList<CheckIn>();
+	/*
+	 * thay doi kieu du lieu, bi sai ve mat logic phai thay Account, ARoom thanh set
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 	private Account user;
 	FactoryAttribute attribute = new FactoryAttribute();
 
