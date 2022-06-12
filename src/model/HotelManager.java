@@ -1,10 +1,14 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class HotelManager extends model.Observable {
-	private ArrayList<ARoom> rooms = new ArrayList<ARoom>();
-	private ArrayList<Account> accounts = new ArrayList<Account>();
+//	private ArrayList<ARoom> rooms = new ArrayList<ARoom>();
+//	private ArrayList<Account> accounts = new ArrayList<Account>();
+	private Set<ARoom> rooms = new HashSet<ARoom>();
+	private Set<Account> accounts = new HashSet<Account>();
 	private ArrayList<CheckIn> checkIns = new ArrayList<CheckIn>();
 	/*
 	 * thay doi kieu du lieu, bi sai ve mat logic phai thay Account, ARoom thanh set
@@ -53,8 +57,9 @@ public class HotelManager extends model.Observable {
 
 	public int totalReadyRoom() {
 		int result = 0;
-		for (int i = 0; i < rooms.size(); i++) {
-			if (rooms.get(i).isAvailable()) {
+
+		for (ARoom room : rooms) {
+			if (room.available) {
 				result++;
 			}
 		}
@@ -74,38 +79,41 @@ public class HotelManager extends model.Observable {
 	}
 
 	// add room
-	public void add(ARoom room) {
-		rooms.add(room);
+	public boolean add(ARoom room) {
+		boolean success = rooms.add(room);
 		notifyObs();
+		return success;
 
 	}
 
 	// remove room
-	public void remove(ARoom room) {
-		rooms.remove(room);
+	public boolean remove(ARoom room) {
+		boolean success = rooms.remove(room);
 		notifyObs();
+		return success;
 
 	}
 
 	// add Account
-	public void add(Account account) {
-		accounts.add(account);
+	public boolean add(Account account) {
+		boolean success = accounts.add(account);
 		notifyObs();
+		return success;
 
 	}
 
 	// remove Account
-	public void remove(Account account) {
-		accounts.remove(account);
+	public boolean remove(Account account) {
+		boolean success = accounts.remove(account);
 		notifyObs();
-
+		return success;
 	}
 
-	public ArrayList<ARoom> getRooms() {
+	public Set<ARoom> getRooms() {
 		return rooms;
 	}
 
-	public ArrayList<Account> getAccounts() {
+	public Set<Account> getAccounts() {
 		return accounts;
 	}
 
