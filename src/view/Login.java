@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -21,14 +24,14 @@ import controller.Controller;
 import model.Observable;
 import model.Observer;
 
-public class Login extends JFrame implements ActionListener {
+public class Login extends JFrame {
 	private Observable hotelObs;
 	private Controller controller;
 	private JTextField txtUsername;
 	private JTextField txtPassword;
 	private JButton btnLogin;
 
-	public Login(Observable hotelObs, Controller controller ) {
+	public Login(Observable hotelObs, Controller controller) {
 		this.hotelObs = hotelObs;
 		this.controller = controller;
 		init();
@@ -85,7 +88,7 @@ public class Login extends JFrame implements ActionListener {
 		btnLogin = new JButton("LOGIN");
 		btnLogin.setBackground(State.background);
 		btnLogin.setForeground(Color.WHITE);
-		btnLogin.setFocusable(false);
+//		btnLogin.setFocusable(false);
 
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		btnLogin.setBounds(217, 422, 136, 44);
@@ -119,20 +122,35 @@ public class Login extends JFrame implements ActionListener {
 	}
 
 	private void actionListener() {
-		btnLogin.addActionListener(this);
+		// push the button
+		btnLogin.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource().equals(btnLogin)) {
+					checkAccount();
+				}
+			}
+		});
+		// key "enter" (if select the button "login" push it )
+		btnLogin.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				super.keyPressed(e);
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					checkAccount();
+				}
+			}
+		});
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(btnLogin)) {
-			if (controller.isAccout(txtUsername.getText(),txtPassword.getText())) {
-				setVisible(false);
-				JFrame homePageFrame = new HomePage(hotelObs,controller, this);
-				homePageFrame.setVisible(true);
-				homePageFrame.setLocationRelativeTo(null);
-			}else 
-				System.out.println("sai tk + mk");
-		}
-		
+	private void checkAccount() {
+		if (controller.isAccout(txtUsername.getText(), txtPassword.getText())) {
+			setVisible(false);
+			JFrame homePageFrame = new HomePage(hotelObs, controller, this);
+			homePageFrame.setVisible(true);
+			homePageFrame.setLocationRelativeTo(null);
+		} else
+			System.out.println("sai tk + mk");
+
 	}
 }

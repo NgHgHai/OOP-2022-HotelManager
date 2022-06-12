@@ -1,13 +1,11 @@
 package view;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,7 +18,6 @@ import javax.swing.SwingConstants;
 
 import controller.Controller;
 import model.Observable;
-import model.Observer;
 
 public class AddUser extends JFrame  {
 	Observable hotelObs;
@@ -147,7 +144,6 @@ public class AddUser extends JFrame  {
 		btnBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("adduser");
 				setVisible(false);
 				setting.setVisible(true);
 				setting.setLocationRelativeTo(null);
