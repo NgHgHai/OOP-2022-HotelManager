@@ -64,13 +64,15 @@ public abstract class Account {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof Account))
 			return false;
 		Account other = (Account) obj;
 		return Objects.equals(name, other.name);
 	}
+
+
+
+
 	
 	
 

@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,20 +22,21 @@ import controller.Controller;
 import model.Observable;
 import model.Observer;
 
-public class AddUser extends JFrame implements Observer {
+public class AddUser extends JFrame  {
 	Observable hotelObs;
 	Setting setting;
 	private JTextField txtUsername;
 	private JTextField txtPassword;
 	private JButton btnBack;
 	private Controller controller;
+	private JButton btnSave;
+	private JCheckBox cbReceptionist;
 
 	public AddUser(Observable hotelObs, Controller controller, Setting setting) {
 		// add obs
 		this.hotelObs = hotelObs;
 		this.setting = setting;
 		this.controller = controller;
-		hotelObs.addObs(this);
 
 		init();
 		// addActionListener
@@ -100,7 +102,7 @@ public class AddUser extends JFrame implements Observer {
 		lblIconKey.setBounds(65, 296, 35, 44);
 		getContentPane().add(lblIconKey);
 
-		JButton btnSave = new JButton("SAVE");
+		btnSave = new JButton("SAVE");
 		btnSave.setBackground(State.background);
 		btnSave.setFocusable(false);
 		btnSave.setForeground(Color.WHITE);
@@ -109,7 +111,7 @@ public class AddUser extends JFrame implements Observer {
 		btnSave.setBounds(223, 451, 134, 44);
 		getContentPane().add(btnSave);
 
-		JCheckBox cbReceptionist = new JCheckBox("Receptionist");
+		cbReceptionist = new JCheckBox("Receptionist");
 		cbReceptionist.setFont(new Font("Tahoma", Font.BOLD, 16));
 		cbReceptionist.setBounds(223, 378, 142, 43);
 		getContentPane().add(cbReceptionist);
@@ -151,11 +153,19 @@ public class AddUser extends JFrame implements Observer {
 				setting.setLocationRelativeTo(null);
 			}
 		});
+		// save
+		btnSave.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (controller.addAccount(txtUsername.getText(), txtPassword.getText(), cbReceptionist.isSelected())) {
+					System.out.println("tao tai khoang thanh cong");
+				} else
+					System.out.println("that bai , tai khoan da ton tai");
+			}
+		});
 
 	}
 
-	@Override
-	public void update() {
 
-	}
 }

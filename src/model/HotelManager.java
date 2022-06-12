@@ -7,8 +7,8 @@ import java.util.Set;
 public class HotelManager extends model.Observable {
 //	private ArrayList<ARoom> rooms = new ArrayList<ARoom>();
 //	private ArrayList<Account> accounts = new ArrayList<Account>();
-	private Set<ARoom> rooms = new HashSet<ARoom>();
-	private Set<Account> accounts = new HashSet<Account>();
+	private Set<ARoom> rooms = new HashSet<ARoom>(); // theo id phong
+	private Set<Account> accounts = new HashSet<Account>(); // theo ten tai khoan
 	private ArrayList<CheckIn> checkIns = new ArrayList<CheckIn>();
 	/*
 	 * thay doi kieu du lieu, bi sai ve mat logic phai thay Account, ARoom thanh set
@@ -119,6 +119,11 @@ public class HotelManager extends model.Observable {
 
 	public ArrayList<CheckIn> getCheckIns() {
 		return checkIns;
+	}
+
+	public boolean addAccount(String name, String pass, boolean selected) {
+		Account account	= FactoryAttribute.createAccount(name, pass, selected);
+		return add(account);
 	}
 
 }

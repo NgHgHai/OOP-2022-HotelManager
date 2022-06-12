@@ -14,5 +14,13 @@ public AType produceType(String type) {
 	}
 	return null;
 }
+public static Account createAccount(String name, String pass, boolean selected) {
+	Account account;
+	if (selected) {
+		account = new Admin(name, pass);
+	} else
+		account = new Customer(name, pass);
+	return account;
+}
 
 }

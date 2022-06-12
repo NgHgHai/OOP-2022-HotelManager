@@ -97,7 +97,6 @@ public class Controller {
 					manager.add(a3);
 
 	
-//				manager.notifyObs();
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -110,5 +109,10 @@ public class Controller {
 	public boolean isAccout(String name, String pass) {
 	
 		return manager.isAccount(name, pass);
+	}
+
+	public boolean addAccount(String name, String pass, boolean selected) {
+		
+		return manager.addAccount(name,pass,selected);
 	}
 }
