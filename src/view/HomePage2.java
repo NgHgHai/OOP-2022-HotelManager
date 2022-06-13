@@ -1,14 +1,12 @@
 package view;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -69,7 +67,6 @@ public class HomePage2 extends JFrame implements Observer {
 	private String nameUser = "";
 
 	// nho khai bao cac bien can thiet thanh bien toan cuc
-	JButton btnCenter = new JButton("null");
 	JButton btnGuest;
 	JButton btnRooms;
 	JButton btnLogOut;
@@ -107,11 +104,6 @@ public class HomePage2 extends JFrame implements Observer {
 		setResizable(false);
 		setVisible(true);
 
-		btnCenter.setFont(new Font("Serif", Font.BOLD, 30));
-		btnCenter.setBounds(510, 65, 200, 70);
-		btnCenter.setFocusable(false);
-		btnCenter.setBackground(new Color(135, 206, 250));
-		getContentPane().add(btnCenter);
 
 		JPanel pnlTop = new JPanel();
 		pnlTop.setLayout(null);
@@ -209,19 +201,6 @@ public class HomePage2 extends JFrame implements Observer {
 			guestTablePanel();
 		}
 
-//		if ("checkIn".equals(commandToChoosePanel)) {
-//			getContentPane().add(checkInPanel());
-//		}
-//		if ("checkOut".equals(commandToChoosePanel)) {
-//			getContentPane().add(checkOutPanel());
-//		}
-//		if ("room".equals(commandToChoosePanel)) {
-//			getContentPane().add(roomTablePanel());
-//		}
-//		if ("guest".equals(commandToChoosePanel)) {
-//			getContentPane().add(guestTablePanel());
-//		}
-
 //		------------------------------
 		// addActionListener
 		actionListener(this);
@@ -229,7 +208,6 @@ public class HomePage2 extends JFrame implements Observer {
 	}
 
 	public JPanel checkInPanel() {
-		btnCenter.setText("Check In");
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
 		getContentPane().add(panel);
@@ -401,10 +379,8 @@ public class HomePage2 extends JFrame implements Observer {
 		rdbtnEconomy.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				super.mouseClicked(e);
 				if (e.getSource().equals(rdbtnEconomy)) {
-//					System.out.println(rdbtnEconomy.getText());
 					roomType = rdbtnEconomy.getText();
 				}
 			}
@@ -416,10 +392,8 @@ public class HomePage2 extends JFrame implements Observer {
 		rdbtnNormal.setBounds(260, 30, 85, 21);
 		rdbtnNormal.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				super.mouseClicked(e);
 				if (e.getSource().equals(rdbtnNormal)) {
-//					System.out.println(rdbtnNormal.getText());
 					roomType = rdbtnNormal.getText();
 				}
 			}
@@ -431,10 +405,8 @@ public class HomePage2 extends JFrame implements Observer {
 		rdbtnVIP.setBounds(342, 30, 56, 21);
 		rdbtnVIP.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				super.mouseClicked(e);
 				if (e.getSource().equals(rdbtnVIP)) {
-//					System.out.println(rdbtnVIP.getText());
 					roomType = rdbtnVIP.getText();
 				}
 			}
@@ -457,11 +429,8 @@ public class HomePage2 extends JFrame implements Observer {
 		rdbtnSingle.setBounds(163, 70, 70, 21);
 		rdbtnSingle.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				super.mouseClicked(e);
 				if (e.getSource().equals(rdbtnSingle)) {
-//					System.out.println(rdbtnSingle.getText());
-
 					roomCapacity = rdbtnSingle.getText().equals("Single") ? 1 : 0;
 
 				}
@@ -475,11 +444,8 @@ public class HomePage2 extends JFrame implements Observer {
 		rdbtnDouble.setBounds(255, 70, 85, 21);
 		rdbtnDouble.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				super.mouseClicked(e);
 				if (e.getSource().equals(rdbtnDouble)) {
-//					System.out.println(rdbtnDouble.getText());
-//					roomCapacity = Integer.valueOf(rdbtnDouble.getText())   ;
 					roomCapacity = rdbtnDouble.getText().equals("Double") ? 2 : 0;
 
 				}
@@ -493,10 +459,8 @@ public class HomePage2 extends JFrame implements Observer {
 		rdbtnTriple.setBounds(340, 70, 70, 21);
 		rdbtnTriple.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				super.mouseClicked(e);
 				if (e.getSource().equals(rdbtnTriple)) {
-//					roomCapacity = rdbtnTriple.getText();
 					roomCapacity = rdbtnTriple.getText().equals("Triple") ? 3 : 0;
 				}
 			}
@@ -513,14 +477,11 @@ public class HomePage2 extends JFrame implements Observer {
 		lblCheckInDate.setBounds(20, 120, 159, 25);
 		pnlRoomData.add(lblCheckInDate);
 
-//		txtCheckInDate = new JTextField();
-//		txtCheckInDate.setBounds(175, 120, 200, 30);
-//		pnlRoomData.add(txtCheckInDate);
+
 		JDatePickerImpl datePicker;
 		SqlDateModel model = new SqlDateModel();
 		Properties p = new Properties();
 		model.setSelected(true);
-//		model.setDate(29, 05, 2022);
 		p.put("text.day", "Day");
 		p.put("text.month", "Month");
 		p.put("text.year", "Year");
@@ -529,13 +490,11 @@ public class HomePage2 extends JFrame implements Observer {
 
 			@Override
 			public String valueToString(Object value) throws ParseException {
-				// TODO Auto-generated method stub
 				if (value != null) {
 					Calendar ca1 = (Calendar) value;
 					SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
 					String strDate = format.format(ca1.getTime());
 					checkInDate = ca1.getTime();
-//					System.out.println(checkInDate);
 					return strDate;
 				}
 				return "Today:";
@@ -543,28 +502,25 @@ public class HomePage2 extends JFrame implements Observer {
 
 			@Override
 			public Object stringToValue(String text) throws ParseException {
-				// TODO Auto-generated method stub
 				return "";
 			}
 		});
 		datePicker.setBounds(175, 120, 200, 30);
 
 		pnlRoomData.add(datePicker);
-		pnlRoomData.setVisible(true);
+		pnlRoomData.setVisible(false);
 
 		JLabel lblCheckOutDate = new JLabel("Check out date");
 		lblCheckOutDate.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblCheckOutDate.setBounds(20, 170, 160, 25);
 		pnlRoomData.add(lblCheckOutDate);
 
-//		txtCheckOutDate = new JTextField();
-//		txtCheckOutDate.setBounds(175, 170, 200, 30);
-//		pnlRoomData.add(txtCheckOutDate);
+
 		JDatePickerImpl datePicker1;
 		SqlDateModel model1 = new SqlDateModel();
 		Properties p1 = new Properties();
 		model1.setSelected(true);
-//		model.setDate(03, 03, 2002);
+
 		p1.put("text.day", "Day");
 		p1.put("text.month", "Month");
 		p1.put("text.year", "Year");
@@ -573,21 +529,18 @@ public class HomePage2 extends JFrame implements Observer {
 
 			@Override
 			public String valueToString(Object value) throws ParseException {
-				// TODO Auto-generated method stub
+
 				if (value != null) {
 					Calendar ca2 = (Calendar) value;
 					SimpleDateFormat format1 = new SimpleDateFormat("dd-MMM-yyyy");
 					String strDate1 = format1.format(ca2.getTime());
 					checkOutDate = ca2.getTime();
-//					System.out.println(checkOutDate);
 					return strDate1;
 				}
 				return "";
 			}
-
 			@Override
 			public Object stringToValue(String text) throws ParseException {
-				// TODO Auto-generated method stub
 				return "";
 			}
 		});
@@ -613,18 +566,16 @@ public class HomePage2 extends JFrame implements Observer {
 		pnlRoomData.add(btnSearch);
 
 		// submit
-//		btnSubmit = new JButton("Submit");
 		btnSubmit.setBackground(State.green_button);
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnSubmit.setFocusable(false);
 		btnSubmit.setBounds(820, 504, 100, 35);
 		panel.add(btnSubmit);
-
+		panle.setVisible(true);
 		return panel;
 	}
 
 	public JPanel checkOutPanel() {
-		btnCenter.setText("CheckOut");
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
 		getContentPane().add(panel);
@@ -644,7 +595,6 @@ public class HomePage2 extends JFrame implements Observer {
 		txtRoomNumber.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				super.mouseClicked(e);
 				if (e.getSource() == txtRoomNumber) {
 					txtRoomNumber.setText("");
@@ -663,7 +613,6 @@ public class HomePage2 extends JFrame implements Observer {
 		btnClear.setFocusable(false);
 		pnlCheckOut.add(btnClear);
 
-//		btnCheckout = new JButton("Check out");
 		btnCheckOut_command.setBackground(State.red_button);
 		btnCheckOut_command.setFont(new Font("Serif", Font.PLAIN, 20));
 		btnCheckOut_command.setBounds(315, 170, 120, 35);
@@ -678,7 +627,6 @@ public class HomePage2 extends JFrame implements Observer {
 	}
 
 	public JPanel guestTablePanel() {
-		btnCenter.setText("Guest");
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(215, 100, 960, 550);
@@ -727,7 +675,6 @@ public class HomePage2 extends JFrame implements Observer {
 	}
 
 	public JPanel roomTablePanel() {
-		btnCenter.setText("Room");
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
 		getContentPane().add(panel);
@@ -764,7 +711,6 @@ public class HomePage2 extends JFrame implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				controller.search(roomType, roomCapacity);
 			}
 		});
@@ -817,11 +763,9 @@ public class HomePage2 extends JFrame implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				JFrame confirmtationFrame = new Confirmtation(hotelObs, controller, homePage2);
 				confirmtationFrame.setVisible(true);
 				confirmtationFrame.setLocationRelativeTo(null);
-//				confirmtationFrame.setLocation(0, 0);
 			}
 		});
 
