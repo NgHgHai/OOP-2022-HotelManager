@@ -68,7 +68,7 @@ public class HotelManager extends model.Observable {
 
 	// checkIn
 	public void add(CheckIn checkIn) {
-		checkIn.room.available = false;
+		checkIn.getRoom().available = false;
 		checkIns.add(checkIn);
 		notifyObs();
 	}

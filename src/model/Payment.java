@@ -1,8 +1,8 @@
 package model;
 
 public class Payment {
-	String CVC_Code;
-	String cardNumber;
+	private String CVC_Code;
+	private String cardNumber;
 
 	public Payment(String cVC_Code, String cardNumber) {
 		super();
@@ -17,5 +17,14 @@ public class Payment {
 	public String getCardNumber() {
 		return cardNumber;
 	}
+
+	public void setCVC_Code(String cVC_Code) {
+		CVC_Code = cVC_Code;
+	}
+
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+	
 
 }

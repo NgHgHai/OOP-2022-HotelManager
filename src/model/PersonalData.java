@@ -1,13 +1,13 @@
 package model;
 
 public class PersonalData {
-	String name;
-	String phone;
-	String email;
-	String address;
-	String city;
-	String nationality;
-	String passportNo;
+	private String name;
+	private String phone;
+	private String email;
+	private String address;
+	private String city;
+	private String nationality;
+	private String passportNo;
 
 	public PersonalData(String name, String phone, String email, String address, String city, String nationality,
 			String passportNo) {
@@ -52,5 +52,30 @@ public class PersonalData {
 	public String getPassportNo() {
 		return passportNo;
 	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+
+	public void setPassportNo(String passportNo) {
+		this.passportNo = passportNo;
+	}
+	
 
 }

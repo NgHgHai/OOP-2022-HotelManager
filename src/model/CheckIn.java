@@ -4,12 +4,12 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public class CheckIn {
-	PersonalData personalData;
-	Payment payment;
-	ARoom room;
-	boolean pay = false;
-	Date checkInDate;
-	Date checkOutDate;
+	private PersonalData personalData;
+	private Payment payment;
+	private ARoom room;
+	private boolean pay = false;
+	private Date checkInDate;
+	private Date checkOutDate;
 
 	public CheckIn(PersonalData personalData, Payment payment, ARoom room, boolean pay, Date checkInDate,
 			Date checkOutDate) {
@@ -54,6 +54,31 @@ public class CheckIn {
 	public Date getCheckOutDate() {
 		return checkOutDate;
 	}
+
+	public void setPersonalData(PersonalData personalData) {
+		this.personalData = personalData;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+
+	public void setRoom(ARoom room) {
+		this.room = room;
+	}
+
+	public void setPay(boolean pay) {
+		this.pay = pay;
+	}
+
+	public void setCheckInDate(Date checkInDate) {
+		this.checkInDate = checkInDate;
+	}
+
+	public void setCheckOutDate(Date checkOutDate) {
+		this.checkOutDate = checkOutDate;
+	}
+	
 
 
 }
