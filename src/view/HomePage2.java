@@ -69,7 +69,6 @@ public class HomePage2 extends JFrame implements Observer {
 	private String nameUser = "" ;
 
 	// nho khai bao cac bien can thiet thanh bien toan cuc
-	JButton btnCenter;
 	JButton btnGuest;
 	JButton btnRooms;
 	JButton btnLogOut;
@@ -108,12 +107,7 @@ public class HomePage2 extends JFrame implements Observer {
 		setResizable(false);
 		setVisible(true);
 
-		btnCenter = new JButton("null");
-		btnCenter.setFont(new Font("Serif", Font.BOLD, 30));
-		btnCenter.setBounds(510, 65, 200, 70);
-		btnCenter.setFocusable(false);
-		btnCenter.setBackground(new Color(135, 206, 250));
-		getContentPane().add(btnCenter);
+
 
 		JPanel pnlTop = new JPanel();
 		pnlTop.setLayout(null);
@@ -223,7 +217,6 @@ public class HomePage2 extends JFrame implements Observer {
 	}
 
 	public JPanel checkInPanel() {
-		btnCenter.setText("Check In");
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
 		getContentPane().add(panel);
@@ -617,7 +610,6 @@ public class HomePage2 extends JFrame implements Observer {
 	}
 
 	public JPanel checkOutPanel() {
-		btnCenter.setText("Check Out");
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
 		getContentPane().add(panel);
@@ -671,7 +663,6 @@ public class HomePage2 extends JFrame implements Observer {
 	}
 
 	public JPanel guestTablePanel() {
-		btnCenter.setText("Guest");
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(215, 100, 960, 550);
@@ -720,7 +711,6 @@ public class HomePage2 extends JFrame implements Observer {
 	}
 
 	public JPanel roomTablePanel() {
-		btnCenter.setText("Room");
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
 		getContentPane().add(panel);
