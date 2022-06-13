@@ -60,43 +60,43 @@ public class HomePage2 extends JFrame implements Observer {
 	JDatePanelImpl panelDate1;
 
 	JPanel panel;
+	private int roomCapacity;
 
 	private JLabel lblCity;
 	private Date checkInDate;
 	private Date checkOutDate;
 	private String roomType;
-	private String roomCapacity;
-	private String nameUser = "" ;
+	private String nameUser = "";
 
 	// nho khai bao cac bien can thiet thanh bien toan cuc
+	JButton btnCenter = new JButton("null");
 	JButton btnGuest;
 	JButton btnRooms;
 	JButton btnLogOut;
 	JButton btnCheckOut;
+	JButton btnSearch = new JButton("Search");
 	JButton btnSubmit = new JButton("Submit");
 	JButton btnCheckOut_command = new JButton("Check out");
 	JButton btnCheckIn;// ?
-	
-	String currentPanel ="";  // 1= checkInPanel , 2 =CheckOutPanel,  3= guestTablePanel, 4= roomTablePanel
-	private	String commandToChoosePanel;
+
+	String currentPanel = ""; // 1= checkInPanel , 2 =CheckOutPanel, 3= guestTablePanel, 4= roomTablePanel
+	private String commandToChoosePanel;
 
 	public HomePage2(String commandToChoosePanel, Observable hotelObs, Controller controller, HomePage homePage) {
 		this.hotelObs = hotelObs;
 		this.controller = controller;
 		hotelObs.addObs(this);
 		this.homePage = homePage;
-		this.commandToChoosePanel =commandToChoosePanel;
+		this.commandToChoosePanel = commandToChoosePanel;
 		update();
 		init();
 	}
-	
 
 	public void setCommandToChoosePanel(String s) {
 		remove(panel);
 		this.commandToChoosePanel = s;
 		init();
 	}
-
 
 	private void init() {
 		getContentPane().setBackground(State.background);
@@ -107,7 +107,11 @@ public class HomePage2 extends JFrame implements Observer {
 		setResizable(false);
 		setVisible(true);
 
-
+		btnCenter.setFont(new Font("Serif", Font.BOLD, 30));
+		btnCenter.setBounds(510, 65, 200, 70);
+		btnCenter.setFocusable(false);
+		btnCenter.setBackground(new Color(135, 206, 250));
+		getContentPane().add(btnCenter);
 
 		JPanel pnlTop = new JPanel();
 		pnlTop.setLayout(null);
@@ -164,7 +168,6 @@ public class HomePage2 extends JFrame implements Observer {
 		btnCheckIn.setFont(new Font("Serif", Font.PLAIN, 30));
 		btnCheckIn.setFocusable(false);
 
-
 		btnCheckOut = new JButton("Check Out");
 		btnCheckOut.setBackground(new Color(176, 224, 230));
 		btnCheckOut.setBounds(10, 178, 180, 71);
@@ -172,13 +175,11 @@ public class HomePage2 extends JFrame implements Observer {
 		btnCheckOut.setFont(new Font("Serif", Font.PLAIN, 30));
 		btnCheckOut.setFocusable(false);
 
-
 		btnRooms = new JButton("Rooms");
 		btnRooms.setBounds(10, 298, 180, 76);
 		btnRooms.setBackground(new Color(175, 238, 238));
 		btnRooms.setFont(new Font("Serif", Font.PLAIN, 30));
 		btnRooms.setFocusable(false);
-
 
 		btnGuest = new JButton("Guest");
 		btnGuest.setBounds(10, 418, 180, 76);
@@ -195,20 +196,31 @@ public class HomePage2 extends JFrame implements Observer {
 		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this, homePage));
 		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this, homePage));
 
-
-
 		if ("checkIn".equals(commandToChoosePanel)) {
-		getContentPane().add(checkInPanel())	;
+			checkInPanel();
 		}
 		if ("checkOut".equals(commandToChoosePanel)) {
-			getContentPane().add(checkOutPanel());
+			checkOutPanel();
 		}
 		if ("room".equals(commandToChoosePanel)) {
-			getContentPane().add(roomTablePanel());
+			roomTablePanel();
 		}
 		if ("guest".equals(commandToChoosePanel)) {
-			getContentPane().add(guestTablePanel());
+			guestTablePanel();
 		}
+
+//		if ("checkIn".equals(commandToChoosePanel)) {
+//			getContentPane().add(checkInPanel());
+//		}
+//		if ("checkOut".equals(commandToChoosePanel)) {
+//			getContentPane().add(checkOutPanel());
+//		}
+//		if ("room".equals(commandToChoosePanel)) {
+//			getContentPane().add(roomTablePanel());
+//		}
+//		if ("guest".equals(commandToChoosePanel)) {
+//			getContentPane().add(guestTablePanel());
+//		}
 
 //		------------------------------
 		// addActionListener
@@ -217,6 +229,7 @@ public class HomePage2 extends JFrame implements Observer {
 	}
 
 	public JPanel checkInPanel() {
+		btnCenter.setText("Check In");
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
 		getContentPane().add(panel);
@@ -448,7 +461,9 @@ public class HomePage2 extends JFrame implements Observer {
 				super.mouseClicked(e);
 				if (e.getSource().equals(rdbtnSingle)) {
 //					System.out.println(rdbtnSingle.getText());
-					roomCapacity = rdbtnSingle.getText();
+
+					roomCapacity = rdbtnSingle.getText().equals("Single") ? 1 : 0;
+
 				}
 			}
 		});
@@ -464,7 +479,9 @@ public class HomePage2 extends JFrame implements Observer {
 				super.mouseClicked(e);
 				if (e.getSource().equals(rdbtnDouble)) {
 //					System.out.println(rdbtnDouble.getText());
-					roomCapacity = rdbtnDouble.getText();
+//					roomCapacity = Integer.valueOf(rdbtnDouble.getText())   ;
+					roomCapacity = rdbtnDouble.getText().equals("Double") ? 2 : 0;
+
 				}
 			}
 		});
@@ -479,8 +496,8 @@ public class HomePage2 extends JFrame implements Observer {
 				// TODO Auto-generated method stub
 				super.mouseClicked(e);
 				if (e.getSource().equals(rdbtnTriple)) {
-//					System.out.println(rdbtnTriple.getText());
-					roomCapacity = rdbtnTriple.getText();
+//					roomCapacity = rdbtnTriple.getText();
+					roomCapacity = rdbtnTriple.getText().equals("Triple") ? 3 : 0;
 				}
 			}
 		});
@@ -507,9 +524,8 @@ public class HomePage2 extends JFrame implements Observer {
 		p.put("text.day", "Day");
 		p.put("text.month", "Month");
 		p.put("text.year", "Year");
-		// =======================================================================
-		panelDate = new JDatePanelImpl(model, p);
-		datePicker = new JDatePickerImpl(panelDate, new AbstractFormatter() {
+		JDatePanelImpl panle = new JDatePanelImpl(model, p);
+		datePicker = new JDatePickerImpl(panle, new AbstractFormatter() {
 
 			@Override
 			public String valueToString(Object value) throws ParseException {
@@ -552,9 +568,8 @@ public class HomePage2 extends JFrame implements Observer {
 		p1.put("text.day", "Day");
 		p1.put("text.month", "Month");
 		p1.put("text.year", "Year");
-		// =======================================================================
-		panelDate1 = new JDatePanelImpl(model1, p1);
-		datePicker1 = new JDatePickerImpl(panelDate1, new AbstractFormatter() {
+		JDatePanelImpl panle1 = new JDatePanelImpl(model1, p1);
+		datePicker1 = new JDatePickerImpl(panle1, new AbstractFormatter() {
 
 			@Override
 			public String valueToString(Object value) throws ParseException {
@@ -591,7 +606,6 @@ public class HomePage2 extends JFrame implements Observer {
 		txtRoomID.setBounds(112, 220, 100, 30);
 		pnlRoomData.add(txtRoomID);
 
-		JButton btnSearch = new JButton("Search");
 		btnSearch.setBackground(State.blue_button);
 		btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnSearch.setFocusable(false);
@@ -610,6 +624,7 @@ public class HomePage2 extends JFrame implements Observer {
 	}
 
 	public JPanel checkOutPanel() {
+		btnCenter.setText("CheckOut");
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
 		getContentPane().add(panel);
@@ -663,6 +678,7 @@ public class HomePage2 extends JFrame implements Observer {
 	}
 
 	public JPanel guestTablePanel() {
+		btnCenter.setText("Guest");
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(215, 100, 960, 550);
@@ -711,6 +727,7 @@ public class HomePage2 extends JFrame implements Observer {
 	}
 
 	public JPanel roomTablePanel() {
+		btnCenter.setText("Room");
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
 		getContentPane().add(panel);
@@ -742,6 +759,15 @@ public class HomePage2 extends JFrame implements Observer {
 	}
 
 	private void actionListener(HomePage2 homePage2) {
+
+		btnSearch.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				controller.search(roomType, roomCapacity);
+			}
+		});
 		// addActionListener
 		btnLogOut.addActionListener(new ActionListener() {
 			@Override
@@ -755,13 +781,23 @@ public class HomePage2 extends JFrame implements Observer {
 				loginFrame.setLocationRelativeTo(null);
 			}
 		});
-		//	submit
+		// submit
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource().equals(btnSubmit)) {
 					int output = JOptionPane.showConfirmDialog(null, "luu lai thong tin ? ", "HomePage2",
 							JOptionPane.YES_NO_OPTION);
 					if (output == JOptionPane.YES_OPTION) {
+						controller.saveCheckIn(txtName.getText(), txtPhone.getText(), txtEmail.getText(),
+								txtAddress.getText(), txtCity.getText(), txtNationality.getText(),
+								txtPassportNo.getText(), txtCardNumber.getText(), txtCVCCode.getText(),
+
+								roomType, roomCapacity, checkInDate, checkOutDate,
+
+								txtRoomID.getText()
+
+						);
+
 						setVisible(false);
 						homePage.setVisible(true);
 						homePage.setLocationRelativeTo(null);
@@ -792,55 +828,54 @@ public class HomePage2 extends JFrame implements Observer {
 		btnCheckIn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!currentPanel.equals("1")) {				
+				if (!currentPanel.equals("1")) {
 					remove(panel); // xoa panel cu
-					getContentPane().add(checkInPanel());
+					checkInPanel();
 					repaint();// ve lai
-					currentPanel ="1";
+					currentPanel = "1";
 				}
-				
+
 			}
 		});
 		btnCheckOut.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!currentPanel.equals("2")) {	
-				remove(panel); // xoa panel cu
-				getContentPane().add(checkOutPanel());
-				repaint();// ve lai
-				currentPanel = "2";
+				if (!currentPanel.equals("2")) {
+					remove(panel); // xoa panel cu
+					checkOutPanel();
+					repaint();// ve lai
+					currentPanel = "2";
 				}
 			}
 		});
-		btnGuest.addActionListener(new  ActionListener() {
-			
+		btnGuest.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!currentPanel.equals("3")) {	
-				remove(panel); // xoa panel cu	
-				getContentPane().add(guestTablePanel());
-				repaint();// ve lai
-				currentPanel = "3";
+				if (!currentPanel.equals("3")) {
+					remove(panel); // xoa panel cu
+					guestTablePanel();
+					repaint();// ve lai
+					currentPanel = "3";
 				}
 			}
 		});
 		btnRooms.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!currentPanel.equals("4")) {	
-				remove(panel); // xoa panel cu
-				getContentPane().add(roomTablePanel());
-				repaint();// ve lai
-				currentPanel = "4";
+				if (!currentPanel.equals("4")) {
+					remove(panel); // xoa panel cu
+					roomTablePanel();
+					repaint();// ve lai
+					currentPanel = "4";
 				}
 			}
 		});
 	}
 
 	// ======
-
 
 	@Override
 	public void update() {

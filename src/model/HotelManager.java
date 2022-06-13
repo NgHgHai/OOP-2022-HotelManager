@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,7 +10,7 @@ public class HotelManager extends model.Observable {
 //	private ArrayList<Account> accounts = new ArrayList<Account>();
 	private Set<ARoom> rooms = new HashSet<ARoom>(); // theo id phong
 	private Set<Account> accounts = new HashSet<Account>(); // theo ten tai khoan
-	private ArrayList<CheckIn> checkIns = new ArrayList<CheckIn>();
+	private ArrayList<CheckIn> checkInList = new ArrayList<CheckIn>();
 	/*
 	 * thay doi kieu du lieu, bi sai ve mat logic phai thay Account, ARoom thanh set
 	 * 
@@ -67,10 +68,11 @@ public class HotelManager extends model.Observable {
 	}
 
 	// checkIn
-	public void add(CheckIn checkIn) {
+	public boolean add(CheckIn checkIn) {
 		checkIn.getRoom().available = false;
-		checkIns.add(checkIn);
+		boolean success = checkInList.add(checkIn);
 		notifyObs();
+		return success;
 	}
 
 	// checkOut
@@ -118,12 +120,53 @@ public class HotelManager extends model.Observable {
 	}
 
 	public ArrayList<CheckIn> getCheckIns() {
-		return checkIns;
+		return checkInList;
 	}
 
 	public boolean addAccount(String name, String pass, boolean selected) {
-		Account account	= FactoryAttribute.createAccount(name, pass, selected);
+		Account account = FactoryAttribute.createAccount(name, pass, selected);
 		return add(account);
+	}
+
+	public String searchModel(String roomType, int roomCapacity) {
+		// TODO Auto-generated method stub
+		String roomID = "";
+		for (ARoom room : rooms) {
+			Room concretaRoom = (Room) room;
+			if (roomType.equals(concretaRoom.getType().getName()) && (roomCapacity == concretaRoom.getCapacity())
+					&& (concretaRoom.isAvailable())) {
+				roomID = concretaRoom.id;
+			} else {
+				roomID = "No room";
+			}
+		}
+		return roomID;
+	}
+
+	public ARoom getRoom(String idRoom) {
+		for (ARoom room : rooms) {
+			if (idRoom.equals(room.getId())) {
+				return room;
+			}
+		}
+		return null;
+
+	}
+
+	public boolean saveCheckInModel(String name, String phone, String email, String address, String city,
+			String nationality, String passsport, String cardNumber, String codeCVC, String roomType, int roomCapacity,
+			Date checkInDate, Date checkOutDate, String roomID) {
+		if (getRoom(roomID) == null || getRoom(roomID).available) {
+			return false;
+		}
+		if(checkInDate==null || checkOutDate==null) {
+			return false;
+		}
+		PersonalData data = new PersonalData(name, phone, email, address, city, nationality, passsport);
+		Payment payment = new Payment(roomID, cardNumber);
+		CheckIn checkIn = new CheckIn(data, payment, getRoom(roomID), false, checkInDate, checkOutDate);
+		return add(checkIn);
+
 	}
 
 }
