@@ -22,6 +22,7 @@ public class HotelManager extends model.Observable {
 	 */
 	private Account user;
 	FactoryAttribute attribute = new FactoryAttribute();
+	private int createID = 1000;
 
 	public HotelManager() {
 
@@ -128,37 +129,66 @@ public class HotelManager extends model.Observable {
 		return add(account);
 	}
 
+	public boolean removeAccount(String name) {
+		for (Account account : accounts) {
+			if (name.equals(account.getName())) {
+				return remove(account);
+			}
+		}
+		return false;
+	}
+
+	public boolean addRoom(String id, String name, String roomState, double cost, boolean available, String type,
+			int capacity) {
+		if (name.equals("")) {
+			return false;
+		}
+		if (type == null) {
+			return false;
+		}
+		if (capacity == 0) {
+			return false;
+		}
+		if (id.equals("")) {
+			id = createID++ + "";
+		}
+		ARoom aroom = attribute.addRoom(id, name, roomState, cost, available, type, capacity);
+		return add(aroom);
+	}
+
+	public boolean removeRoom(String id) {
+		for (ARoom room : rooms) {
+			if (id.equals(room.getId())) {
+				return remove(room);
+			}
+		}
+		return false;
+	}
+
 	public String searchModel(String roomType, int roomCapacity) {
 		// TODO Auto-generated method stub
 		String roomID = "";
-		System.out.println(roomType +" "+ roomCapacity);
+		System.out.println(roomType + " " + roomCapacity);
 		for (ARoom room : rooms) {
 			Room concretaRoom = (Room) room;
 
-			if (
-					concretaRoom.getType().getName().equals(roomType)
-					&& (roomCapacity == concretaRoom.getCapacity())
-					&& (concretaRoom.isAvailable())
-					) {
+			if (concretaRoom.getType().getName().equals(roomType) && (roomCapacity == concretaRoom.getCapacity())
+					&& (concretaRoom.isAvailable())) {
 //				System.out.println("cooooo");
-			return	roomID = concretaRoom.id;
+				return roomID = concretaRoom.id;
 			} else {
 				roomID = "No room";
 			}
 		}
 		return roomID;
 	}
-	public  ArrayList<Room> searchListRoomModel(String roomType, int roomCapacity ) {
+
+	public ArrayList<Room> searchListRoomModel(String roomType, int roomCapacity) {
 		ArrayList<Room> result = new ArrayList<Room>();
-		
-		String roomID = "";
 		for (ARoom room : rooms) {
 			Room concretaRoom = (Room) room;
-			if (
-					concretaRoom.getType().getName().equals(roomType)
-					&& (roomCapacity == concretaRoom.getCapacity())
+			if (concretaRoom.getType().getName().equals(roomType) && (roomCapacity == concretaRoom.getCapacity())
 					&& (concretaRoom.isAvailable())) {
-				
 				result.add(concretaRoom);
 			}
 		}
@@ -181,11 +211,11 @@ public class HotelManager extends model.Observable {
 		if (getRoom(roomID) == null || !getRoom(roomID).isAvailable()) {
 			return false;
 		}
-		if(checkInDate==null || checkOutDate==null) {
+		if (checkInDate == null || checkOutDate == null) {
 			System.out.println("date");
 			return false;
 		}
-		
+
 		PersonalData data = new PersonalData(name, phone, email, address, city, nationality, passsport);
 		Payment payment = new Payment(cardNumber, codeCVC);
 		CheckIn checkIn = new CheckIn(data, payment, getRoom(roomID), false, checkInDate, checkOutDate);
