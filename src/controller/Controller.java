@@ -1,20 +1,8 @@
 package controller;
 
-import java.awt.EventQueue;
 import java.util.Date;
 
-import model.ARoom;
-import model.Account;
-import model.Admin;
-import model.CheckIn;
-import model.Customer;
-import model.Economy;
 import model.HotelManager;
-import model.Normal;
-import model.Payment;
-import model.PersonalData;
-import model.Room;
-import model.VIP;
 import view.Login;
 
 public class Controller {

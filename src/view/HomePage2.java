@@ -9,6 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
@@ -33,14 +34,17 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.SqlDateModel;
 
 import controller.Controller;
+import model.ARoom;
+import model.CheckIn;
 import model.HotelManager;
 import model.Observable;
 import model.Observer;
+import model.Room;
 
 public class HomePage2 extends JFrame implements Observer {
 	HomePage homePage;
-	private Observable hotelObs;// model
-	private Controller controller;
+	Observable hotelObs;// model
+	Controller controller;
 
 	private JTable tableGuest, tableRooms;
 	private JTextField txtCardNumber;
@@ -54,6 +58,7 @@ public class HomePage2 extends JFrame implements Observer {
 	private JTextField txtNationality;
 	private JTextField txtRoomID;
 	private JTextField txtRoomNumber;
+
 	JDatePanelImpl panelDate;
 	JDatePanelImpl panelDate1;
 
@@ -79,6 +84,9 @@ public class HomePage2 extends JFrame implements Observer {
 	String currentPanel = ""; // 1= checkInPanel , 2 =CheckOutPanel, 3= guestTablePanel, 4= roomTablePanel
 	private String commandToChoosePanel;
 
+	ArrayList<CheckIn> listCheckIn = new ArrayList<>();
+	ArrayList<ARoom> listRoom = new ArrayList<>();
+
 	public HomePage2(String commandToChoosePanel, Observable hotelObs, Controller controller, HomePage homePage) {
 		this.hotelObs = hotelObs;
 		this.controller = controller;
@@ -87,6 +95,8 @@ public class HomePage2 extends JFrame implements Observer {
 		this.commandToChoosePanel = commandToChoosePanel;
 		update();
 		init();
+		// addActionListener
+		actionListener(this);
 	}
 
 	public void setCommandToChoosePanel(String s) {
@@ -97,13 +107,11 @@ public class HomePage2 extends JFrame implements Observer {
 
 	private void init() {
 		getContentPane().setBackground(State.background);
-
 		setBounds(100, 100, 1200, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setResizable(false);
 		setVisible(true);
-
 
 		JPanel pnlTop = new JPanel();
 		pnlTop.setLayout(null);
@@ -189,25 +197,23 @@ public class HomePage2 extends JFrame implements Observer {
 		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this, homePage));
 
 		if ("checkIn".equals(commandToChoosePanel)) {
-			checkInPanel();
+			createCheckInPanel();
 		}
 		if ("checkOut".equals(commandToChoosePanel)) {
-			checkOutPanel();
+			createCheckOutPanel();
 		}
 		if ("room".equals(commandToChoosePanel)) {
-			roomTablePanel();
+			createRoomTablePanel();
 		}
 		if ("guest".equals(commandToChoosePanel)) {
-			guestTablePanel();
+			createGuestTablePanel();
 		}
 
 //		------------------------------
-		// addActionListener
-		actionListener(this);
 
 	}
 
-	public JPanel checkInPanel() {
+	public JPanel createCheckInPanel() {
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
 		getContentPane().add(panel);
@@ -477,7 +483,6 @@ public class HomePage2 extends JFrame implements Observer {
 		lblCheckInDate.setBounds(20, 120, 159, 25);
 		pnlRoomData.add(lblCheckInDate);
 
-
 		JDatePickerImpl datePicker;
 		SqlDateModel model = new SqlDateModel();
 		Properties p = new Properties();
@@ -515,7 +520,6 @@ public class HomePage2 extends JFrame implements Observer {
 		lblCheckOutDate.setBounds(20, 170, 160, 25);
 		pnlRoomData.add(lblCheckOutDate);
 
-
 		JDatePickerImpl datePicker1;
 		SqlDateModel model1 = new SqlDateModel();
 		Properties p1 = new Properties();
@@ -539,6 +543,7 @@ public class HomePage2 extends JFrame implements Observer {
 				}
 				return "";
 			}
+
 			@Override
 			public Object stringToValue(String text) throws ParseException {
 				return "";
@@ -575,7 +580,7 @@ public class HomePage2 extends JFrame implements Observer {
 		return panel;
 	}
 
-	public JPanel checkOutPanel() {
+	public JPanel createCheckOutPanel() {
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
 		getContentPane().add(panel);
@@ -626,81 +631,81 @@ public class HomePage2 extends JFrame implements Observer {
 		return panel;
 	}
 
-	public JPanel guestTablePanel() {
+	public JPanel createGuestTablePanel() {
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(215, 100, 960, 550);
 		getContentPane().add(panel);
+
+		String[][] viewGuestList = new String[listCheckIn.size() + 1][10];
+		viewGuestList[0][0] = "RoomID";
+		viewGuestList[0][1] = "Name";
+		viewGuestList[0][2] = "Email";
+		viewGuestList[0][3] = "Address";
+		viewGuestList[0][4] = "City";
+		viewGuestList[0][5] = "Nationlity";
+		viewGuestList[0][6] = "Passport";
+		viewGuestList[0][7] = "Phone";
+		viewGuestList[0][8] = "Days";
+		viewGuestList[0][9] = "Fees";
+		for (int i = 0; i < listCheckIn.size(); i++) {
+			viewGuestList[i + 1][0] = listCheckIn.get(i).getRoom().getId();
+			viewGuestList[i + 1][1] = listCheckIn.get(i).getPersonalData().getName();
+			viewGuestList[i + 1][2] = listCheckIn.get(i).getPersonalData().getEmail();
+			viewGuestList[i + 1][3] = listCheckIn.get(i).getPersonalData().getAddress();
+			viewGuestList[i + 1][4] = listCheckIn.get(i).getPersonalData().getCity();
+			viewGuestList[i + 1][5] = listCheckIn.get(i).getPersonalData().getNationality();
+			viewGuestList[i + 1][6] = listCheckIn.get(i).getPersonalData().getPassportNo();
+			viewGuestList[i + 1][7] = listCheckIn.get(i).getPersonalData().getPhone();
+			viewGuestList[i + 1][8] = "Days";
+			viewGuestList[i + 1][9] = "Fees";
+		}
 
 		tableGuest = new JTable();
 		tableGuest.setFont(new Font("Time New Roman", Font.BOLD, 11));
 		tableGuest.setLocation(5, 55);
 		tableGuest.setSize(950, 490);
 		panel.add(tableGuest);
-		tableGuest.setModel(new DefaultTableModel(
-				new Object[][] {
-						{ "RoomID", "Name", "Email", "Address", "City", "Nationlity", "Passport", "Phone", "Days",
-								"Fees" },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null }, },
-				new String[] { "RoomID", "Name", "Email", "New column", "New column", "New column", "Passport", "Phone",
-						"Days", "Fees" }));
+		tableGuest.setModel(new DefaultTableModel(viewGuestList, new String[] { "RoomID", "Name", "Email", "New column",
+				"New column", "New column", "Passport", "Phone", "Days", "Fees" }));
 
 		return panel;
 	}
 
-	public JPanel roomTablePanel() {
+	public JPanel createRoomTablePanel() {
 		panel = new JPanel();
 		panel.setBounds(215, 100, 960, 550);
 		getContentPane().add(panel);
 		panel.setLayout(null);
+//================================================
+
+		String[][] viewRoomList = new String[listRoom.size() + 1][7];
+		viewRoomList[0][0] = "Num";
+		viewRoomList[0][1] = "RoomID";
+		viewRoomList[0][2] = "Room Type";
+		viewRoomList[0][3] = "Room Capacity";
+		viewRoomList[0][4] = "Name";
+		viewRoomList[0][5] = "State";
+		viewRoomList[0][6] = "is Available?";
+		System.out.println(listRoom.size());
+		for (int i = 0; i < listRoom.size(); i++) {
+			Room room = (Room) listRoom.get(i);
+			viewRoomList[i + 1][0] = i + 1 + "";
+			viewRoomList[i + 1][1] = room.getId();
+			viewRoomList[i + 1][2] = room.getType().getName();
+			viewRoomList[i + 1][3] = room.getCapacity() + "";
+			viewRoomList[i + 1][4] = room.getName();
+			viewRoomList[i + 1][5] = room.getRoomState();
+			viewRoomList[i + 1][6] = room.isAvailable() + "";
+
+		}
 
 		tableRooms = new JTable();
 		tableRooms.setFont(new Font("Time New Roman", Font.BOLD, 11));
 		tableRooms.setBounds(5, 50, 950, 490);
 		panel.add(tableRooms);
-		tableRooms.setModel(new DefaultTableModel(
-				new Object[][] { { "ID", "RoomType", "Room Capacity", "Name", "State", "is Available?" },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, },
-				new String[] { "RoomID", "Name", "Email", "New column", "New column", "New column" }));
+		tableRooms.setModel(new DefaultTableModel(viewRoomList,
+				new String[] { "RoomID", "Room Type", "Room Capacity", "Name", "State", "is Available?" }));
 
 		return panel;
 	}
@@ -774,7 +779,7 @@ public class HomePage2 extends JFrame implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				if (!currentPanel.equals("1")) {
 					remove(panel); // xoa panel cu
-					checkInPanel();
+					createCheckInPanel();
 					repaint();// ve lai
 					currentPanel = "1";
 				}
@@ -787,7 +792,7 @@ public class HomePage2 extends JFrame implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				if (!currentPanel.equals("2")) {
 					remove(panel); // xoa panel cu
-					checkOutPanel();
+					createCheckOutPanel();
 					repaint();// ve lai
 					currentPanel = "2";
 				}
@@ -799,7 +804,7 @@ public class HomePage2 extends JFrame implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				if (!currentPanel.equals("3")) {
 					remove(panel); // xoa panel cu
-					guestTablePanel();
+					createGuestTablePanel();
 					repaint();// ve lai
 					currentPanel = "3";
 				}
@@ -811,7 +816,7 @@ public class HomePage2 extends JFrame implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				if (!currentPanel.equals("4")) {
 					remove(panel); // xoa panel cu
-					roomTablePanel();
+					createRoomTablePanel(); 
 					repaint();// ve lai
 					currentPanel = "4";
 				}
@@ -826,6 +831,8 @@ public class HomePage2 extends JFrame implements Observer {
 		// viet update tai day
 		HotelManager manager = (HotelManager) hotelObs;
 		this.nameUser = manager.getNameUser();
-
+		this.listCheckIn = manager.getCheckIns();
+		this.listRoom.removeAll(listRoom);
+		this.listRoom.addAll(manager.getRooms());
 	}
 }

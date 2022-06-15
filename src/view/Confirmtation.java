@@ -85,7 +85,7 @@ public class Confirmtation extends JFrame implements Observer  {
 		setResizable(false);
 //		setUndecorated(true);
 		setBounds(500, 10, 745, 635);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel_main = new JPanel();
 		getContentPane().add(panel_main, BorderLayout.CENTER);
