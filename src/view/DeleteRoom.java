@@ -42,12 +42,17 @@ public class DeleteRoom extends JFrame {
 				if (e.getSource().equals(btnDeleteRoom)) {
 					try {
 						// ====
-
-						int a = Integer.parseInt(txtID.getText().toString());
-						JOptionPane.showMessageDialog(null, "kieu String");
+						int a = Integer.parseInt(txtID.getText());
+						String id = txtID.getText();
+						if(controller.removeRoom(id)) {
+							JOptionPane.showMessageDialog(null, "remove");
+						}else {
+							JOptionPane.showMessageDialog(null, "Room does not exist!");
+						}
+					
 
 					} catch (Exception e2) {
-						String t = txtID.getText();
+						JOptionPane.showMessageDialog(null, "kieu String");
 					}
 				}
 			}

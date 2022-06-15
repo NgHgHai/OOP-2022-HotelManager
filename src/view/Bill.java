@@ -22,7 +22,7 @@ import model.Observer;
 import java.awt.Font;
 import java.awt.SystemColor;
 
-public class Confirmtation extends JFrame implements Observer  {
+public class Bill extends JFrame implements Observer  {
 	HomePage2 homePage2;
 	private Observable hotelObs;
 	private Controller controller;
@@ -46,7 +46,7 @@ public class Confirmtation extends JFrame implements Observer  {
 	
 
 
-	public Confirmtation(Observable hotelObs, Controller controller, HomePage2 homePage2) {
+	public Bill(Observable hotelObs, Controller controller, HomePage2 homePage2) {
 		this.hotelObs = hotelObs;
 		this.controller = controller;
 		this.homePage2 = homePage2;
@@ -160,7 +160,7 @@ public class Confirmtation extends JFrame implements Observer  {
 		btn_Cancel.setBounds(485, 537, 100, 35);
 		panel_main.add(btn_Cancel);
 
-		btn_Save = new JButton("Save");
+		btn_Save = new JButton("Pay");
 		btn_Save.setBackground(State.green_button);
 		btn_Save.setFocusable(false);
 
@@ -241,7 +241,7 @@ public class Confirmtation extends JFrame implements Observer  {
 		labelName_6_2_1.setBounds(10, 26, 109, 22);
 		panel_RoomData.add(labelName_6_2_1);
 
-		JButton button_Confirm = new JButton("Confirmtation");
+		JButton button_Confirm = new JButton("Bill");
 		button_Confirm.setFont(new Font("Serif", Font.BOLD, 25));
 		button_Confirm.setBounds(272, 58, 200, 70);
 		panel_main.add(button_Confirm);

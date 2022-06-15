@@ -1,7 +1,10 @@
 package controller;
 
 import java.util.Date;
+import java.util.Set;
 
+import model.ARoom;
+import model.AType;
 import model.HotelManager;
 import view.Login;
 
@@ -16,7 +19,12 @@ public class Controller {
 		login.setVisible(true);
 
 	}
-
+	public int totalRoom() {
+		return manager.totalRoom();
+	}
+	public Set<ARoom> getRooms() {
+		return manager.getRooms();
+	}
 	public boolean isAccout(String name, String pass) {
 
 		return manager.isAccount(name, pass);
@@ -25,6 +33,21 @@ public class Controller {
 	public boolean addAccount(String name, String pass, boolean selected) {
 
 		return manager.addAccount(name, pass, selected);
+	}
+
+	public boolean removeAccount(String name) {
+
+		return manager.removeAccount(name);
+	}
+
+	public boolean addRoom(String id, String name, String roomState, double cost, boolean available, String type,
+			int capacity) {
+		return manager.addRoom(id, name, roomState, cost, available, type, capacity);
+	}
+
+	public boolean removeRoom(String name) {
+
+		return manager.removeRoom(name);
 	}
 
 	public String search(String roomType, int roomCapacity) {

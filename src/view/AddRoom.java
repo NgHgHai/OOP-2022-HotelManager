@@ -6,11 +6,13 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
@@ -20,19 +22,31 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.Controller;
+import model.ARoom;
+import model.AType;
+import model.Economy;
+import model.Normal;
 import model.Observable;
 import model.Observer;
+import model.Room;
+import model.VIP;
 
 public class AddRoom extends JFrame implements Observer {
 	Observable hotelObs;
 	Setting setting;
 
 	private JTable table;
-	private JTextField txtCost;
-	private JTextField txtName;
+	private JTextField txtCost, txtName;
+	private JLabel lblGetId;
+	private JRadioButton rdbtnEconnomy, rdbtnNormal, rdbtnVIP, rdbtnSingle, rdbtnDouble, rdbtnTriple;
 	// nho dua cac nut can thiet len thanh bien toan cuc.
-	private JButton btnBack;
+	private JButton btnBack, btnAdd, btnEdit, btnSave;
 	private Controller controller;
+	private String type;
+	private int capacity = 0;
+	private String roomState = "Clean";
+	private boolean available = true;
+	private String[][] arr;
 
 	public AddRoom(Observable hotelObs, Controller controller, Setting setting) {
 		// add obs
@@ -48,6 +62,7 @@ public class AddRoom extends JFrame implements Observer {
 	}
 
 	private void actionListener() {
+
 		// ===== back
 		btnBack.addActionListener(new ActionListener() {
 			@Override
@@ -58,7 +73,87 @@ public class AddRoom extends JFrame implements Observer {
 
 			}
 		});
+		rdbtnEconnomy.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (e.getSource().equals(rdbtnEconnomy)) {
+					type = rdbtnEconnomy.getText();
+				}
+			}
+		});
+		rdbtnNormal.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (e.getSource().equals(rdbtnNormal)) {
+					type = rdbtnNormal.getText();
+				}
+			}
+		});
+		rdbtnVIP.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (e.getSource().equals(rdbtnVIP)) {
+					type = rdbtnVIP.getText();
+				}
+			}
+		});
+		rdbtnSingle.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (e.getSource().equals(rdbtnSingle)) {
+					capacity = 1;
+				}
+			}
+		});
+		rdbtnDouble.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (e.getSource().equals(rdbtnDouble)) {
+					capacity = 2;
+				}
+			}
+		});
+		rdbtnTriple.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (e.getSource().equals(rdbtnTriple)) {
+					capacity = 3;
+				}
+			}
+		});
+		btnAdd.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String id = lblGetId.getText();
+				String name = txtName.getText();
+				double cost = 0;
+				try {
+					cost = Double.parseDouble(txtCost.getText());
+					if (controller.addRoom(id, name, roomState, cost, available, type, capacity)) {
+						JOptionPane.showMessageDialog(null, "Add room sucessfully.");
+
+					} else {
+						JOptionPane.showMessageDialog(null, "Error!");
+					}
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "Invalid room cost input ");
+					// TODO: handle exception
+				}
+
+			}
+		});
 		// viet them cac action cua cac nut khac o day
 		//
 		//
@@ -120,7 +215,7 @@ public class AddRoom extends JFrame implements Observer {
 		lblID.setBounds(25, 25, 72, 18);
 		pnlContent.add(lblID);
 
-		JLabel lblGetId = new JLabel("...................");
+		lblGetId = new JLabel("");
 		lblGetId.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblGetId.setBounds(53, 21, 106, 27);
 		pnlContent.add(lblGetId);
@@ -147,19 +242,19 @@ public class AddRoom extends JFrame implements Observer {
 		lblRoomType.setBounds(10, 70, 170, 40);
 		pnlAddRoom.add(lblRoomType);
 
-		JRadioButton rdbtnEconnomy = new JRadioButton("Economy");
+		rdbtnEconnomy = new JRadioButton("Economy");
 		rdbtnEconnomy.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		rdbtnEconnomy.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnEconnomy.setBounds(30, 130, 130, 30);
 		pnlAddRoom.add(rdbtnEconnomy);
 
-		JRadioButton rdbtnNormal = new JRadioButton("Normal");
+		rdbtnNormal = new JRadioButton("Normal");
 		rdbtnNormal.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnNormal.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		rdbtnNormal.setBounds(190, 130, 130, 30);
 		pnlAddRoom.add(rdbtnNormal);
 
-		JRadioButton rdbtnVIP = new JRadioButton("VIP");
+		rdbtnVIP = new JRadioButton("VIP");
 		rdbtnVIP.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnVIP.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		rdbtnVIP.setBounds(340, 130, 130, 30);
@@ -180,19 +275,19 @@ public class AddRoom extends JFrame implements Observer {
 		lblCost.setBounds(10, 306, 140, 40);
 		pnlAddRoom.add(lblCost);
 
-		JRadioButton rdbtnSingle = new JRadioButton("Single");
+		rdbtnSingle = new JRadioButton("Single");
 		rdbtnSingle.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnSingle.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		rdbtnSingle.setBounds(20, 240, 130, 30);
 		pnlAddRoom.add(rdbtnSingle);
 
-		JRadioButton rdbtnDouble = new JRadioButton("Double");
+		rdbtnDouble = new JRadioButton("Double");
 		rdbtnDouble.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnDouble.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		rdbtnDouble.setBounds(190, 240, 130, 30);
 		pnlAddRoom.add(rdbtnDouble);
 
-		JRadioButton rdbtnTriple = new JRadioButton("Triple");
+		rdbtnTriple = new JRadioButton("Triple");
 		rdbtnTriple.setHorizontalAlignment(SwingConstants.CENTER);
 		rdbtnTriple.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		rdbtnTriple.setBounds(340, 240, 130, 30);
@@ -208,19 +303,19 @@ public class AddRoom extends JFrame implements Observer {
 		txtCost.setBounds(160, 310, 280, 34);
 		pnlAddRoom.add(txtCost);
 
-		JButton btnAdd = new JButton("ADD");
+		btnAdd = new JButton("ADD");
 		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAdd.setBounds(80, 383, 90, 40);
 		pnlAddRoom.add(btnAdd);
 		btnAdd.setFocusable(false);
 
-		JButton btnEdit = new JButton("EDIT");
+		btnEdit = new JButton("EDIT");
 		btnEdit.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnEdit.setBounds(185, 383, 90, 40);
 		pnlAddRoom.add(btnEdit);
 		btnEdit.setFocusable(false);
 
-		JButton btnSave = new JButton("SAVE");
+		btnSave = new JButton("SAVE");
 		btnSave.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnSave.setBounds(290, 383, 90, 40);
 		pnlAddRoom.add(btnSave);
@@ -234,19 +329,7 @@ public class AddRoom extends JFrame implements Observer {
 
 		table = new JTable();
 		table.setFont(new Font("Time New Roman", Font.BOLD, 12));
-		table.setModel(new DefaultTableModel(new Object[][] { { "RID", "RName", "RType", "Status", "Cost" },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
-				{ null, null, null, null, null }, { null, null, null, null, null }, },
-				new String[] { "RID", "RName", "RType", "Status", "Cost" }));
+		table();
 		table.setBounds(10, 10, 635, 444);
 		pnlTableAddRoom.add(table);
 
@@ -262,9 +345,34 @@ public class AddRoom extends JFrame implements Observer {
 
 	}
 
+	public void table() {
+		Object[] listRoom = controller.getRooms().toArray();
+		arr = new String[controller.totalRoom()][7];
+		arr[0][0] = "Num";
+		arr[0][1] = "ID";
+		arr[0][2] = "Name";
+		arr[0][3] = "Type";
+		arr[0][4] = "Capacity";
+		arr[0][5] = "Status";
+		arr[0][6] = "Cost";
+		for (int i = 0; i < arr.length - 1; i++) {
+			Room room = (Room) listRoom[i];
+			arr[i + 1][0] = i + 1 + "";
+			arr[i + 1][1] = room.getId();
+			arr[i + 1][2] = room.getName();
+			arr[i + 1][3] = room.getType().getName();
+			arr[i + 1][4] = room.getCapacity() + "";
+			arr[i + 1][5] = room.getRoomState();
+			arr[i + 1][6] = room.getCost() + "";
+		}
+		table.setModel(
+				new DefaultTableModel(arr, new String[] { "Num", "ID", "Name", "Type", "Capacity", "State", "Cost" }));
+	}
+
 	@Override
 	public void update() {
 		// update viet o day
+		table();
 	}
 
 }
