@@ -27,15 +27,6 @@ public class FactoryAttribute {
 		return account;
 	}
 
-	public Account removeAccount(String name, Set<Account> accounts) {
-		Account rs = null;
-		for (Account account : accounts) {
-			if (name.equals(account.name)) {
-				rs = account;
-			}
-		}
-		return rs;
-	}
 
 	public AType createType(String type) {
 
@@ -55,14 +46,6 @@ public class FactoryAttribute {
 		return rs;
 	}
 
-	public ARoom removeRoom(String name, Set<ARoom> rooms) {
-		ARoom rs = null;
-		for (ARoom room : rooms) {
-			if (name.equals(room.name)) {
-				rs = room;
-			}
-		}
-		return rs;
-	}
+	
 
 }

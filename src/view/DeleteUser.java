@@ -123,25 +123,18 @@ public class DeleteUser extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource().equals(btnDeleteID)) {
-					try {
-						// =======
-						int a = Integer.parseInt(txtName.getText().toString());
-						JOptionPane.showMessageDialog(null, "kieu String");
-
-					} catch (Exception e2) {
-						String id = txtName.getText();
-						if (controller.removeAccount(id)) {
-							JOptionPane.showMessageDialog(null, "Xóa thành công.");
-						} else {
-							JOptionPane.showMessageDialog(null, "Tài khoản không tồn tại!");
-						}
-
+					String id = txtName.getText();
+					if (controller.removeAccount(id)) {
+						JOptionPane.showMessageDialog(null, "remove.");
+					} else {
+						JOptionPane.showMessageDialog(null, "Account does not exist!");
 					}
 				}
 			}
 		});
 
 		btnBack.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);

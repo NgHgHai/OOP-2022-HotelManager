@@ -42,17 +42,17 @@ public class DeleteRoom extends JFrame {
 				if (e.getSource().equals(btnDeleteRoom)) {
 					try {
 						// ====
-
-						int a = Integer.parseInt(txtID.getText().toString());
-						JOptionPane.showMessageDialog(null, "kieu String");
-
-					} catch (Exception e2) {
+						int a = Integer.parseInt(txtID.getText());
 						String id = txtID.getText();
 						if(controller.removeRoom(id)) {
-							JOptionPane.showMessageDialog(null, "Xóa thành công.");
+							JOptionPane.showMessageDialog(null, "remove");
 						}else {
-							JOptionPane.showMessageDialog(null, "Phòng không tồn tại!");
+							JOptionPane.showMessageDialog(null, "Room does not exist!");
 						}
+					
+
+					} catch (Exception e2) {
+						JOptionPane.showMessageDialog(null, "kieu String");
 					}
 				}
 			}

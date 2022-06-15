@@ -23,6 +23,7 @@ public class HotelManager extends model.Observable {
 	private Account user;
 	FactoryAttribute attribute = new FactoryAttribute();
 	private int createID = 1000;
+
 	public HotelManager() {
 
 	}
@@ -129,23 +130,39 @@ public class HotelManager extends model.Observable {
 	}
 
 	public boolean removeAccount(String name) {
-		Account account = attribute.removeAccount(name, accounts);
-		return remove(account);
+		for (Account account : accounts) {
+			if (name.equals(account.getName())) {
+				return remove(account);
+			}
+		}
+		return false;
 	}
 
 	public boolean addRoom(String id, String name, String roomState, double cost, boolean available, String type,
 			int capacity) {
-		
-		if(id.equals("")) {
-			id = createID++ +"";
+		if (name.equals("")) {
+			return false;
+		}
+		if (type == null) {
+			return false;
+		}
+		if (capacity == 0) {
+			return false;
+		}
+		if (id.equals("")) {
+			id = createID++ + "";
 		}
 		ARoom aroom = attribute.addRoom(id, name, roomState, cost, available, type, capacity);
 		return add(aroom);
 	}
 
-	public boolean removeRoom(String name) {
-		ARoom room = attribute.removeRoom(name, rooms);
-		return remove(room);
+	public boolean removeRoom(String id) {
+		for (ARoom room : rooms) {
+			if (id.equals(room.getId())) {
+				return remove(room);
+			}
+		}
+		return false;
 	}
 
 	public String searchModel(String roomType, int roomCapacity) {

@@ -137,7 +137,6 @@ public class AddRoom extends JFrame implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String id = lblGetId.getText();
-//				String id = "01";
 				String name = txtName.getText();
 				double cost = 0;
 				try {
@@ -147,7 +146,6 @@ public class AddRoom extends JFrame implements Observer {
 
 					} else {
 						JOptionPane.showMessageDialog(null, "Error!");
-
 					}
 				} catch (Exception e2) {
 					JOptionPane.showMessageDialog(null, "Invalid room cost input ");
@@ -349,22 +347,26 @@ public class AddRoom extends JFrame implements Observer {
 
 	public void table() {
 		Object[] listRoom = controller.getRooms().toArray();
-		arr = new String[controller.totalRoom()][5];
-		arr[0][0] = "RID";
-		arr[0][1] = "RName";
-		arr[0][2] = "RType";
-		arr[0][3] = "Status";
-		arr[0][4] = "Cost";
+		arr = new String[controller.totalRoom()][7];
+		arr[0][0] = "Num";
+		arr[0][1] = "ID";
+		arr[0][2] = "Name";
+		arr[0][3] = "Type";
+		arr[0][4] = "Capacity";
+		arr[0][5] = "Status";
+		arr[0][6] = "Cost";
 		for (int i = 0; i < arr.length - 1; i++) {
 			Room room = (Room) listRoom[i];
-			arr[i + 1][0] = room.getId();
-			arr[i + 1][1] = room.getName();
-			arr[i + 1][2] = room.getType().getName();
-			arr[i + 1][3] = room.getRoomState();
-			arr[i + 1][4] = room.getCost() + "";
-
+			arr[i + 1][0] = i + 1 + "";
+			arr[i + 1][1] = room.getId();
+			arr[i + 1][2] = room.getName();
+			arr[i + 1][3] = room.getType().getName();
+			arr[i + 1][4] = room.getCapacity() + "";
+			arr[i + 1][5] = room.getRoomState();
+			arr[i + 1][6] = room.getCost() + "";
 		}
-		table.setModel(new DefaultTableModel(arr, new String[] { "RID", "RName", "RType", "State", "Cost" }));
+		table.setModel(
+				new DefaultTableModel(arr, new String[] { "Num", "ID", "Name", "Type", "Capacity", "State", "Cost" }));
 	}
 
 	@Override
