@@ -47,7 +47,12 @@ public class DeleteRoom extends JFrame {
 						JOptionPane.showMessageDialog(null, "kieu String");
 
 					} catch (Exception e2) {
-						String t = txtID.getText();
+						String id = txtID.getText();
+						if(controller.removeRoom(id)) {
+							JOptionPane.showMessageDialog(null, "Xóa thành công.");
+						}else {
+							JOptionPane.showMessageDialog(null, "Phòng không tồn tại!");
+						}
 					}
 				}
 			}

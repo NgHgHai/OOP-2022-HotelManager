@@ -779,7 +779,7 @@ public class HomePage2 extends JFrame implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFrame confirmtationFrame = new Confirmtation(hotelObs, controller, homePage2);
+				JFrame confirmtationFrame = new Bill(hotelObs, controller, homePage2);
 				confirmtationFrame.setVisible(true);
 				confirmtationFrame.setLocationRelativeTo(null);
 			}

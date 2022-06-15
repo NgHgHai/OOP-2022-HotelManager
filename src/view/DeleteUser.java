@@ -129,7 +129,13 @@ public class DeleteUser extends JFrame {
 						JOptionPane.showMessageDialog(null, "kieu String");
 
 					} catch (Exception e2) {
-						String t = txtName.getText();
+						String id = txtName.getText();
+						if (controller.removeAccount(id)) {
+							JOptionPane.showMessageDialog(null, "Xóa thành công.");
+						} else {
+							JOptionPane.showMessageDialog(null, "Tài khoản không tồn tại!");
+						}
+
 					}
 				}
 			}
