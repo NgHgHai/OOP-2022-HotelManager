@@ -131,21 +131,43 @@ public class HotelManager extends model.Observable {
 	public String searchModel(String roomType, int roomCapacity) {
 		// TODO Auto-generated method stub
 		String roomID = "";
+		System.out.println(roomType +" "+ roomCapacity);
 		for (ARoom room : rooms) {
 			Room concretaRoom = (Room) room;
-			if (roomType.equals(concretaRoom.getType().getName()) && (roomCapacity == concretaRoom.getCapacity())
-					&& (concretaRoom.isAvailable())) {
-				roomID = concretaRoom.id;
+
+			if (
+					concretaRoom.getType().getName().equals(roomType)
+					&& (roomCapacity == concretaRoom.getCapacity())
+					&& (concretaRoom.isAvailable())
+					) {
+//				System.out.println("cooooo");
+			return	roomID = concretaRoom.id;
 			} else {
 				roomID = "No room";
 			}
 		}
 		return roomID;
 	}
+	public  ArrayList<Room> searchListRoomModel(String roomType, int roomCapacity ) {
+		ArrayList<Room> result = new ArrayList<Room>();
+		
+		String roomID = "";
+		for (ARoom room : rooms) {
+			Room concretaRoom = (Room) room;
+			if (
+					concretaRoom.getType().getName().equals(roomType)
+					&& (roomCapacity == concretaRoom.getCapacity())
+					&& (concretaRoom.isAvailable())) {
+				
+				result.add(concretaRoom);
+			}
+		}
+		return result;
+	}
 
 	public ARoom getRoom(String idRoom) {
 		for (ARoom room : rooms) {
-			if (idRoom.equals(room.getId())) {
+			if (room.getId().equals(idRoom)) {
 				return room;
 			}
 		}
@@ -156,14 +178,16 @@ public class HotelManager extends model.Observable {
 	public boolean saveCheckInModel(String name, String phone, String email, String address, String city,
 			String nationality, String passsport, String cardNumber, String codeCVC, String roomType, int roomCapacity,
 			Date checkInDate, Date checkOutDate, String roomID) {
-		if (getRoom(roomID) == null || getRoom(roomID).available) {
+		if (getRoom(roomID) == null || !getRoom(roomID).isAvailable()) {
 			return false;
 		}
 		if(checkInDate==null || checkOutDate==null) {
+			System.out.println("date");
 			return false;
 		}
+		
 		PersonalData data = new PersonalData(name, phone, email, address, city, nationality, passsport);
-		Payment payment = new Payment(roomID, cardNumber);
+		Payment payment = new Payment(cardNumber, codeCVC);
 		CheckIn checkIn = new CheckIn(data, payment, getRoom(roomID), false, checkInDate, checkOutDate);
 		return add(checkIn);
 

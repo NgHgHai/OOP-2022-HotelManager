@@ -14,17 +14,17 @@ public class Room extends ARoom {
 	public int getCapacity() {
 		return capacity;
 	}
-	/**
-	 * @param type the type to set
-	 */
+
 	public void setType(AType type) {
 		this.type = type;
 	}
-	/**
-	 * @param capacity the capacity to set
-	 */
+
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
 	}
-	
+	@Override
+	public String toString() {
+		return "Room [type=" + type + ", capacity=" + capacity + ", id=" + id + "]";
+	}
+
 }

@@ -17,6 +17,11 @@ public abstract class AType {
 		return view;
 	}
 
+	@Override
+	public String toString() {
+		return   name ;
+	}
+
 	
 	
 }

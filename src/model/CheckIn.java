@@ -30,6 +30,12 @@ public class CheckIn {
 		Long result = ChronoUnit.DAYS.between(date1.toInstant(), date2.toInstant());
 		return Math.abs(Math.toIntExact(result));
 	}
+	public int getDateBetweenTwoDate() {
+		return getDateBetweenTwoDate(checkOutDate, checkInDate);
+	}
+	public double getCost() {
+		return getDateBetweenTwoDate() * room.getCost() ;
+	}
 
 	public PersonalData getPersonalData() {
 		return personalData;

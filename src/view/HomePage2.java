@@ -657,8 +657,8 @@ public class HomePage2 extends JFrame implements Observer {
 			viewGuestList[i + 1][5] = listCheckIn.get(i).getPersonalData().getNationality();
 			viewGuestList[i + 1][6] = listCheckIn.get(i).getPersonalData().getPassportNo();
 			viewGuestList[i + 1][7] = listCheckIn.get(i).getPersonalData().getPhone();
-			viewGuestList[i + 1][8] = "Days";
-			viewGuestList[i + 1][9] = "Fees";
+			viewGuestList[i + 1][8] = listCheckIn.get(i).getDateBetweenTwoDate() +"";
+			viewGuestList[i + 1][9] = listCheckIn.get(i).getCost() + "";
 		}
 
 		tableGuest = new JTable();
@@ -687,7 +687,6 @@ public class HomePage2 extends JFrame implements Observer {
 		viewRoomList[0][4] = "Name";
 		viewRoomList[0][5] = "State";
 		viewRoomList[0][6] = "is Available?";
-		System.out.println(listRoom.size());
 		for (int i = 0; i < listRoom.size(); i++) {
 			Room room = (Room) listRoom.get(i);
 			viewRoomList[i + 1][0] = i + 1 + "";
@@ -705,7 +704,7 @@ public class HomePage2 extends JFrame implements Observer {
 		tableRooms.setBounds(5, 50, 950, 490);
 		panel.add(tableRooms);
 		tableRooms.setModel(new DefaultTableModel(viewRoomList,
-				new String[] { "RoomID", "Room Type", "Room Capacity", "Name", "State", "is Available?" }));
+				new String[] { "RoomID", "Room Type", "Room Capacity", "Name", "State", "is Available?","" }));
 
 		return panel;
 	}
@@ -716,7 +715,8 @@ public class HomePage2 extends JFrame implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.search(roomType, roomCapacity);
+				txtRoomID.setText(controller.search(roomType, roomCapacity));
+				
 			}
 		});
 		// addActionListener
@@ -739,15 +739,25 @@ public class HomePage2 extends JFrame implements Observer {
 					int output = JOptionPane.showConfirmDialog(null, "luu lai thong tin ? ", "HomePage2",
 							JOptionPane.YES_NO_OPTION);
 					if (output == JOptionPane.YES_OPTION) {
-						controller.saveCheckIn(txtName.getText(), txtPhone.getText(), txtEmail.getText(),
-								txtAddress.getText(), txtCity.getText(), txtNationality.getText(),
-								txtPassportNo.getText(), txtCardNumber.getText(), txtCVCCode.getText(),
-
-								roomType, roomCapacity, checkInDate, checkOutDate,
-
+						if(
+						controller.saveCheckIn(
+								txtName.getText(),
+								txtPhone.getText(),
+								txtEmail.getText(),
+								txtAddress.getText(),
+								txtCity.getText(),
+								txtNationality.getText(),
+								txtPassportNo.getText(),
+								txtCardNumber.getText(),
+								txtCVCCode.getText(),
+								roomType,
+								roomCapacity,
+								checkInDate,
+								checkOutDate,
 								txtRoomID.getText()
-
-						);
+						)){
+			System.out.println("checkin thanh cong");
+		}else System.out.println("checkin that bai");
 
 						setVisible(false);
 						homePage.setVisible(true);
@@ -816,7 +826,7 @@ public class HomePage2 extends JFrame implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				if (!currentPanel.equals("4")) {
 					remove(panel); // xoa panel cu
-					createRoomTablePanel(); 
+					createRoomTablePanel();
 					repaint();// ve lai
 					currentPanel = "4";
 				}

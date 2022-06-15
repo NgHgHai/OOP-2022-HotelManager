@@ -46,6 +46,10 @@ public abstract class ARoom {
 		ARoom other = (ARoom) obj;
 		return Objects.equals(id, other.id);
 	}
+	@Override
+	public String toString() {
+		return "ARoom id= " + id ;
+	}
 	
 
 
