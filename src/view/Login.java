@@ -151,8 +151,8 @@ public class Login extends JFrame {
 			homePageFrame.setVisible(true);
 			homePageFrame.setLocationRelativeTo(null);
 		} else
-			JOptionPane.showMessageDialog(btnLogin, "Account not found", "Error", JOptionPane.ERROR_MESSAGE);
-		System.out.println("sai tk + mk");
+			JOptionPane.showMessageDialog(btnLogin, "User name or password is incorect", "Error", JOptionPane.ERROR_MESSAGE);
+//		System.out.println("sai tk + mk");
 
 	}
 }

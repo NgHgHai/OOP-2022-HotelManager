@@ -36,7 +36,7 @@ public class ViewUser extends JFrame implements Observer {
 		this.setting = setting;
 		hotelObs.addObs(this);		
 		update();	
-		init();
+//		init();
 	}
 
 	private void init() {
@@ -80,7 +80,7 @@ public class ViewUser extends JFrame implements Observer {
 		viewListAcc[0][0] = "User Name";
 		viewListAcc[0][1] = "Password";
 		viewListAcc[0][2] = "Admin Status";
-		System.out.println(listAcc.size());
+
 		for (int i = 0; i < listAcc.size(); i++) {
 			viewListAcc[i+1][0] = listAcc.get(i).getName();
 			viewListAcc[i+1][1] = listAcc.get(i).getPass();

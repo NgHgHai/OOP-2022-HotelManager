@@ -757,11 +757,12 @@ public class HomePage2 extends JFrame implements Observer {
 								txtRoomID.getText()
 						)){
 			System.out.println("checkin thanh cong");
+			setVisible(false);
+			homePage.setVisible(true);
+			homePage.setLocationRelativeTo(null);
 		}else System.out.println("checkin that bai");
 
-						setVisible(false);
-						homePage.setVisible(true);
-						homePage.setLocationRelativeTo(null);
+						
 						// ====
 						//
 						//
