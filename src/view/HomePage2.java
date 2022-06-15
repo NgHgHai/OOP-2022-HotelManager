@@ -751,7 +751,7 @@ public class HomePage2 extends JFrame implements Observer {
 							homePage.setVisible(true);
 							homePage.setLocationRelativeTo(null);
 						} else {
-							System.out.println("checkin that bai");
+//							System.out.println("checkin that bai");
 							JOptionPane.showMessageDialog(null, "Check in fail", "Error", JOptionPane.ERROR_MESSAGE);
 
 							// ====
