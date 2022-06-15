@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -155,8 +156,16 @@ public class AddUser extends JFrame  {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (controller.addAccount(txtUsername.getText(), txtPassword.getText(), cbReceptionist.isSelected())) {
+					JOptionPane.showMessageDialog(btnSave,
+						    "Your account has been created sucessfully",
+						    "Congratulations",
+						    JOptionPane.OK_OPTION);
 					System.out.println("tao tai khoang thanh cong");
 				} else
+					JOptionPane.showMessageDialog(btnSave,
+						    "This account already exists on your device",
+						    "Error",
+						    JOptionPane.ERROR_MESSAGE);
 					System.out.println("that bai , tai khoan da ton tai");
 			}
 		});

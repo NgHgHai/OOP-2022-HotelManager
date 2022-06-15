@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -150,6 +151,10 @@ public class Login extends JFrame {
 			homePageFrame.setVisible(true);
 			homePageFrame.setLocationRelativeTo(null);
 		} else
+			JOptionPane.showMessageDialog(btnLogin,
+				    "Account not found",
+				    "Error",
+				    JOptionPane.ERROR_MESSAGE);
 			System.out.println("sai tk + mk");
 
 	}
