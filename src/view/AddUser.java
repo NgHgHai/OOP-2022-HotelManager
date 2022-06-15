@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
 import controller.Controller;
 import model.Observable;
 
-public class AddUser extends JFrame  {
+public class AddUser extends JFrame {
 	Observable hotelObs;
 	Setting setting;
 	private JTextField txtUsername;
@@ -156,21 +156,16 @@ public class AddUser extends JFrame  {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (controller.addAccount(txtUsername.getText(), txtPassword.getText(), cbReceptionist.isSelected())) {
-					JOptionPane.showMessageDialog(btnSave,
-						    "Your account has been created sucessfully",
-						    "Congratulations",
-						    JOptionPane.OK_OPTION);
+					JOptionPane.showMessageDialog(btnSave, "Your account has been created sucessfully",
+							"Congratulations", JOptionPane.INFORMATION_MESSAGE);
 					System.out.println("tao tai khoang thanh cong");
 				} else
-					JOptionPane.showMessageDialog(btnSave,
-						    "This account already exists on your device",
-						    "Error",
-						    JOptionPane.ERROR_MESSAGE);
-					System.out.println("that bai , tai khoan da ton tai");
+					JOptionPane.showMessageDialog(btnSave, "This account already exists on your device", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				System.out.println("that bai , tai khoan da ton tai");
 			}
 		});
 
 	}
-
 
 }
