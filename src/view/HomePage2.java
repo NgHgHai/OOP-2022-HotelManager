@@ -657,7 +657,7 @@ public class HomePage2 extends JFrame implements Observer {
 			viewGuestList[i + 1][5] = listCheckIn.get(i).getPersonalData().getNationality();
 			viewGuestList[i + 1][6] = listCheckIn.get(i).getPersonalData().getPassportNo();
 			viewGuestList[i + 1][7] = listCheckIn.get(i).getPersonalData().getPhone();
-			viewGuestList[i + 1][8] = listCheckIn.get(i).getDateBetweenTwoDate() +"";
+			viewGuestList[i + 1][8] = listCheckIn.get(i).getDateBetweenTwoDate() + "";
 			viewGuestList[i + 1][9] = listCheckIn.get(i).getCost() + "";
 		}
 
@@ -704,7 +704,7 @@ public class HomePage2 extends JFrame implements Observer {
 		tableRooms.setBounds(5, 50, 950, 490);
 		panel.add(tableRooms);
 		tableRooms.setModel(new DefaultTableModel(viewRoomList,
-				new String[] { "RoomID", "Room Type", "Room Capacity", "Name", "State", "is Available?","" }));
+				new String[] { "RoomID", "Room Type", "Room Capacity", "Name", "State", "is Available?", "" }));
 
 		return panel;
 	}
@@ -716,7 +716,7 @@ public class HomePage2 extends JFrame implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				txtRoomID.setText(controller.search(roomType, roomCapacity));
-				
+
 			}
 		});
 		// addActionListener
@@ -739,33 +739,25 @@ public class HomePage2 extends JFrame implements Observer {
 					int output = JOptionPane.showConfirmDialog(null, "luu lai thong tin ? ", "HomePage2",
 							JOptionPane.YES_NO_OPTION);
 					if (output == JOptionPane.YES_OPTION) {
-						if(
-						controller.saveCheckIn(
-								txtName.getText(),
-								txtPhone.getText(),
-								txtEmail.getText(),
-								txtAddress.getText(),
-								txtCity.getText(),
-								txtNationality.getText(),
-								txtPassportNo.getText(),
-								txtCardNumber.getText(),
-								txtCVCCode.getText(),
-								roomType,
-								roomCapacity,
-								checkInDate,
-								checkOutDate,
-								txtRoomID.getText()
-						)){
-			System.out.println("checkin thanh cong");
-			setVisible(false);
-			homePage.setVisible(true);
-			homePage.setLocationRelativeTo(null);
-		}else System.out.println("checkin that bai");
+						if (controller.saveCheckIn(txtName.getText(), txtPhone.getText(), txtEmail.getText(),
+								txtAddress.getText(), txtCity.getText(), txtNationality.getText(),
+								txtPassportNo.getText(), txtCardNumber.getText(), txtCVCCode.getText(), roomType,
+								roomCapacity, checkInDate, checkOutDate, txtRoomID.getText())) {
+//			System.out.println("checkin thanh cong");
+							JOptionPane.showOptionDialog(null, "Check in success", "Congratulations",
+									JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {},
+									null);
+							setVisible(false);
+							homePage.setVisible(true);
+							homePage.setLocationRelativeTo(null);
+						} else {
+//							System.out.println("checkin that bai");
+							JOptionPane.showMessageDialog(null, "Check in fail", "Error", JOptionPane.ERROR_MESSAGE);
 
-						
-						// ====
-						//
-						//
+							// ====
+							//
+							//
+						}
 					} else if (output == JOptionPane.NO_OPTION) {
 					}
 

@@ -150,9 +150,10 @@ public class Login extends JFrame {
 			JFrame homePageFrame = new HomePage(hotelObs, controller, this);
 			homePageFrame.setVisible(true);
 			homePageFrame.setLocationRelativeTo(null);
-		} else
-			JOptionPane.showMessageDialog(btnLogin, "User name or password is incorect", "Error", JOptionPane.ERROR_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(null, "User name or password is incorect", "Error",
+					JOptionPane.ERROR_MESSAGE);
 //		System.out.println("sai tk + mk");
-
+		}
 	}
 }

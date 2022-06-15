@@ -82,13 +82,10 @@ public class Test {
 					manager.add(a1);
 					manager.add(a2);
 					manager.add(a3);
-					
-					
+
 //					System.out.println(manager.searchListRoomModel("VIP", 1));
 //					System.out.println(manager.searchModel("Normal", 2));
 //					System.out.println(manager.getRoom("12335"));
-
-	
 
 				} catch (Exception e) {
 					e.printStackTrace();
