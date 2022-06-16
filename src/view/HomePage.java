@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
@@ -34,9 +35,15 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 	private JButton btnLogOut;
 	private JButton btnSetting;
 	private JButton btnCheckIn;
+
+	private String nameUser = "";
+	private String rankUser = "";
 	
-	private String nameUser ="";
-	private String rankUser ="";
+	JLabel lblGetAvailableRooms;
+	JLabel lblGetReservedRooms;
+
+	JLabel lblGetName;
+	JLabel lblGetRank;
 
 	public HomePage(Observable hotelObs, Controller controller, Login login) {
 		// add obs
@@ -44,10 +51,9 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 		this.controller = controller;
 		hotelObs.addObs(this);
 		this.login = login;
-
-		update();
 		init();// khoi tao
-		
+		update();
+
 		homePage2Frame = new HomePage2("checkIn", hotelObs, controller, this);
 		homePage2Frame.setVisible(false);
 
@@ -113,13 +119,13 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 		pnlInfor.setBounds(10, 20, 180, 100);
 		pnlLeft.add(pnlInfor);
 
-		JLabel lblGetName = new JLabel(nameUser);
+		lblGetName = new JLabel(nameUser);
 		lblGetName.setForeground(State.red_button);
 		lblGetName.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblGetName.setBounds(75, 31, 95, 20);
 		pnlInfor.add(lblGetName);
 
-		JLabel lblGetRank = new JLabel(rankUser);
+		lblGetRank = new JLabel(rankUser);
 		lblGetRank.setForeground(State.red_button);
 		lblGetRank.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblGetRank.setBounds(75, 63, 95, 13);
@@ -154,7 +160,7 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 		pnlAvailableRooms.setBounds(10, 140, 180, 150);
 		pnlLeft.add(pnlAvailableRooms);
 
-		JLabel lblGetAvailableRooms = new JLabel(avaiRoom + " / " + allRoom);
+		lblGetAvailableRooms = new JLabel(avaiRoom + " / " + allRoom);
 		lblGetAvailableRooms.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGetAvailableRooms.setForeground(new Color(0, 0, 0));
 		lblGetAvailableRooms.setBounds(25, 45, 135, 55);
@@ -180,7 +186,7 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 		pnlReservedRooms.setLayout(null);
 		pnlReservedRooms.setBorder(new LineBorder(new Color(0, 0, 0), 4));
 
-		JLabel lblGetReservedRooms = new JLabel((allRoom - avaiRoom) + " / " + allRoom);
+		lblGetReservedRooms = new JLabel((allRoom - avaiRoom) + " / " + allRoom);
 		lblGetReservedRooms.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGetReservedRooms.setForeground(Color.BLACK);
 		lblGetReservedRooms.setFont(new Font("Tahoma", Font.BOLD, 25));
@@ -287,16 +293,14 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 		btnGuest.setBackground(new Color(135, 206, 250));
 		btnGuest.setBounds(10, 10, 280, 135);
 		pnlGuest.add(btnGuest);
-;
 
 		// addActionListener
 		actionListener();
 	}
 
 	private void actionListener() {
-
+		//Them cac action cho cac nut
 		btnSetting.addActionListener(this);
-
 		btnLogOut.addActionListener(this);
 
 		btnCheckIn.addActionListener(this);
@@ -314,10 +318,13 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// ===== setting
 		if (e.getActionCommand().equals(btnSetting.getText())) {
-			JFrame SettingFrame = new Setting(hotelObs, controller, this);
-			setVisible(false);
-			SettingFrame.setVisible(true);
-			SettingFrame.setLocationRelativeTo(null);
+			if (controller.getUser().hasRight("setting")) {
+				JFrame SettingFrame = new Setting(hotelObs, controller, this);
+				setVisible(false);
+				SettingFrame.setVisible(true);
+				SettingFrame.setLocationRelativeTo(null);				
+			}else
+				JOptionPane.showMessageDialog(null, "sorry, this place only allows admins");
 		}
 		// ====== exit
 		if (e.getActionCommand().equals(btnLogOut.getText())) {
@@ -327,48 +334,50 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 		}
 		// ====== dieu huong
 		if (e.getActionCommand().equals(btnCheckIn.getActionCommand())) {
-		
+
 			setVisible(false);
 			homePage2Frame.setCommandToChoosePanel("checkIn");
-			homePage2Frame.currentPanel= "1";
+			homePage2Frame.currentPanel = "1";
 			homePage2Frame.setLocationRelativeTo(null);
 			homePage2Frame.setVisible(true);
 		} else if (e.getActionCommand().equals(btnCheckOut.getActionCommand())) {
 			setVisible(false);
 			homePage2Frame.setCommandToChoosePanel("checkOut");
-			homePage2Frame.currentPanel= "2";
+			homePage2Frame.currentPanel = "2";
 			homePage2Frame.setVisible(true);
 			homePage2Frame.setLocationRelativeTo(null);
 
 		} else if (e.getActionCommand().equals(btnGuest.getActionCommand())) {
-			setVisible(false);
-			homePage2Frame.setCommandToChoosePanel("guest");
-			homePage2Frame.currentPanel= "3";
-			homePage2Frame.setVisible(true);
-			homePage2Frame.setLocationRelativeTo(null);
+			if (controller.getUser().hasRight("guest")) {
+				setVisible(false);
+				homePage2Frame.setCommandToChoosePanel("guest");
+				homePage2Frame.currentPanel = "3";
+				homePage2Frame.setVisible(true);
+				homePage2Frame.setLocationRelativeTo(null);
+			}else
+				JOptionPane.showMessageDialog(null, "sorry, this place only allows admins");
 
 		} else if (e.getActionCommand().equals(btnRooms.getActionCommand())) {
 			setVisible(false);
 			homePage2Frame.setCommandToChoosePanel("room");
-			homePage2Frame.currentPanel= "4";
+			homePage2Frame.currentPanel = "4";
 			homePage2Frame.setVisible(true);
 			homePage2Frame.setLocationRelativeTo(null);
-
 		}
-
 	}
 
 	@Override
-	public void update() {
+	public void update() { // update ten nguoi dang nhap va so phong
 		HotelManager manager = (HotelManager) hotelObs;
 		this.allRoom = manager.totalRoom();
 		this.avaiRoom = manager.totalReadyRoom();
 		this.nameUser = manager.getNameUser();
 		this.rankUser = manager.getRank();
-
-		init();// khoi tao
-
-
+		
+		lblGetAvailableRooms.setText(avaiRoom + " / " + allRoom);
+		lblGetReservedRooms.setText((allRoom - avaiRoom) + " / " + allRoom);
+		lblGetName.setText(nameUser);
+		lblGetRank.setText(rankUser);
 
 	}
 }

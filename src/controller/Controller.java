@@ -5,6 +5,7 @@ import java.util.Set;
 
 import model.ARoom;
 import model.AType;
+import model.Account;
 import model.HotelManager;
 import view.Login;
 
@@ -62,5 +63,9 @@ public class Controller {
 		return manager.saveCheckInModel(name, phone, email, address, city, nationality, passsport, cardNumber, codeCVC,
 				roomType, roomCapacity, checkInDate, checkOutDate, roomID);
 
+	}
+	public Account getUser() {
+		
+		return manager.getUser();
 	}
 }

@@ -38,7 +38,7 @@ public class DeleteUser extends JFrame {
 
 	private void init() {
 		setBounds(500, 10, 600, 600);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panelMain = new JPanel();
 		getContentPane().add(panelMain, BorderLayout.CENTER);

@@ -155,7 +155,7 @@ public class Setting extends JFrame implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFrame viewUserFrame = new ViewUser(hotelObs,controller, setting);
-				setVisible(false);
+//				setVisible(false);
 				viewUserFrame.setVisible(true);
 				viewUserFrame.setLocationRelativeTo(null);
 			}
@@ -166,7 +166,7 @@ public class Setting extends JFrame implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFrame addUserFrame = new AddUser(hotelObs,controller,  setting);
-				setVisible(false);
+//				setVisible(false);
 				addUserFrame.setVisible(true);
 				addUserFrame.setLocationRelativeTo(null);
 			}
@@ -177,7 +177,7 @@ public class Setting extends JFrame implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFrame deleteUserFrame = new DeleteUser(controller, setting);
-				setVisible(false);
+//				setVisible(false);
 				deleteUserFrame.setVisible(true);
 				deleteUserFrame.setLocationRelativeTo(null);
 			}
@@ -199,7 +199,7 @@ public class Setting extends JFrame implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFrame deleteRoomFrame = new DeleteRoom(controller, setting);
-				setVisible(false);
+//				setVisible(false);
 				deleteRoomFrame.setVisible(true);
 				deleteRoomFrame.setLocationRelativeTo(null);
 			}

@@ -44,7 +44,7 @@ public class AddUser extends JFrame {
 	private void init() {
 		setBounds(100, 100, 600, 600);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
 		JPanel pnlTop = new JPanel();

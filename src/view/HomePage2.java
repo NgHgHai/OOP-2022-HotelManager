@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Properties;
 
@@ -711,19 +712,18 @@ public class HomePage2 extends JFrame implements Observer {
 
 	private void actionListener(HomePage2 homePage2) {
 
+		// addActionListener
+		// search
 		btnSearch.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				txtRoomID.setText(controller.search(roomType, roomCapacity));
-
 			}
 		});
-		// addActionListener
+		// logout
 		btnLogOut.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
 				JFrame loginFrame = homePage.login;
 				if (isVisible()) {
 					setVisible(false);
@@ -736,14 +736,13 @@ public class HomePage2 extends JFrame implements Observer {
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource().equals(btnSubmit)) {
-					int output = JOptionPane.showConfirmDialog(null, "luu lai thong tin ? ", "HomePage2",
+					int output = JOptionPane.showConfirmDialog(null, "save information ? ", "HomePage2",
 							JOptionPane.YES_NO_OPTION);
 					if (output == JOptionPane.YES_OPTION) {
 						if (controller.saveCheckIn(txtName.getText(), txtPhone.getText(), txtEmail.getText(),
 								txtAddress.getText(), txtCity.getText(), txtNationality.getText(),
 								txtPassportNo.getText(), txtCardNumber.getText(), txtCVCCode.getText(), roomType,
 								roomCapacity, checkInDate, checkOutDate, txtRoomID.getText())) {
-//			System.out.println("checkin thanh cong");
 							JOptionPane.showOptionDialog(null, "Check in success", "Congratulations",
 									JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] {},
 									null);
@@ -751,24 +750,14 @@ public class HomePage2 extends JFrame implements Observer {
 							homePage.setVisible(true);
 							homePage.setLocationRelativeTo(null);
 						} else {
-//							System.out.println("checkin that bai");
 							JOptionPane.showMessageDialog(null, "Check in fail", "Error", JOptionPane.ERROR_MESSAGE);
-
-							// ====
-							//
-							//
 						}
-					} else if (output == JOptionPane.NO_OPTION) {
 					}
-
 				}
-
 			}
 		});
-
 		// CheckOut
 		btnCheckOut_command.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFrame confirmtationFrame = new Bill(hotelObs, controller, homePage2);
@@ -786,11 +775,9 @@ public class HomePage2 extends JFrame implements Observer {
 					repaint();// ve lai
 					currentPanel = "1";
 				}
-
 			}
 		});
 		btnCheckOut.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!currentPanel.equals("2")) {
@@ -802,19 +789,20 @@ public class HomePage2 extends JFrame implements Observer {
 			}
 		});
 		btnGuest.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!currentPanel.equals("3")) {
-					remove(panel); // xoa panel cu
-					createGuestTablePanel();
-					repaint();// ve lai
-					currentPanel = "3";
-				}
+				if (controller.getUser().hasRight("guest")) {
+					if (!currentPanel.equals("3")) {
+						remove(panel); // xoa panel cu
+						createGuestTablePanel();
+						repaint();// ve lai
+						currentPanel = "3";
+					}
+				} else
+					JOptionPane.showMessageDialog(null, "sorry, this place only allows admins");
 			}
 		});
 		btnRooms.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!currentPanel.equals("4")) {
@@ -826,7 +814,6 @@ public class HomePage2 extends JFrame implements Observer {
 			}
 		});
 	}
-
 	// ======
 
 	@Override
@@ -834,8 +821,23 @@ public class HomePage2 extends JFrame implements Observer {
 		// viet update tai day
 		HotelManager manager = (HotelManager) hotelObs;
 		this.nameUser = manager.getNameUser();
+
 		this.listCheckIn = manager.getCheckIns();
+		this.listCheckIn.sort(new Comparator<CheckIn>() {
+
+			@Override
+			public int compare(CheckIn o1, CheckIn o2) {
+				return o1.getRoom().getId().compareTo(o2.getRoom().getId());
+			}
+		});
 		this.listRoom.removeAll(listRoom);
 		this.listRoom.addAll(manager.getRooms());
+		this.listRoom.sort(new Comparator<ARoom>() {
+
+			@Override
+			public int compare(ARoom o1, ARoom o2) {
+				return o1.getId().compareTo(o2.getId());
+			}
+		});
 	}
 }

@@ -38,11 +38,13 @@ public class HotelManager extends model.Observable {
 		for (Account account : accounts) {
 			if (account.getName().equals(name) && account.getPass().equals(pass)) {
 				user = account; // luu lai acc
+				notifyObs();
 				return true;
 			}
 		}
 		return false;
 	}
+	
 
 	// homepage
 	public String getRank() {
@@ -221,6 +223,11 @@ public class HotelManager extends model.Observable {
 		CheckIn checkIn = new CheckIn(data, payment, getRoom(roomID), false, checkInDate, checkOutDate);
 		return add(checkIn);
 
+	}
+
+	public Account getUser() {
+		
+		return user;
 	}
 
 }

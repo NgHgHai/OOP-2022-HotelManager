@@ -347,7 +347,7 @@ public class AddRoom extends JFrame implements Observer {
 
 	public void table() {
 		Object[] listRoom = controller.getRooms().toArray();
-		arr = new String[controller.totalRoom()][7];
+		arr = new String[controller.totalRoom() + 1][7];
 		arr[0][0] = "Num";
 		arr[0][1] = "ID";
 		arr[0][2] = "Name";
@@ -367,6 +367,7 @@ public class AddRoom extends JFrame implements Observer {
 		}
 		table.setModel(
 				new DefaultTableModel(arr, new String[] { "Num", "ID", "Name", "Type", "Capacity", "State", "Cost" }));
+		table.setEnabled(false);
 	}
 
 	@Override

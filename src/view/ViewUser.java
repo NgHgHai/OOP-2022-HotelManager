@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -27,21 +28,21 @@ public class ViewUser extends JFrame implements Observer {
 	private JButton btnBack;
 	private Controller controller;
 	ArrayList<Account> listAcc = new ArrayList<>();
-	String[][] viewListAcc ;
+	String[][] viewListAcc;
 
 	public ViewUser(Observable hotelObs, Controller controller, Setting setting) {
 		// add obs
 		this.controller = controller;
 		this.hotelObs = hotelObs;
 		this.setting = setting;
-		hotelObs.addObs(this);		
-		update();	
-//		init();
+		hotelObs.addObs(this);
+		init();
+		update();
 	}
 
 	private void init() {
 		setBounds(100, 100, 600, 600);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
 		JPanel pnlTop = new JPanel();
@@ -75,29 +76,16 @@ public class ViewUser extends JFrame implements Observer {
 		pnlViewUser.setBackground(Color.LIGHT_GRAY);
 		pnlViewUser.setBounds(10, 111, 564, 439);
 		getContentPane().add(pnlViewUser);
-//===============================================
-		viewListAcc = new String[listAcc.size()+1][3];
-		viewListAcc[0][0] = "User Name";
-		viewListAcc[0][1] = "Password";
-		viewListAcc[0][2] = "Admin Status";
+//===============================================		
 
-		for (int i = 0; i < listAcc.size(); i++) {
-			viewListAcc[i+1][0] = listAcc.get(i).getName();
-			viewListAcc[i+1][1] = listAcc.get(i).getPass();
-			viewListAcc[i+1][2] = listAcc.get(i).isAdmin()+"";
-		}
-		
-		
-		
 		tableViewUser = new JTable();
 		tableViewUser.setBackground(Color.WHITE);
 		tableViewUser.setFont(new Font("Time New Roman", Font.BOLD, 11));
 		tableViewUser.setBounds(0, 0, 564, 439);
-		tableViewUser.setModel(new DefaultTableModel(viewListAcc,
-				new String[] { "User Name", "Password", "Admin Status" }));
+		tableViewUser
+				.setModel(new DefaultTableModel(viewListAcc, new String[] { "User Name", "Password", "Admin Status" }));
 		pnlViewUser.add(tableViewUser);
-		
-		
+
 		// logo ActionListener
 		lblGroup17.addMouseListener(State.retureHomePage(lblGroup17, this, setting.homePage));
 		lblLogo.addMouseListener(State.retureHomePage(lblLogo, this, setting.homePage));
@@ -121,11 +109,38 @@ public class ViewUser extends JFrame implements Observer {
 
 	@Override
 	public void update() {
+
+		table();
+
+	}
+
+	private void table() {
 		HotelManager manager = (HotelManager) hotelObs;
 		this.listAcc.removeAll(listAcc);
-		this.listAcc.addAll(manager.getAccounts()) ;
-		
-		init();
+		this.listAcc.addAll(manager.getAccounts());
+		this.listAcc.sort(new Comparator<Account>() {
+
+			@Override
+			public int compare(Account o1, Account o2) {
+				// TODO Auto-generated method stub
+				if (o1.isAdmin() && !o2.isAdmin()) {
+					return -1;
+				} else
+					return 1;
+			}
+		});
+		viewListAcc = new String[listAcc.size() + 1][3];
+		viewListAcc[0][0] = "User Name";
+		viewListAcc[0][1] = "Password";
+		viewListAcc[0][2] = "Admin Status";
+
+		for (int i = 0; i < listAcc.size(); i++) {
+			viewListAcc[i + 1][0] = listAcc.get(i).getName();
+			viewListAcc[i + 1][1] = listAcc.get(i).getPass();
+			viewListAcc[i + 1][2] = listAcc.get(i).isAdmin() + "";
+		}
+		tableViewUser
+				.setModel(new DefaultTableModel(viewListAcc, new String[] { "User Name", "Password", "Admin Status" }));
 	}
 
 }

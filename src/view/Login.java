@@ -147,9 +147,22 @@ public class Login extends JFrame {
 	private void checkAccount() {
 		if (controller.isAccout(txtUsername.getText(), txtPassword.getText())) {
 			setVisible(false);
+			
 			JFrame homePageFrame = new HomePage(hotelObs, controller, this);
 			homePageFrame.setVisible(true);
 			homePageFrame.setLocationRelativeTo(null);
+//			JFrame homePageFrame2 = new HomePage(hotelObs, controller, this);
+//			homePageFrame2.setVisible(true);
+//			homePageFrame2.setLocationRelativeTo(null);
+//			JFrame homePageFrame3 = new HomePage(hotelObs, controller, this);
+//			homePageFrame3.setVisible(true);
+//			homePageFrame3.setLocationRelativeTo(null);
+//			JFrame homePageFrame4 = new HomePage(hotelObs, controller, this);
+//			homePageFrame4.setVisible(true);
+//			homePageFrame4.setLocationRelativeTo(null);
+//			JFrame homePageFrame5 = new HomePage(hotelObs, controller, this);
+//			homePageFrame5.setVisible(true);
+//			homePageFrame5.setLocationRelativeTo(null);
 		} else {
 			JOptionPane.showMessageDialog(null, "User name or password is incorect", "Error",
 					JOptionPane.ERROR_MESSAGE);
