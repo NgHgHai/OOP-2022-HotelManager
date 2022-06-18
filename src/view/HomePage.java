@@ -369,6 +369,7 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 	@Override
 	public void update() { // update ten nguoi dang nhap va so phong
 		HotelManager manager = (HotelManager) hotelObs;
+		
 		this.allRoom = manager.totalRoom();
 		this.avaiRoom = manager.totalReadyRoom();
 		this.nameUser = manager.getNameUser();

@@ -6,6 +6,7 @@ import java.util.Set;
 import model.ARoom;
 import model.AType;
 import model.Account;
+import model.CheckIn;
 import model.HotelManager;
 import view.Login;
 
@@ -67,5 +68,14 @@ public class Controller {
 	public Account getUser() {
 		
 		return manager.getUser();
+	}
+
+	public boolean checkOut(String iDCheckOut) {
+		// TODO Auto-generated method stub
+		return manager.checkOut(iDCheckOut);
+	}
+	public CheckIn getCheckIn() {
+		// TODO Auto-generated method stub
+		return manager.getCheckIn();
 	}
 }
