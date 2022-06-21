@@ -44,7 +44,6 @@ public class HotelManager extends model.Observable {
 		}
 		return false;
 	}
-	
 
 	// homepage
 	public String getRank() {
@@ -226,8 +225,10 @@ public class HotelManager extends model.Observable {
 	}
 
 	public Account getUser() {
-		
+
 		return user;
 	}
+
+
 
 }

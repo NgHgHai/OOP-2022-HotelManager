@@ -71,6 +71,7 @@ public class HomePage2 extends JFrame implements Observer {
 	private Date checkOutDate;
 	private String roomType;
 	private String nameUser = "";
+	private String roomId = "";
 
 	// nho khai bao cac bien can thiet thanh bien toan cuc
 	JButton btnGuest;
@@ -86,7 +87,7 @@ public class HomePage2 extends JFrame implements Observer {
 	private String commandToChoosePanel;
 
 	ArrayList<CheckIn> listCheckIn = new ArrayList<>();
-	ArrayList<ARoom> listRoom = new ArrayList<>();
+	ArrayList<ARoom> listRoom = new ArrayList<>();	
 
 	public HomePage2(String commandToChoosePanel, Observable hotelObs, Controller controller, HomePage homePage) {
 		this.hotelObs = hotelObs;
@@ -560,7 +561,7 @@ public class HomePage2 extends JFrame implements Observer {
 		lblRoomID.setBounds(20, 220, 96, 25);
 		pnlRoomData.add(lblRoomID);
 
-		txtRoomID = new JTextField();
+		txtRoomID = new JTextField(roomId);
 		txtRoomID.setColumns(10);
 		txtRoomID.setBounds(112, 220, 100, 30);
 		pnlRoomData.add(txtRoomID);
@@ -717,7 +718,7 @@ public class HomePage2 extends JFrame implements Observer {
 		btnSearch.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				txtRoomID.setText(controller.search(roomType, roomCapacity));
+				new ChooseRoom(hotelObs, controller, homePage2, roomType,roomCapacity);
 			}
 		});
 		// logout
@@ -821,7 +822,10 @@ public class HomePage2 extends JFrame implements Observer {
 		// viet update tai day
 		HotelManager manager = (HotelManager) hotelObs;
 		this.nameUser = manager.getNameUser();
-
+		
+		
+	
+		
 		this.listCheckIn = manager.getCheckIns();
 		this.listCheckIn.sort(new Comparator<CheckIn>() {
 
@@ -840,4 +844,11 @@ public class HomePage2 extends JFrame implements Observer {
 			}
 		});
 	}
+
+	
+	public void setTxtRoomID(String roomId) {
+		txtRoomID.setText(roomId);
+	}
+
+	
 }

@@ -24,7 +24,7 @@ public class Room extends ARoom {
 	}
 	@Override
 	public String toString() {
-		return "Room [type=" + type + ", capacity=" + capacity + ", id=" + id + "]";
+		return "Room [type=" + type + ", capacity=" + capacity + ", id=" + id + "]\n";
 	}
 
 }
