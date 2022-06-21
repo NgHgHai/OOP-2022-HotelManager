@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import view.Bill;
+
 public class HotelManager extends model.Observable {
 //	private ArrayList<ARoom> rooms = new ArrayList<ARoom>();
 //	private ArrayList<Account> accounts = new ArrayList<Account>();
@@ -23,6 +25,7 @@ public class HotelManager extends model.Observable {
 	private Account user;
 	FactoryAttribute attribute = new FactoryAttribute();
 	private int createID = 1000;
+	private CheckIn checkIn;
 
 	public HotelManager() {
 
@@ -77,9 +80,20 @@ public class HotelManager extends model.Observable {
 		return success;
 	}
 
-	// checkOut
-	public void checkOut(String id) {
+	public CheckIn getCheckIn() {
+		return checkIn;
+	}
 
+	// checkOut
+	public boolean checkOut(String id) {
+		for (CheckIn c : checkInList) {
+			if (c.getRoom().getId().equals(id)) {
+				checkIn = c;
+				notifyObs();
+				return true;
+			}
+		}
+		return false;
 	}
 
 	// add room
@@ -221,7 +235,6 @@ public class HotelManager extends model.Observable {
 		Payment payment = new Payment(cardNumber, codeCVC);
 		CheckIn checkIn = new CheckIn(data, payment, getRoom(roomID), false, checkInDate, checkOutDate);
 		return add(checkIn);
-
 	}
 
 	public Account getUser() {

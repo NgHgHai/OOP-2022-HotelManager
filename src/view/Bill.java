@@ -10,41 +10,42 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import controller.Controller;
+import model.CheckIn;
+import model.HotelManager;
 import model.Observable;
 import model.Observer;
+import model.Room;
 
 import java.awt.Font;
 import java.awt.SystemColor;
 
-public class Bill extends JFrame implements Observer  {
+public class Bill extends JFrame implements Observer {
 	HomePage2 homePage2;
 	private Observable hotelObs;
 	private Controller controller;
-	
+
 	private JFrame frame;
 	private JTextField name_TextField;
-	
-	
+
 	// dinh dang lai cho nay di, nhin no kho chiu lam
-	private JLabel roomType_label, roomCapacity_label, checkInDate_label, checkOutDate, roomID_label,
-			numberOfNights_label, nightCost_label, totalPrice_label, name_label, tip_label;
-	private JButton btn_Cancel, btn_Save;
+	private JLabel roomType_label, roomCapacity_label, checkInDate_label, checkOutDate_label, roomID_label,
+			numberOfNights_label, nightCost_label, totalPrice_label, name_label;
+	private JButton btn_Cancel, btn_Pay;
 	private JTextField phone_TextField, mail_TextField, addRess_TextField, city_TextField, nationality_TextField,
 			passport_textField, cvcCode_textField, cardNumber_textField;
 	private JTextField[] arr = { phone_TextField, mail_TextField, addRess_TextField, city_TextField,
 			nationality_TextField, passport_textField, cvcCode_textField, cardNumber_textField };
-	//*
-	
- 	// nho khai bao cac bien can thiet thanh bien toan cuc
-	JButton button_RoomData;
-	
+	// *
 
+	// nho khai bao cac bien can thiet thanh bien toan cuc
+	JButton button_RoomData;
 
 	public Bill(Observable hotelObs, Controller controller, HomePage2 homePage2) {
 		this.hotelObs = hotelObs;
@@ -53,13 +54,12 @@ public class Bill extends JFrame implements Observer  {
 		// add obs
 		hotelObs.addObs(this);
 
-		
 		init();
+		update();
 		// addActionListener
 		actionListener();
 
 	}
-
 
 	private void actionListener() {
 		// ======
@@ -70,7 +70,7 @@ public class Bill extends JFrame implements Observer  {
 				}
 			}
 		});
-		//======
+		// ======
 		button_RoomData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource().equals(button_RoomData)) {
@@ -78,8 +78,18 @@ public class Bill extends JFrame implements Observer  {
 				}
 			}
 		});
+		btn_Pay.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getSource().equals(btn_Pay)) {
+					JOptionPane.showMessageDialog(null, "Complete.");
+				}
+			}
+		});
+		
 	}
-
 
 	private void init() {
 		setResizable(false);
@@ -119,24 +129,14 @@ public class Bill extends JFrame implements Observer  {
 
 		nightCost_label = new JLabel("100");
 		nightCost_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		nightCost_label.setBounds(155, 55, 34, 22);
+		nightCost_label.setBounds(155, 55, 50, 22);
 		panel_Price.add(nightCost_label);
 
 		totalPrice_label = new JLabel("100");
 		totalPrice_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		totalPrice_label.setBounds(155, 110, 34, 22);
+		totalPrice_label.setBounds(155, 110, 50, 22);
 		panel_Price.add(totalPrice_label);
 
-		JLabel tiplabel = new JLabel("Tip:");
-		tiplabel.setHorizontalAlignment(SwingConstants.LEFT);
-		tiplabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		tiplabel.setBounds(22, 83, 123, 22);
-		panel_Price.add(tiplabel);
-
-		tip_label = new JLabel("100");
-		tip_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		tip_label.setBounds(155, 83, 34, 22);
-		panel_Price.add(tip_label);
 
 		JLabel totalPrice_label_1_1 = new JLabel("$");
 		totalPrice_label_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -148,11 +148,6 @@ public class Bill extends JFrame implements Observer  {
 		totalPrice_label_1_1_1.setBounds(146, 55, 21, 22);
 		panel_Price.add(totalPrice_label_1_1_1);
 
-		JLabel totalPrice_label_1_1_1_1 = new JLabel("%");
-		totalPrice_label_1_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		totalPrice_label_1_1_1_1.setBounds(181, 83, 21, 22);
-		panel_Price.add(totalPrice_label_1_1_1_1);
-
 		btn_Cancel = new JButton("Cancel");
 		btn_Cancel.setBackground(State.clear_button);
 		btn_Cancel.setFocusable(false);
@@ -160,12 +155,12 @@ public class Bill extends JFrame implements Observer  {
 		btn_Cancel.setBounds(485, 537, 100, 35);
 		panel_main.add(btn_Cancel);
 
-		btn_Save = new JButton("Pay");
-		btn_Save.setBackground(State.green_button);
-		btn_Save.setFocusable(false);
+		btn_Pay = new JButton("Pay");
+		btn_Pay.setBackground(State.green_button);
+		btn_Pay.setFocusable(false);
 
-		btn_Save.setBounds(603, 537, 100, 35);
-		panel_main.add(btn_Save);
+		btn_Pay.setBounds(603, 537, 100, 35);
+		panel_main.add(btn_Pay);
 
 		button_RoomData = new JButton("Room Data");
 		button_RoomData.setFocusable(false);
@@ -216,10 +211,10 @@ public class Bill extends JFrame implements Observer  {
 		checkInDate_label.setBounds(131, 125, 126, 22);
 		panel_RoomData.add(checkInDate_label);
 
-		checkOutDate = new JLabel("dd/mm/yyyy");
-		checkOutDate.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		checkOutDate.setBounds(129, 157, 128, 22);
-		panel_RoomData.add(checkOutDate);
+		checkOutDate_label = new JLabel("dd/mm/yyyy");
+		checkOutDate_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		checkOutDate_label.setBounds(129, 157, 128, 22);
+		panel_RoomData.add(checkOutDate_label);
 
 		JLabel labelName_6_10 = new JLabel("Room ID:");
 		labelName_6_10.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -372,19 +367,43 @@ public class Bill extends JFrame implements Observer  {
 		cardNumber_textField.setColumns(10);
 		cardNumber_textField.setBounds(98, 395, 330, 30);
 		panel_PersonalData.add(cardNumber_textField);
-		
-		button_PersonalData.setBounds(169, 125, 100, 30);
-		
-		// logo action
-//		label_group17.addMouseListener(State.retureHomePage(label_group17, this,homePage2.homePage));
-//		label_logo.addMouseListener(State.retureHomePage(label_logo, this,homePage2.homePage));
 
+		button_PersonalData.setBounds(169, 125, 100, 30);
+
+		// logo action
+		label_group17.addMouseListener(State.retureHomePage(label_group17, this,homePage2.homePage));
+		label_logo.addMouseListener(State.retureHomePage(label_logo, this,homePage2.homePage));
+
+	}
+
+	public void data() {
+		HotelManager manager = (HotelManager) hotelObs;
+		CheckIn checkIn = manager.getCheckIn();
+		name_TextField.setText(checkIn.getPersonalData().getName());
+		phone_TextField.setText(checkIn.getPersonalData().getPhone());
+		mail_TextField.setText(checkIn.getPersonalData().getEmail());
+		addRess_TextField.setText(checkIn.getPersonalData().getAddress());
+		city_TextField.setText(checkIn.getPersonalData().getCity());
+		nationality_TextField.setText(checkIn.getPersonalData().getNationality());
+		passport_textField.setText(checkIn.getPersonalData().getPassportNo());
+		cvcCode_textField.setText(checkIn.getPayment().getCVC_Code());
+		cardNumber_textField.setText(checkIn.getPayment().getCardNumber());
+		name_label.setText(checkIn.getRoom().getName());
+		Room room = (Room) checkIn.getRoom();
+		roomType_label.setText(room.getType().getName());
+		roomCapacity_label.setText(room.getCapacity() + "");
+		checkInDate_label.setText(checkIn.getCheckInDate().getDate()+"/"+ checkIn.getCheckInDate().getMonth() + "/" +checkIn.getCheckInDate().getYear());
+		checkOutDate_label.setText(checkIn.getCheckOutDate().getDate() +"/"+ checkIn.getCheckOutDate().getMonth() + "/" +checkIn.getCheckOutDate().getYear());
+		roomID_label.setText(checkIn.getRoom().getId());
+		numberOfNights_label.setText(checkIn.getDateBetweenTwoDate() + "");
+		nightCost_label.setText(room.getCost() + "");
+		totalPrice_label.setText(checkIn.getCost()+"");
 	}
 
 
 	@Override
 	public void update() {
 		// viet update o day
-		
+		data(); 
 	}
 }

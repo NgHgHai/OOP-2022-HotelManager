@@ -627,8 +627,8 @@ public class HomePage2 extends JFrame implements Observer {
 
 		pnlCheckOut.add(btnCheckOut_command);
 
-		txtRoomNumber.addMouseListener(new MouseAdapter() {
-		});
+//		txtRoomNumber.addMouseListener(new MouseAdapter() {
+//		});
 
 		return panel;
 	}
@@ -758,12 +758,26 @@ public class HomePage2 extends JFrame implements Observer {
 			}
 		});
 		// CheckOut
+//		btnCheckOut_command.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				JFrame confirmtationFrame = new Bill(hotelObs, controller, homePage2);
+//				confirmtationFrame.setVisible(true);
+//				confirmtationFrame.setLocationRelativeTo(null);
+//			}
+//		});
 		btnCheckOut_command.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFrame confirmtationFrame = new Bill(hotelObs, controller, homePage2);
-				confirmtationFrame.setVisible(true);
-				confirmtationFrame.setLocationRelativeTo(null);
+				// TODO Auto-generated method stub
+					if (controller.checkOut(txtRoomNumber.getText())) {
+						JFrame bill = new Bill(hotelObs, controller, homePage2);
+						bill.setVisible(true);
+						bill.setLocationRelativeTo(null);
+					}else {
+						JOptionPane.showMessageDialog(null, "Error");
+					}				
 			}
 		});
 
@@ -789,6 +803,7 @@ public class HomePage2 extends JFrame implements Observer {
 				}
 			}
 		});
+	
 		btnGuest.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -815,6 +830,7 @@ public class HomePage2 extends JFrame implements Observer {
 			}
 		});
 	}
+
 	// ======
 
 	@Override
