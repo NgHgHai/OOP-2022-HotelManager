@@ -242,6 +242,4 @@ public class HotelManager extends model.Observable {
 		return user;
 	}
 
-
-
 }

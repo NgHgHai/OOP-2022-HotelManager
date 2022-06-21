@@ -89,7 +89,7 @@ public class Login extends JFrame {
 		btnLogin = new JButton("LOGIN");
 		btnLogin.setBackground(State.background);
 		btnLogin.setForeground(Color.WHITE);
-		btnLogin.setFocusable(false);
+//		btnLogin.setFocusable(false);
 
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		btnLogin.setBounds(217, 422, 136, 44);
