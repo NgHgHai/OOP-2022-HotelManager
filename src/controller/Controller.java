@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
 
@@ -9,7 +8,6 @@ import model.AType;
 import model.Account;
 import model.CheckIn;
 import model.HotelManager;
-import model.Room;
 import view.Login;
 
 public class Controller {
@@ -59,12 +57,6 @@ public class Controller {
 		return manager.searchModel(roomType, roomCapacity);
 
 	}
-	public ArrayList<Room> searchRoomChoose(String roomType, int roomCapacity) {
-		// TODO Auto-generated method stub
-		return manager.searchListRoomModel(roomType, roomCapacity);
-
-	}
-	
 
 	public boolean saveCheckIn(String name, String phone, String email, String address, String city, String nationality,
 			String passsport, String cardNumber, String codeCVC, String roomType, int roomCapacity, Date checkInDate,
@@ -78,7 +70,6 @@ public class Controller {
 		return manager.getUser();
 	}
 
-
 	public boolean checkOut(String iDCheckOut) {
 		// TODO Auto-generated method stub
 		return manager.checkOut(iDCheckOut);
@@ -87,5 +78,4 @@ public class Controller {
 		// TODO Auto-generated method stub
 		return manager.getCheckIn();
 	}
-
 }
