@@ -76,7 +76,7 @@ public class HomePage2 extends JFrame implements Observer {
 	JButton btnGuest;
 	JButton btnRooms;
 	JButton btnLogOut;
-	JButton btnCheckOut;
+	JButton btnCheckOut, btnClear, btnClearCheckOut;
 	JButton btnSearch = new JButton("Search");
 	JButton btnSubmit = new JButton("Submit");
 	JButton btnCheckOut_command = new JButton("Check out");
@@ -353,7 +353,7 @@ public class HomePage2 extends JFrame implements Observer {
 		btnRoomData.setBounds(670, 215, 140, 36);
 		panel.add(btnRoomData);
 
-		JButton btnClear = new JButton("Clear");
+		btnClear = new JButton("Clear");
 		btnClear.setBackground(SystemColor.controlShadow);
 		btnClear.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnClear.setFocusable(false);
@@ -612,12 +612,19 @@ public class HomePage2 extends JFrame implements Observer {
 		pnlCheckOut.add(txtRoomNumber);
 		txtRoomNumber.setColumns(10);
 
-		JButton btnClear = new JButton("Clear");
-		btnClear.setBackground(State.clear_button);
-		btnClear.setFont(new Font("Serif", Font.PLAIN, 20));
-		btnClear.setBounds(200, 170, 110, 35);
-		btnClear.setFocusable(false);
-		pnlCheckOut.add(btnClear);
+		btnClearCheckOut = new JButton("Clear");
+		btnClearCheckOut.setBackground(State.clear_button);
+		btnClearCheckOut.setFont(new Font("Serif", Font.PLAIN, 20));
+		btnClearCheckOut.setBounds(200, 170, 110, 35);
+		btnClearCheckOut.setFocusable(false);
+		btnClearCheckOut.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				txtRoomNumber.setText("");
+			}
+		});
+		pnlCheckOut.add(btnClearCheckOut);
 
 		btnCheckOut_command.setBackground(State.red_button);
 		btnCheckOut_command.setFont(new Font("Serif", Font.PLAIN, 20));
@@ -625,9 +632,6 @@ public class HomePage2 extends JFrame implements Observer {
 		btnCheckOut_command.setFocusable(false);
 
 		pnlCheckOut.add(btnCheckOut_command);
-
-//		txtRoomNumber.addMouseListener(new MouseAdapter() {
-//		});
 
 		return panel;
 	}
@@ -765,20 +769,22 @@ public class HomePage2 extends JFrame implements Observer {
 //				confirmtationFrame.setLocationRelativeTo(null);
 //			}
 //		});
+		// checkOut
 		btnCheckOut_command.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-					if (controller.checkOut(txtRoomNumber.getText())) {
-						JFrame bill = new Bill(hotelObs, controller, homePage2);
-						bill.setVisible(true);
-						bill.setLocationRelativeTo(null);
-					}else {
-						JOptionPane.showMessageDialog(null, "Error");
-					}				
+				if (controller.checkOut(txtRoomNumber.getText()) != null) {
+					JFrame bill = new Bill(hotelObs, controller, homePage2);
+					bill.setVisible(true);
+					bill.setLocationRelativeTo(null);
+				} else {
+					JOptionPane.showMessageDialog(null, "Error");
+				}
 			}
 		});
+
 
 		btnCheckIn.addActionListener(new ActionListener() {
 			@Override
@@ -802,7 +808,7 @@ public class HomePage2 extends JFrame implements Observer {
 				}
 			}
 		});
-	
+
 		btnGuest.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

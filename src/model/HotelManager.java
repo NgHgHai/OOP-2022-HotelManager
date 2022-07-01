@@ -85,15 +85,15 @@ public class HotelManager extends model.Observable {
 	}
 
 	// checkOut
-	public boolean checkOut(String id) {
+	public CheckIn checkOut(String id) {
 		for (CheckIn c : checkInList) {
 			if (c.getRoom().getId().equals(id)) {
 				checkIn = c;
 				notifyObs();
-				return true;
+				return checkIn;
 			}
 		}
-		return false;
+		return null;
 	}
 
 	// add room
@@ -240,6 +240,12 @@ public class HotelManager extends model.Observable {
 	public Account getUser() {
 
 		return user;
+	}
+
+	public ArrayList<CheckIn> removeCheckIn(ArrayList<CheckIn> listCheckIn) {
+		// TODO Auto-generated method stub
+		listCheckIn.remove(checkIn);
+		return listCheckIn;
 	}
 
 }

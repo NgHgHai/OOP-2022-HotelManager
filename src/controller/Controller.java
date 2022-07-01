@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
 
@@ -70,12 +71,15 @@ public class Controller {
 		return manager.getUser();
 	}
 
-	public boolean checkOut(String iDCheckOut) {
+	public CheckIn checkOut(String iDCheckOut) {
 		// TODO Auto-generated method stub
 		return manager.checkOut(iDCheckOut);
 	}
 	public CheckIn getCheckIn() {
-		// TODO Auto-generated method stub
 		return manager.getCheckIn();
+	}
+	public ArrayList<CheckIn> removeCheckIn(ArrayList<CheckIn> listCheckIn) {
+		// TODO Auto-generated method stub
+		return manager.removeCheckIn(listCheckIn);
 	}
 }

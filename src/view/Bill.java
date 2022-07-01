@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -84,7 +85,15 @@ public class Bill extends JFrame implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(e.getSource().equals(btn_Pay)) {
+					if(homePage2.listCheckIn.contains(controller.getCheckIn())) {
+					homePage2.listCheckIn = controller.removeCheckIn(homePage2.listCheckIn);
+
 					JOptionPane.showMessageDialog(null, "Complete.");
+					}
+					else {
+					JOptionPane.showMessageDialog(null, "Error. This room has already been paid!");
+
+					}
 				}
 			}
 		});
