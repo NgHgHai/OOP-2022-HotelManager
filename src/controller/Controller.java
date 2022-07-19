@@ -87,5 +87,10 @@ public class Controller {
 		// TODO Auto-generated method stub
 		return manager.getCheckIn();
 	}
+	public void paid(String idRoom) {
+		// TODO Auto-generated method stub
+		manager.paid(idRoom);
+		
+	}
 
 }

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Properties;
 
 import javax.swing.ButtonGroup;
@@ -651,6 +652,9 @@ public class HomePage2 extends JFrame implements Observer {
 		viewGuestList[0][8] = "Days";
 		viewGuestList[0][9] = "Fees";
 		for (int i = 0; i < listCheckIn.size(); i++) {
+//			if(!listCheckIn.get(i).isPay()) {
+				
+			
 			viewGuestList[i + 1][0] = listCheckIn.get(i).getRoom().getId();
 			viewGuestList[i + 1][1] = listCheckIn.get(i).getPersonalData().getName();
 			viewGuestList[i + 1][2] = listCheckIn.get(i).getPersonalData().getEmail();
@@ -661,6 +665,8 @@ public class HomePage2 extends JFrame implements Observer {
 			viewGuestList[i + 1][7] = listCheckIn.get(i).getPersonalData().getPhone();
 			viewGuestList[i + 1][8] = listCheckIn.get(i).getDateBetweenTwoDate() + "";
 			viewGuestList[i + 1][9] = listCheckIn.get(i).getCost() + "";
+//			}
+			
 		}
 
 		tableGuest = new JTable();
@@ -718,6 +724,9 @@ public class HomePage2 extends JFrame implements Observer {
 		btnSearch.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (controller.searchRoomChoose(roomType, roomCapacity).size() == 0 ) {
+					JOptionPane.showMessageDialog(null,"Room does not exist"); 
+				}else
 				new ChooseRoom(hotelObs, controller, homePage2, roomType,roomCapacity);
 			}
 		});
@@ -770,7 +779,7 @@ public class HomePage2 extends JFrame implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				// 
 					if (controller.checkOut(txtRoomNumber.getText())) {
 						JFrame bill = new Bill(hotelObs, controller, homePage2);
 						bill.setVisible(true);
@@ -843,6 +852,15 @@ public class HomePage2 extends JFrame implements Observer {
 	
 		
 		this.listCheckIn = manager.getCheckIns();
+		// cac hoa don da tra roi thi khong hien thi nua
+		for (int i = 0; i < listCheckIn.size(); i++) {
+			if (listCheckIn.get(i).isPay()) {
+				listCheckIn.remove(listCheckIn.get(i));
+			}
+		}
+		
+		
+//		System.out.println(listCheckIn.size()+ "Size");
 		this.listCheckIn.sort(new Comparator<CheckIn>() {
 
 			@Override
@@ -850,6 +868,8 @@ public class HomePage2 extends JFrame implements Observer {
 				return o1.getRoom().getId().compareTo(o2.getRoom().getId());
 			}
 		});
+		
+		
 		this.listRoom.removeAll(listRoom);
 		this.listRoom.addAll(manager.getRooms());
 		this.listRoom.sort(new Comparator<ARoom>() {

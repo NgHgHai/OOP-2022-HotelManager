@@ -84,7 +84,10 @@ public class Bill extends JFrame implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(e.getSource().equals(btn_Pay)) {
+					controller.paid(roomID_label.getText());
+//					roomID_label.getText()
 					JOptionPane.showMessageDialog(null, "Complete.");
+					
 				}
 			}
 		});

@@ -11,6 +11,7 @@ import java.util.Set;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -140,6 +141,9 @@ public class ChooseRoom extends JFrame implements Observer {
 	private void table() {
 		for (Room n : controller.searchRoomChoose(roomType, roomCapacity)) {
 			listChooseRoom.add(n);
+		}
+		if (controller.searchRoomChoose(roomType, roomCapacity).size() == 0 ) {
+			JOptionPane.showMessageDialog(null,"Room does not exist"); 
 		}
 
 		viewListChooseRoom = new String[listChooseRoom.size() + 1][4];

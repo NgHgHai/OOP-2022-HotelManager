@@ -123,7 +123,7 @@ public class Login extends JFrame {
 	}
 
 	private void actionListener() {
-		// push the button
+		// push the button Login
 		btnLogin.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -132,7 +132,7 @@ public class Login extends JFrame {
 				}
 			}
 		});
-		// key "enter" (if select the button "login" push it )
+		// key "enter" (if select the button "login" push it )// hai pha
 		btnLogin.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -151,9 +151,9 @@ public class Login extends JFrame {
 			JFrame homePageFrame = new HomePage(hotelObs, controller, this);
 			homePageFrame.setVisible(true);
 			homePageFrame.setLocationRelativeTo(null);
-//			JFrame homePageFrame2 = new HomePage(hotelObs, controller, this);
-//			homePageFrame2.setVisible(true);
-//			homePageFrame2.setLocationRelativeTo(null);
+			JFrame homePageFrame2 = new HomePage(hotelObs, controller, this);
+			homePageFrame2.setVisible(true);
+			homePageFrame2.setLocationRelativeTo(null);
 //			JFrame homePageFrame3 = new HomePage(hotelObs, controller, this);
 //			homePageFrame3.setVisible(true);
 //			homePageFrame3.setLocationRelativeTo(null);
