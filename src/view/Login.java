@@ -145,9 +145,9 @@ public class Login extends JFrame {
 	}
 
 	private void checkAccount() {
-		if (controller.isAccout(txtUsername.getText(), txtPassword.getText())) {
+		if (controller.isAccount(txtUsername.getText(), txtPassword.getText())) {
 			setVisible(false);
-			
+
 			JFrame homePageFrame = new HomePage(hotelObs, controller, this);
 			homePageFrame.setVisible(true);
 			homePageFrame.setLocationRelativeTo(null);

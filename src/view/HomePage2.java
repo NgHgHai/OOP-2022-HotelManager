@@ -76,6 +76,7 @@ public class HomePage2 extends JFrame implements Observer {
 
 	// nho khai bao cac bien can thiet thanh bien toan cuc
 	JButton btnGuest;
+	JButton btnClear = new JButton("Clear");
 	JButton btnRooms;
 	JButton btnLogOut;
 	JButton btnCheckOut;
@@ -88,7 +89,7 @@ public class HomePage2 extends JFrame implements Observer {
 	private String commandToChoosePanel;
 
 	ArrayList<CheckIn> listCheckIn = new ArrayList<>();
-	ArrayList<ARoom> listRoom = new ArrayList<>();	
+	ArrayList<ARoom> listRoom = new ArrayList<>();
 
 	public HomePage2(String commandToChoosePanel, Observable hotelObs, Controller controller, HomePage homePage) {
 		this.hotelObs = hotelObs;
@@ -355,7 +356,6 @@ public class HomePage2 extends JFrame implements Observer {
 		btnRoomData.setBounds(670, 215, 140, 36);
 		panel.add(btnRoomData);
 
-		JButton btnClear = new JButton("Clear");
 		btnClear.setBackground(SystemColor.controlShadow);
 		btnClear.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnClear.setFocusable(false);
@@ -566,6 +566,7 @@ public class HomePage2 extends JFrame implements Observer {
 		txtRoomID.setColumns(10);
 		txtRoomID.setBounds(112, 220, 100, 30);
 		pnlRoomData.add(txtRoomID);
+		txtRoomID.setEditable(false);
 
 		btnSearch.setBackground(State.blue_button);
 		btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -614,7 +615,6 @@ public class HomePage2 extends JFrame implements Observer {
 		pnlCheckOut.add(txtRoomNumber);
 		txtRoomNumber.setColumns(10);
 
-		JButton btnClear = new JButton("Clear");
 		btnClear.setBackground(State.clear_button);
 		btnClear.setFont(new Font("Serif", Font.PLAIN, 20));
 		btnClear.setBounds(200, 170, 110, 35);
@@ -653,8 +653,7 @@ public class HomePage2 extends JFrame implements Observer {
 		viewGuestList[0][9] = "Fees";
 		for (int i = 0; i < listCheckIn.size(); i++) {
 //			if(!listCheckIn.get(i).isPay()) {
-				
-			
+
 			viewGuestList[i + 1][0] = listCheckIn.get(i).getRoom().getId();
 			viewGuestList[i + 1][1] = listCheckIn.get(i).getPersonalData().getName();
 			viewGuestList[i + 1][2] = listCheckIn.get(i).getPersonalData().getEmail();
@@ -666,13 +665,14 @@ public class HomePage2 extends JFrame implements Observer {
 			viewGuestList[i + 1][8] = listCheckIn.get(i).getDateBetweenTwoDate() + "";
 			viewGuestList[i + 1][9] = listCheckIn.get(i).getCost() + "";
 //			}
-			
+
 		}
 
 		tableGuest = new JTable();
 		tableGuest.setFont(new Font("Time New Roman", Font.BOLD, 11));
 		tableGuest.setLocation(5, 55);
 		tableGuest.setSize(950, 490);
+		tableGuest.enable(false);
 		panel.add(tableGuest);
 		tableGuest.setModel(new DefaultTableModel(viewGuestList, new String[] { "RoomID", "Name", "Email", "New column",
 				"New column", "New column", "Passport", "Phone", "Days", "Fees" }));
@@ -710,6 +710,7 @@ public class HomePage2 extends JFrame implements Observer {
 		tableRooms = new JTable();
 		tableRooms.setFont(new Font("Time New Roman", Font.BOLD, 11));
 		tableRooms.setBounds(5, 50, 950, 490);
+		tableRooms.enable(false);
 		panel.add(tableRooms);
 		tableRooms.setModel(new DefaultTableModel(viewRoomList,
 				new String[] { "RoomID", "Room Type", "Room Capacity", "Name", "State", "is Available?", "" }));
@@ -724,10 +725,10 @@ public class HomePage2 extends JFrame implements Observer {
 		btnSearch.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (controller.searchRoomChoose(roomType, roomCapacity).size() == 0 ) {
-					JOptionPane.showMessageDialog(null,"Room does not exist"); 
-				}else
-				new ChooseRoom(hotelObs, controller, homePage2, roomType,roomCapacity);
+				if (controller.searchRoomChoose(roomType, roomCapacity).size() == 0) {
+					JOptionPane.showMessageDialog(null, "Room does not exist");
+				} else
+					new ChooseRoom(hotelObs, controller, homePage2, roomType, roomCapacity);
 			}
 		});
 		// logout
@@ -742,11 +743,28 @@ public class HomePage2 extends JFrame implements Observer {
 				loginFrame.setLocationRelativeTo(null);
 			}
 		});
+		// btnClear
+		btnClear.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				txtName.setText("");
+				txtPhone.setText("");
+				txtEmail.setText("");
+				txtAddress.setText("");
+				txtCity.setText("");
+				txtNationality.setText("");
+				txtPassportNo.setText("");
+				txtCardNumber.setText("");
+				txtCVCCode.setText("");
+				txtRoomNumber.setText("");
+			}
+		});
+
 		// submit
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource().equals(btnSubmit)) {
-					int output = JOptionPane.showConfirmDialog(null, "save information ? ", "HomePage2",
+					int output = JOptionPane.showConfirmDialog(null, "Save information ? ", "HomePage2",
 							JOptionPane.YES_NO_OPTION);
 					if (output == JOptionPane.YES_OPTION) {
 						if (controller.saveCheckIn(txtName.getText(), txtPhone.getText(), txtEmail.getText(),
@@ -779,14 +797,14 @@ public class HomePage2 extends JFrame implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// 
-					if (controller.checkOut(txtRoomNumber.getText())) {
-						JFrame bill = new Bill(hotelObs, controller, homePage2);
-						bill.setVisible(true);
-						bill.setLocationRelativeTo(null);
-					}else {
-						JOptionPane.showMessageDialog(null, "Error");
-					}				
+				//
+				if (controller.checkOut(txtRoomNumber.getText())) {
+					JFrame bill = new Bill(hotelObs, controller, homePage2);
+					bill.setVisible(true);
+					bill.setLocationRelativeTo(null);
+				} else {
+					JOptionPane.showMessageDialog(null, "Error");
+				}
 			}
 		});
 
@@ -812,7 +830,7 @@ public class HomePage2 extends JFrame implements Observer {
 				}
 			}
 		});
-	
+
 		btnGuest.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -847,10 +865,7 @@ public class HomePage2 extends JFrame implements Observer {
 		// viet update tai day
 		HotelManager manager = (HotelManager) hotelObs;
 		this.nameUser = manager.getNameUser();
-		
-		
-	
-		
+
 		this.listCheckIn = manager.getCheckIns();
 		// cac hoa don da tra roi thi khong hien thi nua
 		for (int i = 0; i < listCheckIn.size(); i++) {
@@ -858,8 +873,7 @@ public class HomePage2 extends JFrame implements Observer {
 				listCheckIn.remove(listCheckIn.get(i));
 			}
 		}
-		
-		
+
 //		System.out.println(listCheckIn.size()+ "Size");
 		this.listCheckIn.sort(new Comparator<CheckIn>() {
 
@@ -868,8 +882,7 @@ public class HomePage2 extends JFrame implements Observer {
 				return o1.getRoom().getId().compareTo(o2.getRoom().getId());
 			}
 		});
-		
-		
+
 		this.listRoom.removeAll(listRoom);
 		this.listRoom.addAll(manager.getRooms());
 		this.listRoom.sort(new Comparator<ARoom>() {
@@ -881,10 +894,8 @@ public class HomePage2 extends JFrame implements Observer {
 		});
 	}
 
-	
 	public void setTxtRoomID(String roomId) {
 		txtRoomID.setText(roomId);
 	}
 
-	
 }

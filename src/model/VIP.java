@@ -8,5 +8,4 @@ public class VIP extends AType {
 		super.view = "sea view";
 	}
 
-
 }

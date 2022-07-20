@@ -79,19 +79,19 @@ public class Bill extends JFrame implements Observer {
 			}
 		});
 		btn_Pay.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(e.getSource().equals(btn_Pay)) {
+				if (e.getSource().equals(btn_Pay)) {
 					controller.paid(roomID_label.getText());
 //					roomID_label.getText()
 					JOptionPane.showMessageDialog(null, "Complete.");
-					
+
 				}
 			}
 		});
-		
+
 	}
 
 	private void init() {
@@ -139,7 +139,6 @@ public class Bill extends JFrame implements Observer {
 		totalPrice_label.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		totalPrice_label.setBounds(155, 110, 50, 22);
 		panel_Price.add(totalPrice_label);
-
 
 		JLabel totalPrice_label_1_1 = new JLabel("$");
 		totalPrice_label_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -374,8 +373,8 @@ public class Bill extends JFrame implements Observer {
 		button_PersonalData.setBounds(169, 125, 100, 30);
 
 		// logo action
-		label_group17.addMouseListener(State.retureHomePage(label_group17, this,homePage2.homePage));
-		label_logo.addMouseListener(State.retureHomePage(label_logo, this,homePage2.homePage));
+		label_group17.addMouseListener(State.retureHomePage(label_group17, this, homePage2.homePage));
+		label_logo.addMouseListener(State.retureHomePage(label_logo, this, homePage2.homePage));
 
 	}
 
@@ -395,18 +394,19 @@ public class Bill extends JFrame implements Observer {
 		Room room = (Room) checkIn.getRoom();
 		roomType_label.setText(room.getType().getName());
 		roomCapacity_label.setText(room.getCapacity() + "");
-		checkInDate_label.setText(checkIn.getCheckInDate().getDate()+"/"+ checkIn.getCheckInDate().getMonth() + "/" +checkIn.getCheckInDate().getYear());
-		checkOutDate_label.setText(checkIn.getCheckOutDate().getDate() +"/"+ checkIn.getCheckOutDate().getMonth() + "/" +checkIn.getCheckOutDate().getYear());
+		checkInDate_label.setText(checkIn.getCheckInDate().getDate() + "/" + checkIn.getCheckInDate().getMonth() + "/"
+				+ checkIn.getCheckInDate().getYear());
+		checkOutDate_label.setText(checkIn.getCheckOutDate().getDate() + "/" + checkIn.getCheckOutDate().getMonth()
+				+ "/" + checkIn.getCheckOutDate().getYear());
 		roomID_label.setText(checkIn.getRoom().getId());
 		numberOfNights_label.setText(checkIn.getDateBetweenTwoDate() + "");
 		nightCost_label.setText(room.getCost() + "");
-		totalPrice_label.setText(checkIn.getCost()+"");
+		totalPrice_label.setText(checkIn.getCost() + "");
 	}
-
 
 	@Override
 	public void update() {
 		// viet update o day
-		data(); 
+		data();
 	}
 }

@@ -142,8 +142,8 @@ public class ChooseRoom extends JFrame implements Observer {
 		for (Room n : controller.searchRoomChoose(roomType, roomCapacity)) {
 			listChooseRoom.add(n);
 		}
-		if (controller.searchRoomChoose(roomType, roomCapacity).size() == 0 ) {
-			JOptionPane.showMessageDialog(null,"Room does not exist"); 
+		if (controller.searchRoomChoose(roomType, roomCapacity).size() == 0) {
+			JOptionPane.showMessageDialog(null, "Room does not exist");
 		}
 
 		viewListChooseRoom = new String[listChooseRoom.size() + 1][4];
@@ -181,7 +181,7 @@ public class ChooseRoom extends JFrame implements Observer {
 				homePage2.setLocationRelativeTo(null);
 			}
 		});
-		
+
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

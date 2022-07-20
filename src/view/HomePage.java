@@ -38,7 +38,7 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 
 	private String nameUser = "";
 	private String rankUser = "";
-	
+
 	JLabel lblGetAvailableRooms;
 	JLabel lblGetReservedRooms;
 
@@ -299,7 +299,7 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 	}
 
 	private void actionListener() {
-		//Them cac action cho cac nut
+		// Them cac action cho cac nut
 		btnSetting.addActionListener(this);
 		btnLogOut.addActionListener(this);
 
@@ -322,8 +322,8 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 				JFrame SettingFrame = new Setting(hotelObs, controller, this);
 				setVisible(false);
 				SettingFrame.setVisible(true);
-				SettingFrame.setLocationRelativeTo(null);				
-			}else
+				SettingFrame.setLocationRelativeTo(null);
+			} else
 				JOptionPane.showMessageDialog(null, "sorry, this place only allows admins");
 		}
 		// ====== exit
@@ -354,7 +354,7 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 				homePage2Frame.currentPanel = "3";
 				homePage2Frame.setVisible(true);
 				homePage2Frame.setLocationRelativeTo(null);
-			}else
+			} else
 				JOptionPane.showMessageDialog(null, "sorry, this place only allows admins");
 
 		} else if (e.getActionCommand().equals(btnRooms.getActionCommand())) {
@@ -369,12 +369,12 @@ public class HomePage extends JFrame implements Observer, ActionListener {
 	@Override
 	public void update() { // update ten nguoi dang nhap va so phong
 		HotelManager manager = (HotelManager) hotelObs;
-		
+
 		this.allRoom = manager.totalRoom();
 		this.avaiRoom = manager.totalReadyRoom();
 		this.nameUser = manager.getNameUser();
 		this.rankUser = manager.getRank();
-		
+
 		lblGetAvailableRooms.setText(avaiRoom + " / " + allRoom);
 		lblGetReservedRooms.setText((allRoom - avaiRoom) + " / " + allRoom);
 		lblGetName.setText(nameUser);

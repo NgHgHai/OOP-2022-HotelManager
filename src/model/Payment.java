@@ -25,6 +25,5 @@ public class Payment {
 	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
 	}
-	
 
 }

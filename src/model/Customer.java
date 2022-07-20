@@ -11,7 +11,6 @@ public class Customer extends Account {
 		return "Customer";
 	}
 
-
 	@Override
 	public String toString() {
 		return "Customer [name=" + name + ", pass=" + pass + "]";

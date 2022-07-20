@@ -76,6 +76,5 @@ public class PersonalData {
 	public void setPassportNo(String passportNo) {
 		this.passportNo = passportNo;
 	}
-	
 
 }

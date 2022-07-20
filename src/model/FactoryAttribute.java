@@ -27,7 +27,6 @@ public class FactoryAttribute {
 		return account;
 	}
 
-
 	public AType createType(String type) {
 
 		if (type.equals("Normal")) {
@@ -45,7 +44,5 @@ public class FactoryAttribute {
 		ARoom rs = new Room(id, name, roomState, cost, available, createType(type), capacity);
 		return rs;
 	}
-
-	
 
 }

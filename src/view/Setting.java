@@ -154,24 +154,24 @@ public class Setting extends JFrame implements Observer {
 		viewAllUser_button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFrame viewUserFrame = new ViewUser(hotelObs,controller, setting);
+				JFrame viewUserFrame = new ViewUser(hotelObs, controller, setting);
 //				setVisible(false);
 				viewUserFrame.setVisible(true);
 				viewUserFrame.setLocationRelativeTo(null);
 			}
 		});
-		
+
 		// ====== addUser
 		addUser_button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFrame addUserFrame = new AddUser(hotelObs,controller,  setting);
+				JFrame addUserFrame = new AddUser(hotelObs, controller, setting);
 //				setVisible(false);
 				addUserFrame.setVisible(true);
 				addUserFrame.setLocationRelativeTo(null);
 			}
 		});
-		
+
 		// ====== deleteUser
 		deleteUser_button.addActionListener(new ActionListener() {
 			@Override
@@ -182,18 +182,18 @@ public class Setting extends JFrame implements Observer {
 				deleteUserFrame.setLocationRelativeTo(null);
 			}
 		});
-		
+
 		// ====== addRoom
 		addRoom_button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFrame addRoomFrame = new AddRoom(hotelObs,controller,  setting);
+				JFrame addRoomFrame = new AddRoom(hotelObs, controller, setting);
 				setVisible(false);
 				addRoomFrame.setVisible(true);
 				addRoomFrame.setLocationRelativeTo(null);
 			}
 		});
-		
+
 		// ====== deleteRoom
 		deleteRoom_button.addActionListener(new ActionListener() {
 			@Override
@@ -204,7 +204,7 @@ public class Setting extends JFrame implements Observer {
 				deleteRoomFrame.setLocationRelativeTo(null);
 			}
 		});
-		
+
 		// ====== back
 		back_button.addActionListener(new ActionListener() {
 

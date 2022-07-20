@@ -246,22 +246,20 @@ public class HotelManager extends model.Observable {
 	public void paid(String idRoom) {
 		// TODO Auto-generated method stub
 		getRoom(idRoom).available = true; // phong trong
-		getCheckIn(idRoom).paid(); // 
+		getCheckIn(idRoom).paid(); //
 		notifyObs();
-		
+
 	}
 
 	private CheckIn getCheckIn(String idRoom) {
 		// TODO Auto-generated method stub
 		for (CheckIn checkIn : checkInList) {
-			if (checkIn.getRoom().getId().equals(idRoom) && !checkIn.isPay() ) {
-				return checkIn ;
+			if (checkIn.getRoom().getId().equals(idRoom) && !checkIn.isPay()) {
+				return checkIn;
 			}
 		}
 		return null;
-		
+
 	}
-
-
 
 }

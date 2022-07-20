@@ -19,9 +19,7 @@ public abstract class AType {
 
 	@Override
 	public String toString() {
-		return   name ;
+		return name;
 	}
 
-	
-	
 }

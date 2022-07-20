@@ -23,13 +23,16 @@ public class Controller {
 		login.setVisible(true);
 
 	}
+
 	public int totalRoom() {
 		return manager.totalRoom();
 	}
+
 	public Set<ARoom> getRooms() {
 		return manager.getRooms();
 	}
-	public boolean isAccout(String name, String pass) {
+
+	public boolean isAccount(String name, String pass) {
 
 		return manager.isAccount(name, pass);
 	}
@@ -59,12 +62,12 @@ public class Controller {
 		return manager.searchModel(roomType, roomCapacity);
 
 	}
+
 	public ArrayList<Room> searchRoomChoose(String roomType, int roomCapacity) {
 		// TODO Auto-generated method stub
 		return manager.searchListRoomModel(roomType, roomCapacity);
 
 	}
-	
 
 	public boolean saveCheckIn(String name, String phone, String email, String address, String city, String nationality,
 			String passsport, String cardNumber, String codeCVC, String roomType, int roomCapacity, Date checkInDate,
@@ -73,24 +76,26 @@ public class Controller {
 				roomType, roomCapacity, checkInDate, checkOutDate, roomID);
 
 	}
+
 	public Account getUser() {
-		
+
 		return manager.getUser();
 	}
-
 
 	public boolean checkOut(String iDCheckOut) {
 		// TODO Auto-generated method stub
 		return manager.checkOut(iDCheckOut);
 	}
+
 	public CheckIn getCheckIn() {
 		// TODO Auto-generated method stub
 		return manager.getCheckIn();
 	}
+
 	public void paid(String idRoom) {
 		// TODO Auto-generated method stub
 		manager.paid(idRoom);
-		
+
 	}
 
 }
