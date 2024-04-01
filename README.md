@@ -26,7 +26,7 @@ This project don't uses database, just forcus how to uses a pattern to design a 
 
 ## Documentation
 
-- [hotelmanager-group17-pdf](https://drive.google.com/file/d/1Aa-2cos7cT8aaG0huSF08MXt7HMBqGgj/view?usp=drive_link)
+- [hotelmanager-group17-pdf](https://drive.google.com/file/d/1Aa-2cos7cT8aaG0huSF08MXt7HMBqGgj/view?usp=drive_link) (vietnamese ver)
 - [class-diagram.drawio](https://drive.google.com/file/d/1vNiGcewGOsV_huNQ4vOhFSKTvVEFj8nq/view?usp=sharing)
 ## Tech Stack
 
